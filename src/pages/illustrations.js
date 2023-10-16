@@ -10,17 +10,17 @@ import lotas2 from "../../public/images/articles/5.jpg"
 import tom1 from "../../public/images/articles/2.jpg"
 import tom2 from "../../public/images/articles/3.jpg"
 import tom3 from "../../public/images/articles/4.jpg"
-import tom4 from "../../public/images/articles/Sin título2.png"
+import tom4 from "../../public/images/articles/isabella.png"
 import logoAlan from "../../public/images/articles/6.jpg"
 import logoCabis from "../../public/images/articles/adfsgvafdssv.png"
-import logoLobito from "../../public/images/articles/Sin títulosdf.png"
+import lobito from "../../public/images/articles/lobito.png"
 import logoPelican from "../../public/images/articles/sdvsdv.png"
 import logoM from "../../public/images/articles/sdf.png"
 import logoBigatti from "../../public/images/articles/sfvafvafsv.png"
-import digitalCasa from "../../public/images/articles/Sin título.png"
+import rural from "../../public/images/articles/rural.png"
 import digital1 from "../../public/images/articles/11.jpg"
-import digital2 from "../../public/images/articles/Ilustración_sin_título 1.jpg"
-import digital3 from "../../public/images/articles/Ilustración_sin_título 4.jpg"
+import bottleship from "../../public/images/articles/bottleship.png"
+import beluga from "../../public/images/articles/beluga.png"
 import shades from "../../public/images/articles/shades.png"
 import zara from "../../public/images/articles/zara.png"
 import sticker1 from "../../public/images/articles/12.jpg"
@@ -164,7 +164,7 @@ const articles = () => {
                 summary="Flyer Invitation for Marriage Ceremony"
                 time="Procreate"
                 link="https://www.instagram.com/dro_illustration/"
-                img={digitalCasa}
+                img={rural}
               />
                 <FeaturedArticle
                 title="Las Cabis"
@@ -178,7 +178,7 @@ const articles = () => {
                 summary="Logo design for instagram ecommerce page"
                 time="Figma, Illustrator"
                 link="https://www.instagram.com/dro_illustration/"
-                img={logoLobito}
+                img={lobito}
               />
                 <FeaturedArticle
                 title="Alan Sarmiento Tattoo Artist"
@@ -269,14 +269,14 @@ const articles = () => {
                 summary=""
                 time="Procreate"
                 link="https://www.instagram.com/agustrossero_tattoo/"
-                img={digital2}
+                img={bottleship}
               />
                 <FeaturedArticle
                 title="Beluga Rock"
                 summary=""
                 time="Procreate"
                 link="https://www.instagram.com/agustrossero_tattoo/"
-                img={digital3}
+                img={beluga}
               />
             </ul>
             {/* <h2 className='font-bold text-4xl w-full text-center my-16 mt-32'>All Articles</h2>
