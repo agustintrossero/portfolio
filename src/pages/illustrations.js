@@ -244,7 +244,7 @@ const articles = () => {
                 img={sticker3}
               />
                 <FeaturedArticle
-                title="Music Famili Business"
+                title="Music Family Business"
                 summary=""
                 time="Procreate"
                 link="https://www.instagram.com/agustrossero_tattoo/"
@@ -258,7 +258,7 @@ const articles = () => {
                 img={sticker5}
               />
                 <FeaturedArticle
-                title="Tatto Flower"
+                title="Tattoo Flower"
                 summary=""
                 time="Procreate"
                 link="https://www.instagram.com/agustrossero_tattoo/"
