@@ -36,7 +36,7 @@ export default function Home() {
               <p className='my-4 text-base font-medium md:text-sm sm:text-xs'>As a skilled UX/UI Designer and Frontend developer, I am dedicated to turning ideas into innovative web applications. 
                 Explore my latest projects and articles, showcasing my expertise in React.js, Figma, Framer and web development.</p>
                 <div className='flex items-center self-start mt-2 lg:self-center'>
-                  <Link href="/AgustinTrosseroResume.pdf" target={"_blank"} className='flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border-2 border-solid border-transparent hover:border-dark
+                  <Link href="/Agustin.Trossero.Resume.C.pdf" target={"_blank"} className='flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border-2 border-solid border-transparent hover:border-dark
                    
                    dark:text-dark dark:bg-light dark:hover:bg-dark dark:hover:border-light dark:hover:text-light md:p-2 md:px-4 md:text-base ' download={true}>Resume <LinkArrow className={"w-6 ml-1"}/>
                   </Link>
