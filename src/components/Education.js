@@ -42,6 +42,16 @@ const Education = () => {
             className='absolute left-9 top-0 w-[4px] h-full bg-dark origin-top dark:bg-light md:w-[2px] md:left-[30px] xs:left-[20px]'/>
             <ul className='w-full flex flex-col items-start justify-between ml-4 xs:ml-2'>
                 <Details
+                    type="Figma & Adobe XD Course"
+                    time="Feb 2024 - Jun 2024" place="Coderhouse"
+                    info="This course delves deep into the myriad possibilities offered by Figma for web prototyping and Adobe XD for mobile applications. Students will gain comprehensive knowledge of how to utilize these tools effectively to create prototypes that meet the specific requirements of web and mobile projects."
+                />
+                <Details
+                    type="Advanced UX/UI Design Course"
+                    time="Feb 2024 - Jun 2024" place="Coderhouse"
+                    info="This advanced UX/UI Design course covers advanced principles and techniques in UX and UI design, including prototyping, user research, and interaction design, preparing students to tackle complex design challenges effectively."
+                />
+                <Details
                     type="Google UX Design Certification"
                     time="Sep 2023 - Feb 2024" place="Google & Coursera"
                     info="Those who earn the Google UX Design Professional Certificate have
@@ -50,16 +60,6 @@ const Education = () => {
                     process from beginning to end: empathizing with users, defining their
                     pain points, coming up with ideas for design solutions, creating
                     wireframes and prototypes, and testing designs to get feedback."
-                />
-                <Details
-                    type="Figma & Adobe XD Course"
-                    time="Feb 2024 - Present" place="Coderhouse"
-                    info="This course delves deep into the myriad possibilities offered by Figma for web prototyping and Adobe XD for mobile applications. Students will gain comprehensive knowledge of how to utilize these tools effectively to create prototypes that meet the specific requirements of web and mobile projects."
-                />
-                <Details
-                    type="Advanced UX/UI Design Course"
-                    time="Feb 2024 - Present" place="Coderhouse"
-                    info="This advanced UX/UI Design course covers advanced principles and techniques in UX and UI design, including prototyping, user research, and interaction design, preparing students to tackle complex design challenges effectively."
                 />
                 <Details
                     type="ReactJS Course"

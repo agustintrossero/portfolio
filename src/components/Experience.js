@@ -42,6 +42,12 @@ const Experience = () => {
             className='absolute left-9 top-0 w-[4px] h-full bg-dark origin-top dark:bg-light md:w-[2px] md:left-[30px] xs:left-[20px]'/>
             <ul className='w-full flex flex-col items-start justify-between ml-4 xs:ml-2'>
                 <Details
+                    position="Team Leader UX/UI Senior Designer" company="Siciliamia"
+                    companyLink="www.siciliamia.com"
+                    time="2023-Present" address="Sicily, Italy"
+                    work="Collaborates with cross-functional teams to drive user-centered design principles. Proficient in wireframing, prototyping, and aligning designs with business goals."
+                />
+                <Details
                     position="UX/UI Designer - Frontend Developer" company="Digital Tie"
                     companyLink="www.digitaltie.com"
                     time="2021-Present" address="Buenos Aires, Argentina"

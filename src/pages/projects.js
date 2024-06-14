@@ -11,6 +11,7 @@ import mascoters from "../../public/images/projects/mascoters.png"
 import cryptoQuote from "../../public/images/projects/cryptoQuote.png"
 import calculator from "../../public/images/projects/calculator.png"
 import crmPet from "../../public/images/projects/crmPet.png"
+import karma from "../../public/images/projects/PSKarma.png"
 
 import TransitionEffect from '@/components/TransitionEffect'
 
@@ -27,6 +28,14 @@ const projects = () => {
             <AnimatedText text="Imagination Trumps Knowledge!" className='mb-16 lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl'/>
             <div className='grid grid-cols-12 gap-24 gap-y-32 xl:gap-x-16 lg:gap-x-8 md:gap-y-24 sm:gap-x-0'>
               <div className='col-span-12'>
+                <FeaturedProject
+                  type="Featured Project"
+                  title="Karma - UX/UI for PlayStation"
+                  summary="In this project, we propose to optimize the experience for PlayStation gamers by implementing a voting system based on the concept of “Karma.” This system will allow players to rate each other’s behavior, promoting positivity and discouraging toxic conduct. Our goal is to create a friendlier and more collaborative community where players feel valued and motivated to contribute constructively."
+                  img={karma}
+                  link="https://www.behance.net/gallery/200975479/PlayStation-Karma"
+                  github=""
+                />
                 <FeaturedProject
                   type="Featured Project"
                   title="Good News App"
