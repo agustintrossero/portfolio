@@ -107,7 +107,7 @@ const projects = () => {
                   github=""
                   figma="https://www.figma.com/proto/EgqW1EltvpNFh4XWLA5C2k/Untitled?type=design&node-id=294-5166&t=h410SXnwbRL2kD5L-1&scaling=scale-down&page-id=0%3A1&starting-point-node-id=294%3A5103&show-proto-sidebar=1&mode=design"
                   behance=""
-                  showIcons={{ github: false, figma:  true, behance: true }}
+                  showIcons={{ github: false, figma:  true, behance: false }}
                 />
               </div>
               <div className='col-span-6 sm:col-span-12'>
