@@ -1,12 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { GithubIcon } from './Icons'
+import { GithubIcon, FigmaIcon, BehanceIcon } from './Icons'
 import { motion } from 'framer-motion'
 
 const FramerImage = motion(Image)
 
-const FeaturedProject = ({type, title, summary, img, link, github}) => {
+const FeaturedProject = ({type, title, summary, img, link, github, figma, behance, showIcons}) => {
   return (
     <article className='w-full flex items-center justify-between relative rounded-br-2xl rounded-3xl  border border-solid border-dark bg-light shadow-2xl p-8 dark:bg-dark dark:border-light lg:flex-col lg:p-8 xs:rounded-2xl xs:rounded-br-3xl xs:p-4'>
             <div className='absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2.5rem] bg-dark rounded-br-3xl dark:bg-light xs:-right-2 sm:h-[102%] xs:w-full xs:rounded-[1.5rem]'/>
@@ -27,7 +27,21 @@ const FeaturedProject = ({type, title, summary, img, link, github}) => {
             </Link>
             <p className='my-2 font-medium text-dark dark:text-light sm:text-sm'>{summary}</p>
             <div className='mt-2 flex items-center'>
-                <Link href={github} target='_blank' className='w-10'><GithubIcon/></Link>  
+            {showIcons.github && (
+                  <Link href={github} target='_blank' className='w-8 md:w-6'>
+                    <GithubIcon/>
+                  </Link>
+                )}
+                {showIcons.figma && (
+                  <Link href={figma} target='_blank' className='w-8 md:w-6'>
+                    <FigmaIcon/>
+                  </Link>
+                )} 
+                {showIcons.behance && (
+                  <Link href={behance} target='_blank' className='w-8 md:w-6'>
+                    <BehanceIcon/>
+                  </Link>
+                )} 
                 <Link href={link} target='_blank' className='ml-4 rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold dark:bg-light dark:text-dark sm:px-4 sm:text-base'>Visit Project</Link>  
             </div>
         </div>

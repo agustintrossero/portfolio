@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { GithubIcon } from './Icons'
+import { GithubIcon, FigmaIcon, BehanceIcon } from './Icons'
 import { motion } from 'framer-motion'
 
 const FramerImage = motion(Image)
 
 
-const Project = ({title, type, img, link, github}) => {
+const Project = ({title, type, img, link, github, figma, behance, showIcons}) => {
   return (
     <article className='w-full flex flex-col items-center justify-center rounded-2xl border border-solid border-dark bg-light p-6 relative dark:bg-dark dark:border-light xs:p-4'>
         <div className='absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2rem] bg-dark rounded-br-3xl dark:bg-light md:-right-2 md:w-[101%] xs:h-[102%] xs:rounded-[1.5rem]'/>
@@ -28,7 +28,21 @@ const Project = ({title, type, img, link, github}) => {
                 </Link>
             <div className='w-full mt-2 flex items-center justify-between'>
                 <Link href={link} target='_blank' className='text-lg font-semibold underline md:text-base'>Visit</Link>  
-                <Link href={github} target='_blank' className='w-8 md:w-6'><GithubIcon/></Link>  
+                {showIcons.github && (
+                  <Link href={github} target='_blank' className='w-8 md:w-6'>
+                    <GithubIcon/>
+                  </Link>
+                )}
+                {showIcons.figma && (
+                  <Link href={figma} target='_blank' className='w-8 md:w-6'>
+                    <FigmaIcon/>
+                  </Link>
+                )} 
+                {showIcons.behance && (
+                  <Link href={behance} target='_blank' className='w-8 md:w-6'>
+                    <BehanceIcon/>
+                  </Link>
+                )} 
             </div>
         </div>
     </article>
