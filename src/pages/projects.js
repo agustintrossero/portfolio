@@ -31,11 +31,12 @@ const projects = () => {
           <Layout className='pt-16'>
             <AnimatedText text="Imagination Trumps Knowledge!" className='mb-16 lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl'/>
             <div className='grid grid-cols-12 gap-24 gap-y-32 xl:gap-x-16 lg:gap-x-8 md:gap-y-24 sm:gap-x-0'>
-              <div className='col-span-6 sm:col-span-12'>
-              <Project
+              <div className='col-span-12'>
+              <FeaturedProject
                   type="Featured Project"
                   title="Karma - UX/UI for PlayStation"
-                  summary="In this project, we propose to optimize the experience for PlayStation gamers by implementing a voting system based on the concept of “Karma.” This system will allow players to rate each other’s behavior, promoting positivity and discouraging toxic conduct. Our goal is to create a friendlier and more collaborative community where players feel valued and motivated to contribute constructively."
+                  summary="In this project, we propose to optimize the experience for PlayStation gamers by implementing a voting system based on the concept of “Karma.” This system will allow players to rate each other’s behavior, promoting positivity and discouraging toxic conduct. Our goal is to create a friendlier and more collaborative community where players feel valued and motivated to contribute constructively.
+                  Explore the full UI design process and visual elements on Behance, and interact with the prototype on Figma to experience the system firsthand"
                   img={karma}
                   link="https://www.behance.net/gallery/200975479/PlayStation-Karma"
                   github=""
@@ -45,11 +46,13 @@ const projects = () => {
                 />
           
               </div>
-              <div className='col-span-6 sm:col-span-12'>
-              <Project
+              <div className='col-span-12'>
+              <FeaturedProject
                   type="Featured Project"
                   title="Karma - UX/UI Report"
-                  summary="In this project, we propose to optimize the experience for PlayStation gamers by implementing a voting system based on the concept of “Karma.” This system will allow players to rate each other’s behavior, promoting positivity and discouraging toxic conduct. Our goal is to create a friendlier and more collaborative community where players feel valued and motivated to contribute constructively."
+                  summary="Through comprhensive UX/UI research and analysis, I identified pain points and opportunities for improvement, shaping a solution designed to foster a more supportive and collaborative community.
+                  
+                  Dive into the full UX/UI research process and development journey by reading the detailed case study on Medium, where I document every step from problem discovery to the final product."
                   img={stats}
                   link="https://medium.com/@agustintrossero/change-the-game-fd9db29e6ac8"
                   github=""
@@ -71,11 +74,13 @@ const projects = () => {
                   showIcons={{ github: false, figma: true, behance: false }}
                 />
               </div>
-              <div className='col-span-6 sm:col-span-12'>
-              <Project
+              <div className='col-span-12'>
+              <FeaturedProject
                   type="Featured Project"
                   title="Grotta Northern Lights B&B"
-                  summary="In this project, we propose to optimize the experience for PlayStation gamers by implementing a voting system based on the concept of “Karma.” This system will allow players to rate each other’s behavior, promoting positivity and discouraging toxic conduct. Our goal is to create a friendlier and more collaborative community where players feel valued and motivated to contribute constructively."
+                  summary="From reimagining the brand identity to streamlining the booking process, this project focused on promoting Grotta Northern Lights B&B as the ultimate destination for experiencing the magic of Iceland’s northern lights. Nestled in an exclusive location, the B&B offers guests a unique opportunity to immerse themselves in Icelandic beauty.
+
+The project involved creating a cohesive brand identity, documented in the brand book available on Behance, and restructuring the booking experience for a more seamless and user-friendly process. Explore the Figma prototype to see how design innovation transformed the user journey.."
                   img={gnl}
                   link="https://www.behance.net/gallery/209834605/Grotta-Northern-Lights-Branding"
                   github=""
@@ -84,11 +89,13 @@ const projects = () => {
                   showIcons={{ github: false, figma: true, behance: false }}
                 />
               </div>
-              <div className='col-span-6 sm:col-span-12'>
-              <Project
+              <div className='col-span-12'>
+              <FeaturedProject
                   type="Featured Project"
                   title="Blue House B&B"
-                  summary="In this project, we propose to optimize the experience for PlayStation gamers by implementing a voting system based on the concept of “Karma.” This system will allow players to rate each other’s behavior, promoting positivity and discouraging toxic conduct. Our goal is to create a friendlier and more collaborative community where players feel valued and motivated to contribute constructively."
+                  summary="With the same dedication to design excellence as Grotta Northern Lights B&B, the Blue House B&B project aimed to establish a distinct identity while maintaining alignment with the shared vision of its owners. Located in another picturesque Icelandic spot, this B&B invites guests to enjoy unparalleled hospitality amidst the breathtaking landscapes of Iceland.
+
+This project encompassed a unique branding approach, visible in the brand book on Behance, while reimagining the booking process to deliver an intuitive and efficient experience. Discover the restructured journey through the Figma prototype, highlighting the attention to detail that brings this vision to life."
                   img={bh}
                   link="https://www.behance.net/gallery/209828671/Blue-House-B-B"
                   github=""

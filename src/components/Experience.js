@@ -50,7 +50,7 @@ const Experience = () => {
                 <Details
                     position="UX/UI Designer - Frontend Developer" company="Digital Tie"
                     companyLink="www.digitaltie.com"
-                    time="2021-Present" address="Buenos Aires, Argentina"
+                    time="2021-2023" address="Buenos Aires, Argentina"
                     work="I specialize in branding and UX/UI design, where I create and maintain a strong brand identity while also crafting user-centric, visually appealing designs for web and mobile applications. Additionally, I draw from my expertise in the development and planning of functional web applications, honing my skills in research, prototyping, and ensuring seamless user experiences. My role also involves managing the deployment of web and mobile applications, integrating APIs, and effectively handling database interactions for robust data management within these applications."
                 />
                 <Details
