@@ -58,7 +58,7 @@ const projects = () => {
                   github=""
                   figma="https://www.figma.com/design/ZLUHzCThXRz3BxzvHJN4zM/Karma?node-id=0-1&t=jWM1iXnK6QoVxIeB-1"
                   behance=""
-                  showIcons={{ github: false, figma: false, behance: true }}
+                  showIcons={{ github: false, figma: true, behance: false }}
                 />
               </div>
               <div className='col-span-12'>
