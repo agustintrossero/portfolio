@@ -16,6 +16,7 @@ import calculator from "../../public/images/projects/calculator.png"
 import crmPet from "../../public/images/projects/crmPet.png"
 import karma from "../../public/images/projects/PSKarma.png"
 import stats from "../../public/images/projects/Stats.png"
+import leaderbar from "../../public/images/projects/leaderbar.png"
 
 import TransitionEffect from '@/components/TransitionEffect'
 
@@ -31,6 +32,20 @@ const projects = () => {
           <Layout className='pt-16'>
             <AnimatedText text="Imagination Trumps Knowledge!" className='mb-16 lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl'/>
             <div className='grid grid-cols-12 gap-24 gap-y-32 xl:gap-x-16 lg:gap-x-8 md:gap-y-24 sm:gap-x-0'>
+              <div className='col-span-12'>
+          <FeaturedProject
+                  type="Featured Project"
+                  title="Leaderboard UI"
+                  summary="From defining the gamification system and ranking logic to crafting scalable mobile and desktop layouts, every design decision was focused on motivation, clarity, and engagement. The result is a premium, sports inspired experience that balances competition, identity, and progression."
+                  img={leaderbar}
+
+                  link="https://www.figma.com/design/JQ3fUpcpVcHI9wXeYipuMo/Leaderboard?node-id=0-1&p=f"
+                  github=""
+                  figma="https://www.figma.com/design/JQ3fUpcpVcHI9wXeYipuMo/Leaderboard?node-id=0-1&p=f"
+                  behance=""
+                  showIcons={{ github: false, figma: true, behance: false }}
+                />
+              </div>
               <div className='col-span-12'>
               <FeaturedProject
                   type="Featured Project"

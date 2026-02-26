@@ -42,10 +42,17 @@ const Experience = () => {
             className='absolute left-9 top-0 w-[4px] h-full bg-dark origin-top dark:bg-light md:w-[2px] md:left-[30px] xs:left-[20px]'/>
             <ul className='w-full flex flex-col items-start justify-between ml-4 xs:ml-2'>
                 <Details
-                    position="Team Leader UX/UI Designer" company="Siciliamia"
+                    position="Lead UX/UI Designer" company="MoveUp"
+                    companyLink="https://moveup.media/"
+                    time="2025-Present" address="Paris, France"
+                    work="Lead the UX/UI direction across multiple digital sports media platforms, driving design consistency, scalability, and product evolution through a structured Design System and close collaboration with cross-functional teams."
+                />
+                <Details
+                    position="Lead UX/UI Designer" company="Siciliamia"
                     companyLink="www.siciliamia.com"
-                    time="2023-Present" address="Sicily, Italy"
-                    work="Collaborates with cross-functional teams to drive user-centered design principles. Proficient in wireframing, prototyping, and aligning designs with business goals."
+                    time="2023-2025" address="Sicily, Italy"
+                        work="Collaborates with cross-functional teams to drive user-centered design principles. Proficient in wireframing, prototyping, and aligning designs with business goals."
+
                 />
                 <Details
                     position="UX/UI Designer - Frontend Developer" company="Digital Tie"

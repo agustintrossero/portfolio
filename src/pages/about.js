@@ -51,7 +51,7 @@ const about = () => {
             <div className='grid w-full grid-cols-8 gap-16 sm:gap-8 '>
                 <div className='col-span-3 flex flex-col items-start justify-start xl:col-span-4 md:order-2 md:col-span-8'>
                     <h2 className='mb-4 text-lg font-bold uppercase text-dark/75 dark:text-light/75'>Biography</h2>
-                    <p className='font-medium'>Hi, I´m Agustín, an UX/UI Designer and Frontend Developer with a passion for creating beautiful, functional digital experiences.  With +4 years of experience in the field, I specialize in turning ideas into innovative digital products.</p>
+                    <p className='font-medium'>Hi, I´m Agustín, a Lead UX/UI Designer and Frontend Developer with a passion for creating beautiful, functional digital experiences.  With +5 years of experience in the field, I specialize in turning ideas into innovative digital products.</p>
                     <p className='font-medium my-4'>Beyond design and development, I bring a unique perspective as a tattoo artist, musician and  football coach for both women´s and men´s teams. These diverse experiences fuel my creativity, adaptability and leadership skills, enabling me to approach projects with a dynamic mindset.</p>
                     <p className='font-medium'>Whether I´m working on a website, mobile app, digital product, or just learning new tools or dynamic activities I bring commitment and determination on everything that I do. I look forward to the opportunity to bring my skills and passion to your next project.</p>
                 </div>
@@ -79,7 +79,7 @@ const about = () => {
                     </div>
                     <div className='flex flex-col items-end justify-center xl:items-center'>
                         <span className='inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl'> 
-                        <AnimatedNumbers value={4}/>+
+                        <AnimatedNumbers value={5}/>+
                         </span>
                         <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center ms:text-lg sm:text-base xs:text-sm'>Years of experience</h2>
                     </div>

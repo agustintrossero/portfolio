@@ -33,7 +33,7 @@ export default function Home() {
             </div>
             <div className='w-1/2 flex flex-col items-center self-center lg:w-full lg:text-center'>
               <AnimatedText text="Turning Vision Into Reality With Desing and Code." className='!text-6xl !text-left xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl'/>
-              <p className='my-4 text-base font-medium md:text-sm sm:text-xs'>As a skilled UX/UI Designer and Frontend developer, I am dedicated to turning ideas into innovative web applications. 
+              <p className='my-4 text-base font-medium md:text-sm sm:text-xs'>As a skilled Lead UX/UI Designer and Frontend developer, I am dedicated to turning ideas into innovative web applications. 
                 Beyond design and code, I bring perspective as a tattoo artist, musician, and football coach for both women's and men's teams. This diverse background reflects my creativity, adaptability, and ability to lead in dynamic enviroments.
                 <br/>
                 <br/>
