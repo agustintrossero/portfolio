@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import DeviceFrame from "@/components/DeviceFrame";
 import Reveal from "@/components/Reveal";
 import BrandSwap from "@/components/gds/BrandSwap";
 import type { Project, SceneMedia } from "@/lib/projects";
+import { accentStyle, splitHeadline, surfaceVars } from "@/lib/surface";
 
 function Media({ media }: { media: SceneMedia }) {
   switch (media.kind) {
@@ -97,30 +97,15 @@ export default function ProjectScene({
   if (!scene) return null;
 
   const s = scene.surface;
-  const [lead, accent] = scene.headline.split("|").map((part) => part.trim());
+  const [lead, accent] = splitHeadline(scene.headline);
   const href = `/work/${project.slug}`;
   const titleId = `${project.slug}-scene`;
-
-  const vars = {
-    "--s-bg": s.bg,
-    "--s-ink": s.ink,
-    "--s-muted": s.muted,
-    "--s-line": s.line,
-  } as CSSProperties;
-  const accentStyle: CSSProperties = s.accentGradient
-    ? {
-        backgroundImage: s.accentGradient,
-        WebkitBackgroundClip: "text",
-        backgroundClip: "text",
-        color: "transparent",
-      }
-    : { color: s.accent };
 
   return (
     <section
       id={project.slug}
       aria-labelledby={titleId}
-      style={vars}
+      style={surfaceVars(s)}
       className="group relative isolate scroll-mt-16 overflow-hidden bg-[var(--s-bg)] text-[var(--s-ink)]"
     >
       {s.glow && (
@@ -147,7 +132,7 @@ export default function ProjectScene({
               <Link href={href} className="pointer-events-auto rounded-sm">
                 <span className="sr-only">{project.company}: </span>
                 <span style={{ color: s.lead ?? s.ink }}>{lead}</span>{" "}
-                <span style={accentStyle}>{accent}</span>
+                <span style={accentStyle(s)}>{accent}</span>
               </Link>
             </h3>
           </Reveal>

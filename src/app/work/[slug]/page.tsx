@@ -5,7 +5,15 @@ import { notFound } from "next/navigation";
 import CaseNav, { type NavItem } from "@/components/CaseNav";
 import Reveal from "@/components/Reveal";
 import DeviceFrame from "@/components/DeviceFrame";
-import { getProject, caseStudies, type CaseImage } from "@/lib/projects";
+import LoopVideo from "@/components/LoopVideo";
+import {
+  getProject,
+  caseStudies,
+  type CaseClip,
+  type CaseImage,
+  type Project,
+} from "@/lib/projects";
+import { accentStyle, splitHeadline, surfaceVars } from "@/lib/surface";
 
 type Params = { slug: string };
 
@@ -34,7 +42,7 @@ export async function generateMetadata({
   };
 }
 
-/* ── Small section primitives ───────────────────────────── */
+/* Small section primitives */
 
 function Section({
   id,
@@ -83,7 +91,60 @@ function Figure({ image }: { image: CaseImage }) {
   );
 }
 
-/** Splits a headline on its first sentence break into a muted lead + ink rest. */
+/** A looping clip framed for reading columns, on the project's surface. */
+function Clip({ clip }: { clip: CaseClip }) {
+  return (
+    <figure>
+      <div className="overflow-hidden rounded-xl border border-line bg-[var(--s-bg)]">
+        <LoopVideo src={clip.src} poster={clip.poster} label={clip.alt} ratio="16 / 9" />
+      </div>
+      {clip.caption && (
+        <figcaption className="mt-3 text-[13px] text-muted-2">{clip.caption}</figcaption>
+      )}
+    </figure>
+  );
+}
+
+/** Full-width band on the project's own colour, holding one clip. */
+function ClipBand({
+  id,
+  label,
+  clip,
+  glow,
+}: {
+  id?: string;
+  label: string;
+  clip: CaseClip;
+  glow?: string;
+}) {
+  return (
+    <section
+      id={id}
+      aria-label={label}
+      className="relative isolate overflow-hidden bg-[var(--s-bg)] text-[var(--s-ink)]"
+    >
+      {glow && (
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: glow }} />
+      )}
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-8 sm:py-16">
+        <Reveal variant="scale">
+          <LoopVideo
+            src={clip.src}
+            poster={clip.poster}
+            label={clip.alt}
+            ratio="16 / 9"
+            className="rounded-xl"
+          />
+        </Reveal>
+        {clip.caption && (
+          <p className="mt-4 text-center text-[13px] text-[var(--s-muted)]">{clip.caption}</p>
+        )}
+      </div>
+    </section>
+  );
+}
+
+/** Splits a headline on its first sentence break into a muted lead and an ink rest. */
 function TwoTone({ text }: { text: string }) {
   const match = text.match(/^(.*?[.?!])\s+(.*)$/);
   if (!match) return <span className="text-ink">{text}</span>;
@@ -95,7 +156,44 @@ function TwoTone({ text }: { text: string }) {
   );
 }
 
-/* ── Page ───────────────────────────────────────────────── */
+/** The next case as a band in its own colours, with its home headline. */
+function NextCase({ next }: { next: Project }) {
+  const s = next.scene?.surface;
+  const [lead, accent] = splitHeadline(next.scene?.headline ?? next.headline ?? next.company);
+  return (
+    <Link
+      href={`/work/${next.slug}`}
+      style={surfaceVars(s)}
+      className="group relative isolate mt-12 block overflow-hidden bg-[var(--s-bg)] text-[var(--s-ink)]"
+    >
+      {s?.glow && (
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: s.glow }} />
+      )}
+      <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 sm:py-24">
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--s-muted)]">
+          Next case · {next.company}
+        </p>
+        <p className="mt-5 max-w-3xl text-balance text-[2.2rem] font-semibold leading-[1.03] tracking-tight sm:text-[3.2rem]">
+          <span style={{ color: s?.lead ?? s?.ink }}>{lead}</span>
+          {accent && (
+            <>
+              {" "}
+              <span style={accentStyle(s)}>{accent}</span>
+            </>
+          )}
+          <span
+            aria-hidden
+            className="ml-3 inline-block transition-transform duration-200 group-hover:translate-x-1.5"
+          >
+            →
+          </span>
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+/* Page */
 
 export default async function CaseStudyPage({
   params,
@@ -109,6 +207,7 @@ export default async function CaseStudyPage({
   const published = caseStudies();
   const idx = published.findIndex((p) => p.slug === slug);
   const next = published[(idx + 1) % published.length];
+  const surface = project.scene?.surface;
 
   const hasGlimpse =
     !!project.video || (project.images && project.images.length > 0);
@@ -123,14 +222,18 @@ export default async function CaseStudyPage({
     },
     project.approach?.length && { id: "approach", label: "Approach" },
     project.impact?.length && { id: "impact", label: "Impact" },
+    project.mosaic && { id: "scale", label: "Scale" },
     hasGlimpse && { id: "glimpse", label: "Glimpse" },
   ].filter(Boolean) as NavItem[];
 
   const showcaseWrap =
     project.showcase?.device === "phone" ? "max-w-[300px]" : "max-w-3xl";
 
+  // Steps with a clip alternate sides, counted among themselves.
+  let clipCount = 0;
+
   return (
-    <article>
+    <article style={surfaceVars(surface)}>
       <CaseNav items={navItems} />
 
       <div className="mx-auto max-w-5xl px-6 sm:px-8">
@@ -208,68 +311,98 @@ export default async function CaseStudyPage({
             )}
           </div>
         </header>
+      </div>
 
-        {/* Hero visual: full-bleed mockup, device showcase or a flat cover */}
-        {project.heroImage ? (
-          <Reveal variant="scale">
-            <figure className="relative mx-auto max-w-3xl">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 -top-12 bottom-0 -z-10 hero-glow"
-              />
-              <Image
-                src={project.heroImage.src}
-                alt={project.heroImage.alt}
-                width={project.heroImage.width}
-                height={project.heroImage.height}
-                className="h-auto w-full"
-                priority
-                sizes="(min-width: 1024px) 768px, 100vw"
-              />
-            </figure>
-          </Reveal>
-        ) : project.showcase ? (
-          <Reveal variant="scale">
-            <figure className={`mx-auto ${showcaseWrap}`}>
-              <DeviceFrame
-                device={project.showcase.device}
-                src={project.showcase.src}
-                alt={project.showcase.alt}
-                video={project.showcase.video}
-                poster={project.showcase.poster}
-                sizes={
-                  project.showcase.device === "phone"
-                    ? "300px"
-                    : "(min-width: 768px) 768px, 90vw"
-                }
-              />
-              {project.showcase.caption && (
-                <figcaption className="mt-4 text-center text-[13px] text-muted-2">
-                  {project.showcase.caption}
-                </figcaption>
-              )}
-            </figure>
-          </Reveal>
-        ) : (
-          project.cover && (
+      {/* Hero visual: the main clip on the project's colour, or a framed visual */}
+      {project.heroVideo ? (
+        <ClipBand label="Main clip" clip={project.heroVideo} glow={surface?.glow} />
+      ) : (
+        <div className="mx-auto max-w-5xl px-6 sm:px-8">
+          {project.heroImage ? (
             <Reveal variant="scale">
-              <div className="mb-4 overflow-hidden rounded-2xl border border-line bg-paper-2">
+              <figure className="relative mx-auto max-w-3xl">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 -top-12 bottom-0 -z-10 hero-glow"
+                />
                 <Image
-                  src={project.cover.src}
-                  alt={project.cover.alt}
-                  width={project.cover.width}
-                  height={project.cover.height}
+                  src={project.heroImage.src}
+                  alt={project.heroImage.alt}
+                  width={project.heroImage.width}
+                  height={project.heroImage.height}
                   className="h-auto w-full"
                   priority
-                  sizes="(min-width: 1024px) 1024px, 100vw"
+                  sizes="(min-width: 1024px) 768px, 100vw"
                 />
-              </div>
+              </figure>
             </Reveal>
-          )
+          ) : project.showcase ? (
+            <Reveal variant="scale">
+              <figure className={`mx-auto ${showcaseWrap}`}>
+                <DeviceFrame
+                  device={project.showcase.device}
+                  src={project.showcase.src}
+                  alt={project.showcase.alt}
+                  video={project.showcase.video}
+                  poster={project.showcase.poster}
+                  sizes={
+                    project.showcase.device === "phone"
+                      ? "300px"
+                      : "(min-width: 768px) 768px, 90vw"
+                  }
+                />
+                {project.showcase.caption && (
+                  <figcaption className="mt-4 text-center text-[13px] text-muted-2">
+                    {project.showcase.caption}
+                  </figcaption>
+                )}
+              </figure>
+            </Reveal>
+          ) : (
+            project.cover && (
+              <Reveal variant="scale">
+                <div className="mb-4 overflow-hidden rounded-2xl border border-line bg-paper-2">
+                  <Image
+                    src={project.cover.src}
+                    alt={project.cover.alt}
+                    width={project.cover.width}
+                    height={project.cover.height}
+                    className="h-auto w-full"
+                    priority
+                    sizes="(min-width: 1024px) 1024px, 100vw"
+                  />
+                </div>
+              </Reveal>
+            )
+          )}
+        </div>
+      )}
+
+      <div className="mx-auto max-w-5xl px-6 sm:px-8">
+        {/* At a glance: confirmed numbers only */}
+        {project.stats && project.stats.length > 0 && (
+          <section aria-label="At a glance" className="py-10 sm:py-14">
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+              {project.stats.map((stat, i) => (
+                <Reveal
+                  key={stat.label}
+                  delay={i * 70}
+                  className="flex flex-col border-l border-line pl-4"
+                >
+                  <dt className="order-2 mt-1.5 text-[13px] leading-snug text-muted">
+                    {stat.label}
+                  </dt>
+                  <dd className="order-1 text-[2.4rem] font-semibold leading-none tracking-tight text-ink sm:text-[2.8rem]">
+                    {stat.value}
+                  </dd>
+                </Reveal>
+              ))}
+            </dl>
+          </section>
         )}
 
         {/* Body: each section renders only if it has content */}
-        <div className="mt-6">
+        <div className={project.stats?.length ? "" : "mt-6"}>
           {project.overview && (
             <Section id="overview" label="Overview">
               <Reveal>
@@ -294,116 +427,148 @@ export default async function CaseStudyPage({
             <Section id="opportunities" label="Opportunities">
               <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {project.opportunities.map((op, i) => (
-                  <Reveal as="li" key={op.title} delay={(i % 2) * 90} className="h-full rounded-xl border border-line bg-paper-2 p-5 transition-colors duration-200 hover:border-line-strong">
-                      <h3 className="text-[15px] font-semibold tracking-tight text-ink">
-                        {op.title}
-                      </h3>
-                      <p className="mt-2 text-[14px] leading-relaxed text-muted">
-                        {op.hmw}
-                      </p>
-                    </Reveal>
+                  <Reveal
+                    as="li"
+                    key={op.title}
+                    delay={(i % 2) * 90}
+                    className="h-full rounded-xl border border-line bg-paper-2 p-5 transition-colors duration-200 hover:border-line-strong"
+                  >
+                    <h3 className="text-[15px] font-semibold tracking-tight text-ink">
+                      {op.title}
+                    </h3>
+                    <p className="mt-2 text-[14px] leading-relaxed text-muted">
+                      {op.hmw}
+                    </p>
+                  </Reveal>
                 ))}
               </ul>
             </Section>
           )}
 
+          {/* Approach: the heart of the case. Steps with a clip become a
+              zigzag row, so each decision sits next to its proof. */}
           {project.approach && project.approach.length > 0 && (
-            <Section id="approach" label="Approach">
-              <ol className="flex flex-col gap-8">
-                {project.approach.map((step, i) => (
-                  <Reveal as="li" key={step.title} delay={i * 60} className="flex gap-5">
+            <section
+              id="approach"
+              aria-labelledby="approach-label"
+              className="border-t border-line py-12 sm:py-16"
+            >
+              <h2 id="approach-label" className="eyebrow mb-10">
+                Approach
+              </h2>
+              <ol className="flex flex-col gap-14 sm:gap-20">
+                {project.approach.map((step, i) => {
+                  const text = (
+                    <div className="flex gap-5">
                       <span className="font-mono text-[13px] tabular-nums text-muted-2">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <div>
-                        <h3 className="text-[17px] font-semibold tracking-tight text-ink">
+                        <h3 className="text-[19px] font-semibold tracking-tight text-ink">
                           {step.title}
                         </h3>
-                        <p className="mt-1.5 leading-relaxed text-muted">
+                        <p className="mt-2 max-w-md leading-relaxed text-muted">
                           {step.body}
                         </p>
                       </div>
+                    </div>
+                  );
+                  if (!step.media) {
+                    return (
+                      <Reveal as="li" key={step.title} className="lg:max-w-[46%]">
+                        {text}
+                      </Reveal>
+                    );
+                  }
+                  const flip = clipCount++ % 2 === 1;
+                  return (
+                    <Reveal
+                      as="li"
+                      key={step.title}
+                      className="grid items-center gap-6 lg:grid-cols-12 lg:gap-10"
+                    >
+                      <div className={`lg:col-span-5 ${flip ? "lg:order-last" : ""}`}>
+                        {text}
+                      </div>
+                      <div className="lg:col-span-7">
+                        <Clip clip={step.media} />
+                      </div>
                     </Reveal>
-                ))}
+                  );
+                })}
               </ol>
-            </Section>
+            </section>
           )}
 
           {project.impact && project.impact.length > 0 && (
             <Section id="impact" label="Impact & Outcomes">
               <ul className="flex flex-col gap-4">
                 {project.impact.map((item, i) => (
-                  <Reveal as="li" key={item} delay={i * 60} className="flex gap-3 leading-relaxed text-ink/90">
-                      <span
-                        aria-hidden
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink"
-                      />
-                      <span className="text-[17px]">{item}</span>
-                    </Reveal>
+                  <Reveal
+                    as="li"
+                    key={item}
+                    delay={i * 60}
+                    className="flex gap-3 leading-relaxed text-ink/90"
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink"
+                    />
+                    <span className="text-[17px]">{item}</span>
+                  </Reveal>
                 ))}
               </ul>
             </Section>
           )}
-
-          {hasGlimpse && (
-            <Section id="glimpse" label="A glimpse">
-              {project.video && (
-                <Reveal variant="scale">
-                  <figure className="mb-5">
-                    <div className="overflow-hidden rounded-xl border border-line bg-paper-2">
-                      <video
-                        className="h-auto w-full"
-                        src={project.video.src}
-                        poster={project.video.poster}
-                        controls
-                        playsInline
-                        preload="metadata"
-                      />
-                    </div>
-                    {project.video.caption && (
-                      <figcaption className="mt-3 text-[13px] text-muted-2">
-                        {project.video.caption}
-                      </figcaption>
-                    )}
-                  </figure>
-                </Reveal>
-              )}
-              {project.images && project.images.length > 0 && (
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                  {project.images.map((img, i) => (
-                    <Reveal key={img.src} delay={(i % 2) * 90}>
-                      <Figure image={img} />
-                    </Reveal>
-                  ))}
-                </div>
-              )}
-            </Section>
-          )}
         </div>
-
-        {/* Next project */}
-        {next && next.slug !== project.slug && (
-          <Reveal>
-            <Link
-              href={`/work/${next.slug}`}
-              className="group mt-8 flex items-center justify-between border-t border-line py-10 transition-colors hover:bg-paper-2"
-            >
-              <div>
-                <p className="eyebrow mb-2">Next project</p>
-                <span className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                  {next.headline ?? next.company}
-                </span>
-              </div>
-              <span
-                aria-hidden
-                className="text-2xl text-muted-2 transition-all group-hover:translate-x-1 group-hover:text-ink"
-              >
-                →
-              </span>
-            </Link>
-          </Reveal>
-        )}
       </div>
+
+      {/* Scale: the whole body of work in one clip */}
+      {project.mosaic && (
+        <div className="mt-4">
+          <ClipBand id="scale" label="Scale" clip={project.mosaic} glow={surface?.glow} />
+        </div>
+      )}
+
+      {hasGlimpse && (
+        <div className="mx-auto max-w-5xl px-6 sm:px-8">
+          <Section id="glimpse" label="A glimpse">
+            {project.video && (
+              <Reveal variant="scale">
+                <figure className="mb-5">
+                  <div className="overflow-hidden rounded-xl border border-line bg-paper-2">
+                    <video
+                      className="h-auto w-full"
+                      src={project.video.src}
+                      poster={project.video.poster}
+                      controls
+                      playsInline
+                      preload="metadata"
+                    />
+                  </div>
+                  {project.video.caption && (
+                    <figcaption className="mt-3 text-[13px] text-muted-2">
+                      {project.video.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              </Reveal>
+            )}
+            {project.images && project.images.length > 0 && (
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {project.images.map((img, i) => (
+                  <Reveal key={img.src} delay={(i % 2) * 90}>
+                    <Figure image={img} />
+                  </Reveal>
+                ))}
+              </div>
+            )}
+          </Section>
+        </div>
+      )}
+
+      {/* Next case, in its own colours */}
+      {next && next.slug !== project.slug && <NextCase next={next} />}
     </article>
   );
 }

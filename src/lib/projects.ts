@@ -12,11 +12,30 @@
  * `published: true` when it's ready to show. That's the only file you touch.
  */
 
+/** A looping 16:9 clip used inside a case study. */
+export type CaseClip = {
+  /** mp4 path inside /public. */
+  src: string;
+  /** Still frame shown before playback (path inside /public). */
+  poster: string;
+  /** Accessible description of what the clip shows. */
+  alt: string;
+  caption?: string;
+};
+
+/** A headline number for the "at a glance" strip. Only confirmed facts. */
+export type Stat = {
+  value: string;
+  label: string;
+};
+
 export type ApproachStep = {
   /** Short heading for this part of the approach, e.g. "Research". */
   title: string;
   /** One to three sentences describing what you did and why. */
   body: string;
+  /** The clip that proves this step, shown beside it. */
+  media?: CaseClip;
 };
 
 /** A framed opportunity, shown as a "How might we…" card. */
@@ -159,6 +178,12 @@ export type Project = {
   showcase?: Showcase;
   /** Full-bleed hero image (a pre-composed mockup); no frame. Beats showcase/cover. */
   heroImage?: { src: string; alt: string; width: number; height: number };
+  /** Main clip of the case, full width on the project's surface. Beats every other hero visual. */
+  heroVideo?: CaseClip;
+  /** "At a glance" numbers under the hero. */
+  stats?: Stat[];
+  /** Full-width clip that shows the scope of the work (every screen, every block). */
+  mosaic?: CaseClip;
   /** How the project appears on the home. Projects without one are not shown there. */
   scene?: Scene;
 
@@ -187,13 +212,13 @@ export const projects: Project[] = [
   {
     slug: "gds-toffee",
     company: "Global Design System",
-    role: "Design Systems Lead",
+    role: "Creator and lead",
     period: "2025 to present",
     headline: "Build once. Ship every brand.",
     scene: {
       eyebrow: "Design system",
       headline: "Build once. | Ship every brand.",
-      line: "One source of 161 tokens re-skins the same blocks for seven brands, light and dark.",
+      line: "One source of 161 tokens behind sixteen sites: seven media brands, Affily.bet and eight casino sites.",
       chips: ["Design systems", "Tokens", "Multi-brand"],
       surface: {
         bg: "#0A0A0C",
@@ -207,7 +232,7 @@ export const projects: Project[] = [
       media: { kind: "brand-swap" },
     },
     summary:
-      "The Global Design System that lets one set of tokens and blocks power many products across brands and themes — with Toffee Web as the proof it executes right.",
+      "The design system I created for Core Studio, MoveUp Media's site platform: one source of tokens and blocks shared by sixteen sites, each with its own brand.",
     tags: [
       "DESIGN SYSTEMS",
       "TOKENS",
@@ -218,94 +243,88 @@ export const projects: Project[] = [
     ],
     published: true,
     cover: {
-      src: "/work/gds/cover.svg",
-      alt: "Placeholder cover — Global Design System, one block rendered across several brand themes",
-      width: 1600,
-      height: 900,
+      src: "/work/gds/cover.jpg",
+      alt: "The Match Card and the token matrix of the Global Design System",
+      width: 1200,
+      height: 675,
     },
-    showcase: {
-      device: "browser",
-      src: "/work/gds/light-dark.webp",
-      alt: "The Odds Comparison Table rendered in two brand themes: TPO in light and Prensa Dark",
-      video: "/work/gds/light-dark.mp4",
-      caption: "Same block, two themes: TPO in light and Prensa Dark.",
+    heroVideo: {
+      src: "/work/gds/theme-swap.mp4",
+      poster: "/work/gds/theme-swap.webp",
+      alt: "One token cycling through seven brands, the 161 tokens of the collection, and the Match Card re-skinning brand by brand",
     },
+    stats: [
+      { value: "16", label: "sites on one system" },
+      { value: "161", label: "design tokens" },
+      { value: "51", label: "section blocks" },
+      { value: "7", label: "brand themes in Figma" },
+    ],
     overview:
-      "I lead the Global Design System (GDS) — the token architecture, the library of reusable blocks, and the responsive layout rules that sit underneath a family of products. The problem it solves is repetition: the same blocks had to live across many assets, each with its own brand and its own light/dark theme. GDS turns that into one source of truth, and Toffee Web is the reference product that shows the system executed correctly, end to end.",
+      "I created and lead the Global Design System, the token system behind Core Studio, the platform MoveUp Media runs its sites on. The rule is simple: every site reuses the same blocks, and only the brand changes. One Figma collection of 161 tokens defines seven media brands, from The Playoffs to the dark theme of Prensa Futbol, and the same foundation now carries Affily.bet and a casino template that powers eight casino sites, each with its own identity.",
     opportunities: [
       {
         title: "Reuse across brands",
-        hmw: "How might we let the same blocks power many products with different brands, without rebuilding each one from scratch?",
+        hmw: "How might we let the same blocks power many sites with different brands, without rebuilding each one from scratch?",
       },
       {
-        title: "Theming, light & dark",
-        hmw: "How might we make a single component adapt to opposite themes from one source of truth, instead of maintaining divergent design files?",
+        title: "Light and dark",
+        hmw: "How might we make one component work in opposite themes from a single source, instead of keeping separate design files?",
       },
       {
         title: "Responsive by default",
-        hmw: "How might we guarantee every block behaves correctly across breakpoints for every team, so responsiveness isn't re-solved page by page?",
+        hmw: "How might we make every block behave from desktop to mobile, so no team has to solve responsiveness page by page?",
       },
       {
-        title: "Speed for teams",
-        hmw: "How might we let product teams assemble a new page in hours by composing existing blocks, rather than in weeks?",
+        title: "New brands, fast",
+        hmw: "How might we launch a new brand as new values on an existing system, not as a new design?",
       },
       {
         title: "Coherence at scale",
-        hmw: "How might we keep many products visually coherent while each one keeps its own identity?",
+        hmw: "How might we keep sixteen sites coherent while each one keeps its own identity?",
       },
     ],
     approach: [
       {
-        title: "Layered token architecture",
-        body: "Defined tokens in layers — primitive → semantic → per-asset — so a single change cascades correctly across themes and brands. Components consume semantic tokens, never hard-coded values, which is what makes one block render right anywhere.",
+        title: "The brand lives in tokens",
+        body: "I moved every brand decision (colour, type, radius, spacing, buttons) into one Figma collection of 161 variables, with one mode per brand. Blocks read those tokens and never hard-code a value, so a new brand is a new set of values, not a new design.",
       },
       {
-        title: "Theme-agnostic blocks",
-        body: "Designed blocks as self-contained units that read from tokens, so the same block flips between light and dark and between brands without a redraw. The block is the contract; the theme is just data.",
+        title: "One block, any theme",
+        body: "Light and dark are just another set of values. The Odds Comparison Table is the same component in The Playoffs and in the dark theme of Prensa Futbol, with nothing redrawn.",
+        media: {
+          src: "/work/gds/light-dark.mp4",
+          poster: "/work/gds/light-dark.webp",
+          alt: "The Odds Comparison Table in The Playoffs, light, and in Prensa Futbol, dark",
+        },
       },
       {
-        title: "Responsive contracts",
-        body: "Set breakpoint behavior at the block level, so responsiveness is a property the system guarantees rather than something each team re-solves per screen.",
+        title: "Responsive by contract",
+        body: "Each block defines how it behaves from desktop to mobile, so responsiveness is solved once in the block instead of page by page.",
+        media: {
+          src: "/work/gds/responsive.mp4",
+          poster: "/work/gds/responsive.webp",
+          alt: "The Brand Offer List block going from a 1280 pixel desktop layout to a 375 pixel mobile layout",
+        },
       },
       {
-        title: "Toffee Web as the reference build",
-        body: "Used Toffee Web as the proof of correct execution — the product that demonstrates the tokens, blocks and layouts working together as intended, and the benchmark new products are measured against.",
+        title: "A library, not pages",
+        body: "Sites are assembled from 51 section blocks grouped in six families, so a new page is a composition of blocks that already work in every brand.",
       },
       {
-        title: "Design–dev lockstep",
-        body: "Partnered with engineering so tokens and blocks map one-to-one to code. Design and build share the same vocabulary, which keeps the system honest and adoption cheap.",
+        title: "Toffee Web as the proof",
+        body: "Toffee Web is where the system shows itself end to end: the tokens, the blocks and the layouts working together the way they were designed to.",
       },
     ],
     impact: [
-      "One system now powers 8+ products across distinct brands and themes. (confirm exact count)",
-      "New pages assembled in hours by composing blocks, instead of rebuilt per product.",
-      "Light/dark and per-brand theming from a single token source — no divergent design files.",
-      "Adopted as the baseline every new product starts from.",
+      "Sixteen sites run on one system: seven media brands, Affily.bet and a casino template behind eight casino sites.",
+      "A new brand is a new set of token values, not a new design.",
+      "Light and dark, desktop and mobile are solved once, inside each block, instead of site by site.",
     ],
-    // video: {
-    //   src: "/work/gds/theme-swap.mp4",
-    //   poster: "/work/gds/theme-swap-poster.jpg",
-    //   caption: "The same block adapting across brands, themes and breakpoints.",
-    // },
-    images: [
-      {
-        src: "/work/gds/block-1.svg",
-        alt: "Placeholder — the same block rendered in a light brand theme",
-        caption: "One block, light theme.",
-        span: "half",
-        width: 1200,
-        height: 900,
-      },
-      {
-        src: "/work/gds/block-2.svg",
-        alt: "Placeholder — the same block rendered in a dark brand theme",
-        caption: "Same block, dark theme.",
-        span: "half",
-        width: 1200,
-        height: 900,
-      },
-    ],
-    links: [{ label: "Figma", href: "#" }],
+    mosaic: {
+      src: "/work/gds/block-library.mp4",
+      poster: "/work/gds/block-library.webp",
+      alt: "The 51 section blocks of the library, grouped in six families, with a wave switching the brand of the whole collection",
+    },
   },
 
   /* ══════════════════════════════ 2 · LEBI ═══════════════════════════════ */

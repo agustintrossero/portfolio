@@ -28,6 +28,11 @@ loop() {
   ffmpeg -v error -y -i "$1" -vf "fps=30,scale=1280:720:flags=lanczos" "${x264[@]}" -crf 28 "$2"
 }
 
+# 16:9 case study hero at 1080p, 30 fps. Optional third argument: CRF.
+hero() {
+  ffmpeg -v error -y -i "$1" -vf "fps=30,scale=1920:1080:flags=lanczos" "${x264[@]}" -crf "${3:-28}" "$2"
+}
+
 # Poster: one frame at a given second, as WebP.
 poster() {
   ffmpeg -v error -y -ss "$2" -i "$1" -frames:v 1 -vf "scale=$4:-2:flags=lanczos" "$TMP/frame.png"
@@ -72,6 +77,20 @@ cp "$IDEA/moveup-tools-video/out/case-study/07-phone-portal.mp4" "$OUT/moveup-to
 poster "$OUT/moveup-tools/phone-portal.mp4" 0.2 "$OUT/moveup-tools/phone-portal.webp" 540
 for f in lebi/mascot-cheer.webp lebi/mascot-hold.webp lumio/screen-index.webp moveup-tools/portal-filter.mp4 moveup-tools/portal-filter.webp moveup-tools/phone-portal.mp4 moveup-tools/phone-portal.webp; do
   say "$OUT/$f"
+done
+
+echo "GDS case study"
+# CRF 32: the scrolling token table stays legible (34 garbles the numbers).
+hero "$IDEA/gds-video/out/gds-theme-swap-16x9.mp4" "$OUT/gds/theme-swap.mp4" 32
+cwebp -quiet -q 80 -resize 1600 0 "$IDEA/gds-video/out/theme-swap-poster.jpg" -o "$OUT/gds/theme-swap.webp"
+hero "$IDEA/gds-video/out/case-study/01-block-library.mp4" "$OUT/gds/block-library.mp4" 31
+poster "$OUT/gds/block-library.mp4" 7 "$OUT/gds/block-library.webp" 1600
+loop "$IDEA/gds-video/out/case-study/03-responsive.mp4" "$OUT/gds/responsive.mp4"
+poster "$OUT/gds/responsive.mp4" 1 "$OUT/gds/responsive.webp" 1280
+# Share image for social previews (JPG travels better than WebP there).
+sips -s format jpeg -s formatOptions 82 -Z 1200 "$IDEA/gds-video/out/theme-swap-poster.jpg" --out "$OUT/gds/cover.jpg" >/dev/null
+for f in theme-swap.mp4 theme-swap.webp block-library.mp4 block-library.webp responsive.mp4 responsive.webp cover.jpg; do
+  say "$OUT/gds/$f"
 done
 
 echo "Lebi screens to WebP"
