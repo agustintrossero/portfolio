@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#f6f6f5"/>
+  <rect x="0.5" y="0.5" width="1599" height="899" stroke="#e6e6e3"/>
+  <g fill="#8f8f8a" font-family="ui-monospace, monospace">
+    <text x="800" y="440" text-anchor="middle" font-size="34" letter-spacing="6">COVER IMAGE</text>
+    <text x="800" y="490" text-anchor="middle" font-size="20" letter-spacing="2">/work/sample/cover.svg · 1600×900</text>
+  </g>
+</svg>

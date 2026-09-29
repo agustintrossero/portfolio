@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Placeholder — the same block rendered in a light brand theme">
+  <rect width="1200" height="900" fill="#ececeb"/>
+  <rect x="80" y="80" width="1040" height="740" rx="20" fill="#ffffff" stroke="#d4d4d0"/>
+  <rect x="140" y="150" width="360" height="34" rx="8" fill="#111110"/>
+  <rect x="140" y="210" width="620" height="18" rx="6" fill="#c9c9c5"/>
+  <rect x="140" y="244" width="520" height="18" rx="6" fill="#c9c9c5"/>
+  <rect x="140" y="320" width="260" height="56" rx="28" fill="#111110"/>
+  <g fill="#f0f0ee" stroke="#d4d4d0">
+    <rect x="140" y="430" width="300" height="300" rx="14"/>
+    <rect x="470" y="430" width="300" height="300" rx="14"/>
+    <rect x="800" y="430" width="300" height="300" rx="14"/>
+  </g>
+  <text x="600" y="850" text-anchor="middle" fill="#8f8f8a" font-family="ui-monospace, monospace" font-size="15" letter-spacing="3">BLOCK · LIGHT THEME · PLACEHOLDER</text>
+</svg>

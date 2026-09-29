@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <rect width="1200" height="900" fill="#f6f6f5"/>
+  <rect x="0.5" y="0.5" width="1199" height="899" stroke="#e6e6e3"/>
+  <g fill="#8f8f8a" font-family="ui-monospace, monospace">
+    <text x="600" y="440" text-anchor="middle" font-size="30" letter-spacing="5">SCREENSHOT 1</text>
+    <text x="600" y="486" text-anchor="middle" font-size="17" letter-spacing="2">Figma flow · 1200×900</text>
+  </g>
+</svg>
