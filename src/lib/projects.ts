@@ -74,6 +74,65 @@ export type Showcase = {
   caption?: string;
 };
 
+/** A project's own colours. They ignore the site theme, so each project
+ *  keeps its identity and its videos blend into the background. */
+export type Surface = {
+  /** The exact colour behind the project's videos. */
+  bg: string;
+  ink: string;
+  muted: string;
+  /** Colour of the first half of the two-tone headline (defaults to ink). */
+  lead?: string;
+  /** Colour of the second half of the two-tone headline. */
+  accent: string;
+  /** Optional gradient for the accent text (wins over `accent`). */
+  accentGradient?: string;
+  /** Hairlines and chip borders. */
+  line: string;
+  /** Optional light behind the media (any CSS background). */
+  glow?: string;
+};
+
+/** What a project shows in its home scene. */
+export type SceneMedia =
+  // The live GDS Match Card cycling through the brands.
+  | { kind: "brand-swap" }
+  // A phone playing a screen-only clip, with optional layers.
+  | {
+      kind: "phone";
+      video: string;
+      poster: string;
+      alt: string;
+      /** A second phone behind, showing a still screen. */
+      back?: { src: string; alt: string };
+      /** A transparent image floating beside the phone. */
+      float?: { src: string; alt: string; width: number; height: number };
+    }
+  // A browser window playing a loop, with an optional phone in front.
+  | {
+      kind: "browser";
+      video: string;
+      poster: string;
+      alt: string;
+      phone?: { video: string; poster: string; alt: string };
+    };
+
+/** How a project introduces itself on the home. */
+export type Scene = {
+  /** The discipline, shown above the headline. */
+  eyebrow: string;
+  /** Two-tone headline: text before "|" is the lead, the rest takes the accent. */
+  headline: string;
+  /** One sentence of context. */
+  line: string;
+  /** Three short chips. */
+  chips: string[];
+  surface: Surface;
+  media: SceneMedia;
+  /** Put the media on the left on wide screens. */
+  flip?: boolean;
+};
+
 export type Project = {
   /** URL slug. Must be unique, lowercase, no spaces. */
   slug: string;
@@ -100,6 +159,8 @@ export type Project = {
   showcase?: Showcase;
   /** Full-bleed hero image (a pre-composed mockup); no frame. Beats showcase/cover. */
   heroImage?: { src: string; alt: string; width: number; height: number };
+  /** How the project appears on the home. Projects without one are not shown there. */
+  scene?: Scene;
 
   /* ── Case-study body (all optional; render only when present) ── */
 
@@ -127,8 +188,24 @@ export const projects: Project[] = [
     slug: "gds-toffee",
     company: "Global Design System",
     role: "Design Systems Lead",
-    period: "2023 — Present", // TODO: confirm exact range
+    period: "2025 to present",
     headline: "Build once. Ship every brand.",
+    scene: {
+      eyebrow: "Design system",
+      headline: "Build once. | Ship every brand.",
+      line: "One source of 161 tokens re-skins the same blocks for seven brands, light and dark.",
+      chips: ["Design systems", "Tokens", "Multi-brand"],
+      surface: {
+        bg: "#0A0A0C",
+        ink: "#F3F3F1",
+        muted: "#A0A09B",
+        lead: "#7C7C78",
+        accent: "#F3F3F1",
+        line: "rgba(243, 243, 241, 0.16)",
+        glow: "radial-gradient(60% 55% at 70% 45%, rgba(96, 120, 190, 0.22), transparent 70%)",
+      },
+      media: { kind: "brand-swap" },
+    },
     summary:
       "The Global Design System that lets one set of tokens and blocks power many products across brands and themes — with Toffee Web as the proof it executes right.",
     tags: [
@@ -231,132 +308,40 @@ export const projects: Project[] = [
     links: [{ label: "Figma", href: "#" }],
   },
 
-  /* ══════════════════════════════ 2 · LUMIO ══════════════════════════════ */
-  {
-    slug: "lumio",
-    company: "Lumio",
-    role: "Lead Product Designer", // (confirm actual title/scope)
-    period: "2024–2025", // (confirm)
-    headline: "Odds are everywhere. Confidence isn't.",
-    summary:
-      "An AI analysis layer over the betting market — not a sportsbook. It scores every bet with the Lumio Index and shows where the value actually sits.",
-    tags: [
-      "PRODUCT DESIGN",
-      "UX/UI",
-      "DATA VISUALIZATION",
-      "INFORMATION DESIGN",
-      "AI PRODUCT",
-      "INTERACTION DESIGN",
-    ],
-    published: true,
-    cover: {
-      src: "/work/lumio/cover.svg",
-      alt: "Placeholder cover — Lumio, a dark data-first betting analysis interface",
-      width: 1600,
-      height: 900,
-    },
-    showcase: {
-      device: "phone",
-      src: "/work/lumio/tour-phone.webp",
-      alt: "A tour of the Lumio app: the Lumio Index, plans, Apple Pay and the wallet",
-      video: "/work/lumio/tour-phone.mp4",
-      caption:
-        "A tour of the app. The wallet and Apple Pay screens are concepts designed for this case study.",
-    },
-    overview:
-      "Lumio is an analysis platform for sports betting — explicitly not a sportsbook, casino, or tipster service. It reads odds across bookmakers and turns them into a single decision aid: the Lumio Index, a confidence score, paired with value detection and side-by-side bookmaker comparison. I led product design (confirm scope) — owning the core interaction model for the Index, the comparison experience, and the dark, data-first system that holds them together. The through-line was clarity: making a noisy, distrusted category legible enough to think in.",
-    opportunities: [
-      {
-        title: "From odds to a read",
-        hmw: "How might we turn a scatter of bookmaker odds into a single number a user can trust at a glance?",
-      },
-      {
-        title: "Analysis, not tips",
-        hmw: "How might we express confidence in a bet without promising an outcome or reading as a tipster service?",
-      },
-      {
-        title: "Where the value hides",
-        hmw: "How might we surface where a bet is mispriced across bookmakers, instead of leaving the user to compare tables by hand?",
-      },
-      {
-        title: "Legible AI",
-        hmw: "How might we show why the Lumio Index landed on a score, so the number feels earned rather than arbitrary?",
-      },
-      {
-        title: "Not a sportsbook",
-        hmw: "How might we make the product unmistakably a place to analyze bets, not place them?",
-      },
-      {
-        title: "Calm at high density",
-        hmw: "How might we keep a data-dense product quiet enough to actually think in?",
-      },
-    ],
-    approach: [
-      {
-        title: "The Index as the spine",
-        body: "Made the Lumio Index the primary object on every screen — one confidence score the eye lands on first. Odds, books and context are arranged as support for that number, so the interface answers 'is this worth it?' before it answers anything else.",
-      },
-      {
-        title: "Motion that explains the score",
-        body: "Designed the Index as an interaction, not a static badge: opening it decomposes the score into the factors behind it. Motion carries the causality — the number expands into its reasoning — which is what turns an AI output into something a user can interrogate rather than simply accept. (confirm final interaction)",
-      },
-      {
-        title: "Comparison built to find value, not list it",
-        body: "Rejected the standard odds-table dump. Bookmaker comparison is framed around the outlier — the book pricing a bet differently from the market — so value detection is the default reading of the screen instead of something the user has to calculate.",
-      },
-      {
-        title: "A hard line from the sportsbook",
-        body: "Kept every affordance on the analysis side of the line — no 'place bet' moment, no casino cues. The product reads as a lens on the market, which protects both its positioning and the user's trust in it as an impartial read. (confirm regulatory framing)",
-      },
-      {
-        title: "Dark, quiet, data-first",
-        body: "Chose a dark, low-chroma system so the data carries the color and nothing competes with it. In a category that usually shouts, the restraint is deliberate — it frames the product as something to think with, not something selling to you.",
-      },
-      {
-        title: "Confidence, framed honestly",
-        body: "Calibrated the Index to communicate confidence, not certainty — language and visual weight tuned so a high score never reads as a guarantee. Getting this framing right is what keeps an analysis product credible past the first session. (confirm)",
-      },
-    ],
-    impact: [
-      "A dense, multi-bookmaker market compressed into one read — the Lumio Index — so a bet can be judged at a glance instead of by parsing tables across books. (confirm with testing)",
-      "Value detection made the default reading of the screen: the product points to where a bet is mispriced across books, rather than leaving the user to find it. (confirm)",
-      "The Index is built to be questioned — its score decomposes into the factors behind it, so the AI output can be interrogated rather than taken on faith. (confirm the UI exposes this)",
-      "Reads unmistakably as analysis, not a sportsbook — protecting both the positioning and the user's trust in the score. (confirm)",
-      "A dark, low-noise system that stays legible at high data density — a deliberate break from the category's cluttered norm.",
-    ],
-    // video: {
-    //   src: "/work/lumio/index-interaction.mp4",
-    //   poster: "/work/lumio/index-poster.jpg",
-    //   caption: "The Lumio Index expanding into the factors behind the score.",
-    // },
-    images: [
-      {
-        src: "/work/lumio/block-1.svg",
-        alt: "Placeholder — the Lumio Index, collapsed and expanded",
-        caption: "The Lumio Index — the confidence score at the center.",
-        span: "half",
-        width: 1200,
-        height: 900,
-      },
-      {
-        src: "/work/lumio/block-2.svg",
-        alt: "Placeholder — bookmaker comparison surfacing the value outlier",
-        caption: "Bookmaker comparison, framed around the value outlier.",
-        span: "half",
-        width: 1200,
-        height: 900,
-      },
-    ],
-    links: [{ label: "Figma", href: "#" }],
-  },
-
-  /* ══════════════════════════════ 4 · LEBI ═══════════════════════════════ */
+  /* ══════════════════════════════ 2 · LEBI ═══════════════════════════════ */
   {
     slug: "lebi",
     company: "Lebi", // client: MoveUp Media
     role: "Design Lead", // created it + led the design team (confirm exact title)
-    period: "2024–2025",
+    period: "2025",
     headline: "It began as scattered ideas. I gave it a spine.",
+    scene: {
+      eyebrow: "SaaS platform · Leadership",
+      headline: "Free predictions. | Real prizes.",
+      line: "A sports predictions platform I created and led at MoveUp Media, where brands launch sponsored leagues on one template.",
+      chips: ["SaaS", "Leadership", "Gamification"],
+      surface: {
+        bg: "#F5F1FF",
+        ink: "#16161D",
+        muted: "#5D5D6B",
+        accent: "#6B3CF0",
+        line: "rgba(22, 22, 29, 0.14)",
+        glow: "radial-gradient(45% 50% at 72% 30%, rgba(107, 60, 240, 0.16), transparent 70%), radial-gradient(35% 40% at 28% 85%, rgba(255, 194, 26, 0.2), transparent 70%)",
+      },
+      media: {
+        kind: "phone",
+        video: "/work/lebi/onboarding-phone.mp4",
+        poster: "/work/lebi/onboarding-phone.webp",
+        alt: "Lebi onboarding on mobile: email code, basic details, name and avatar, then the challenges home",
+        float: {
+          src: "/work/lebi/mascot-cheer.webp",
+          alt: "Lebi's mascot, a purple bird, celebrating",
+          width: 408,
+          height: 576,
+        },
+      },
+      flip: true,
+    },
     summary:
       "A gamified sports-predictions SaaS I created and led at MoveUp Media — from positioning and a modular design system to the calls that turned scattered ideas into a shipped product.",
     tags: [
@@ -487,17 +472,196 @@ export const projects: Project[] = [
     links: [{ label: "Figma", href: "#" }],
   },
 
-  /* ════════════════════════════ GALLERY (quick) ══════════════════════════ */
+  /* ══════════════════════════════ 3 · LUMIO ══════════════════════════════ */
   {
-    slug: "brand-asset-manager",
-    company: "Brand Asset Manager",
-    role: "Product Designer",
-    kind: "gallery",
-    published: true,
+    slug: "lumio",
+    company: "Lumio",
+    role: "Lead Product Designer", // (confirm actual title/scope)
+    period: "2025",
+    headline: "Odds are everywhere. Confidence isn't.",
+    scene: {
+      eyebrow: "Consumer app · Payments",
+      headline: "Stop betting | in the dark.",
+      line: "An AI analysis app that gives every match a confidence score, designed and built in house from onboarding to upgrade.",
+      chips: ["Product design", "AI product", "Monetization"],
+      surface: {
+        bg: "#060606",
+        ink: "#F5F5F2",
+        muted: "#9A9A96",
+        accent: "#FFCC00",
+        line: "rgba(245, 245, 242, 0.14)",
+        glow: "radial-gradient(40% 50% at 66% 42%, rgba(255, 204, 0, 0.2), transparent 70%)",
+      },
+      media: {
+        kind: "phone",
+        video: "/work/lumio/tour-phone.mp4",
+        poster: "/work/lumio/tour-phone.webp",
+        alt: "A tour of the Lumio app: the Lumio Index, plans, Apple Pay and the wallet",
+        back: {
+          src: "/work/lumio/screen-index.webp",
+          alt: "The Lumio Index detail for a match, with its confidence score",
+        },
+      },
+    },
     summary:
-      "A self-serve library where teams find and pull brand assets on demand — logos, marks and source files — instead of routing every request through design.",
-    tags: ["INTERNAL TOOL", "PRODUCT DESIGN", "UX/UI", "DESIGN OPS", "ASSET LIBRARY"],
+      "An AI analysis layer over the betting market — not a sportsbook. It scores every bet with the Lumio Index and shows where the value actually sits.",
+    tags: [
+      "PRODUCT DESIGN",
+      "UX/UI",
+      "DATA VISUALIZATION",
+      "INFORMATION DESIGN",
+      "AI PRODUCT",
+      "INTERACTION DESIGN",
+    ],
+    published: true,
+    cover: {
+      src: "/work/lumio/cover.svg",
+      alt: "Placeholder cover — Lumio, a dark data-first betting analysis interface",
+      width: 1600,
+      height: 900,
+    },
+    showcase: {
+      device: "phone",
+      src: "/work/lumio/tour-phone.webp",
+      alt: "A tour of the Lumio app: the Lumio Index, plans, Apple Pay and the wallet",
+      video: "/work/lumio/tour-phone.mp4",
+      caption:
+        "A tour of the app. The wallet and Apple Pay screens are concepts designed for this case study.",
+    },
+    overview:
+      "Lumio is an analysis platform for sports betting — explicitly not a sportsbook, casino, or tipster service. It reads odds across bookmakers and turns them into a single decision aid: the Lumio Index, a confidence score, paired with value detection and side-by-side bookmaker comparison. I led product design (confirm scope) — owning the core interaction model for the Index, the comparison experience, and the dark, data-first system that holds them together. The through-line was clarity: making a noisy, distrusted category legible enough to think in.",
+    opportunities: [
+      {
+        title: "From odds to a read",
+        hmw: "How might we turn a scatter of bookmaker odds into a single number a user can trust at a glance?",
+      },
+      {
+        title: "Analysis, not tips",
+        hmw: "How might we express confidence in a bet without promising an outcome or reading as a tipster service?",
+      },
+      {
+        title: "Where the value hides",
+        hmw: "How might we surface where a bet is mispriced across bookmakers, instead of leaving the user to compare tables by hand?",
+      },
+      {
+        title: "Legible AI",
+        hmw: "How might we show why the Lumio Index landed on a score, so the number feels earned rather than arbitrary?",
+      },
+      {
+        title: "Not a sportsbook",
+        hmw: "How might we make the product unmistakably a place to analyze bets, not place them?",
+      },
+      {
+        title: "Calm at high density",
+        hmw: "How might we keep a data-dense product quiet enough to actually think in?",
+      },
+    ],
+    approach: [
+      {
+        title: "The Index as the spine",
+        body: "Made the Lumio Index the primary object on every screen — one confidence score the eye lands on first. Odds, books and context are arranged as support for that number, so the interface answers 'is this worth it?' before it answers anything else.",
+      },
+      {
+        title: "Motion that explains the score",
+        body: "Designed the Index as an interaction, not a static badge: opening it decomposes the score into the factors behind it. Motion carries the causality — the number expands into its reasoning — which is what turns an AI output into something a user can interrogate rather than simply accept. (confirm final interaction)",
+      },
+      {
+        title: "Comparison built to find value, not list it",
+        body: "Rejected the standard odds-table dump. Bookmaker comparison is framed around the outlier — the book pricing a bet differently from the market — so value detection is the default reading of the screen instead of something the user has to calculate.",
+      },
+      {
+        title: "A hard line from the sportsbook",
+        body: "Kept every affordance on the analysis side of the line — no 'place bet' moment, no casino cues. The product reads as a lens on the market, which protects both its positioning and the user's trust in it as an impartial read. (confirm regulatory framing)",
+      },
+      {
+        title: "Dark, quiet, data-first",
+        body: "Chose a dark, low-chroma system so the data carries the color and nothing competes with it. In a category that usually shouts, the restraint is deliberate — it frames the product as something to think with, not something selling to you.",
+      },
+      {
+        title: "Confidence, framed honestly",
+        body: "Calibrated the Index to communicate confidence, not certainty — language and visual weight tuned so a high score never reads as a guarantee. Getting this framing right is what keeps an analysis product credible past the first session. (confirm)",
+      },
+    ],
+    impact: [
+      "A dense, multi-bookmaker market compressed into one read — the Lumio Index — so a bet can be judged at a glance instead of by parsing tables across books. (confirm with testing)",
+      "Value detection made the default reading of the screen: the product points to where a bet is mispriced across books, rather than leaving the user to find it. (confirm)",
+      "The Index is built to be questioned — its score decomposes into the factors behind it, so the AI output can be interrogated rather than taken on faith. (confirm the UI exposes this)",
+      "Reads unmistakably as analysis, not a sportsbook — protecting both the positioning and the user's trust in the score. (confirm)",
+      "A dark, low-noise system that stays legible at high data density — a deliberate break from the category's cluttered norm.",
+    ],
+    // video: {
+    //   src: "/work/lumio/index-interaction.mp4",
+    //   poster: "/work/lumio/index-poster.jpg",
+    //   caption: "The Lumio Index expanding into the factors behind the score.",
+    // },
+    images: [
+      {
+        src: "/work/lumio/block-1.svg",
+        alt: "Placeholder — the Lumio Index, collapsed and expanded",
+        caption: "The Lumio Index — the confidence score at the center.",
+        span: "half",
+        width: 1200,
+        height: 900,
+      },
+      {
+        src: "/work/lumio/block-2.svg",
+        alt: "Placeholder — bookmaker comparison surfacing the value outlier",
+        caption: "Bookmaker comparison, framed around the value outlier.",
+        span: "half",
+        width: 1200,
+        height: 900,
+      },
+    ],
+    links: [{ label: "Figma", href: "#" }],
   },
+
+  /* ══════════════════════════ 4 · MOVEUP TOOLS ══════════════════════════ */
+  {
+    slug: "moveup-tools",
+    company: "MoveUp Tools",
+    role: "Lead UX/UI Designer", // (confirm how to credit design and build)
+    headline: "One portal. Every tool.",
+    scene: {
+      eyebrow: "Internal SaaS · AI tools",
+      headline: "One portal, | every tool.",
+      line: "The internal platform I designed and built for MoveUp Media: the portal and six tools, from AI video production to brand assets.",
+      chips: ["SaaS", "AI tools", "Design engineering"],
+      surface: {
+        bg: "#0A0712",
+        ink: "#F4F1FA",
+        muted: "#9C93B0",
+        accent: "#D6246E",
+        accentGradient: "linear-gradient(90deg, #D6246E, #9446D8 55%, #4B7BEA)",
+        line: "rgba(244, 241, 250, 0.14)",
+        glow: "radial-gradient(45% 55% at 30% 50%, rgba(148, 70, 216, 0.28), transparent 70%), radial-gradient(35% 45% at 12% 80%, rgba(214, 36, 110, 0.18), transparent 70%)",
+      },
+      media: {
+        kind: "browser",
+        video: "/work/moveup-tools/portal-filter.mp4",
+        poster: "/work/moveup-tools/portal-filter.webp",
+        alt: "The MoveUp Tools portal filtering its apps by category",
+        phone: {
+          video: "/work/moveup-tools/phone-portal.mp4",
+          poster: "/work/moveup-tools/phone-portal.webp",
+          alt: "The MoveUp Tools portal on mobile",
+        },
+      },
+      flip: true,
+    },
+    summary:
+      "The internal SaaS of MoveUp Media: the company's apps and news behind one sign-in. I designed and built the portal and six of its tools, from AI video to brand assets.",
+    tags: ["SAAS", "INTERNAL PLATFORM", "AI TOOLS", "DESIGN ENGINEERING"],
+    published: true,
+    showcase: {
+      device: "phone",
+      src: "/work/moveup-tools/tour-phone.webp",
+      alt: "A tour of MoveUp Tools on mobile: the portal, Video Studio, Brand Assets, news and a survey",
+      video: "/work/moveup-tools/tour-phone.mp4",
+      caption: "The portal and its tools on mobile. Colleagues' names are fictional.",
+    },
+  },
+
+  /* ════════════════════════════ GALLERY (quick) ══════════════════════════ */
   {
     slug: "dima-world-cup",
     company: "Dima World Cup Challenge",
@@ -505,7 +669,7 @@ export const projects: Project[] = [
     kind: "gallery",
     published: true,
     summary:
-      "An internal World Cup prediction game the entire company ended up playing — designed for pull, not mandate, and picked up across every team.",
+      "An internal World Cup prediction game the whole company ended up playing: designed for pull, not mandate, and picked up by every team.",
     tags: ["PRODUCT DESIGN", "ENGAGEMENT", "UX/UI", "INTERNAL PRODUCT", "GAMIFICATION"],
   },
   {
@@ -515,7 +679,7 @@ export const projects: Project[] = [
     kind: "gallery",
     published: true,
     summary:
-      "Branding and social for Super Dritta — Telegram sticker packs and matchday assets built to carry one voice across feeds.",
+      "Branding and social for Super Dritta: Telegram sticker packs and matchday assets that carry one voice across feeds.",
     tags: ["BRANDING", "SOCIAL", "ILLUSTRATION", "STICKER DESIGN", "SPORTS"],
   },
 ];

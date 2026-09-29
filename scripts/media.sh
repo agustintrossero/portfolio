@@ -62,6 +62,18 @@ cp "$TMP/02-light-dark.mp4" "$OUT/gds/light-dark.mp4"
 poster "$OUT/gds/light-dark.mp4" 1 "$OUT/gds/light-dark.webp" 1280
 say "$OUT/gds/light-dark.mp4"; say "$OUT/gds/light-dark.webp"
 
+echo "Home scenes"
+webp "$IDEA/lebi-video/mascot/mascot-cheer.png" "$OUT/lebi/mascot-cheer.webp"
+webp "$IDEA/lebi-video/mascot/mascot-hold.png" "$OUT/lebi/mascot-hold.webp"
+cwebp -quiet -q 82 -resize 720 0 "$IDEA/lumio-video/screens/expanded.png" -o "$OUT/lumio/screen-index.webp"
+cp "$IDEA/moveup-tools-video/out/case-study/01-portal-filter.mp4" "$OUT/moveup-tools/portal-filter.mp4"
+poster "$OUT/moveup-tools/portal-filter.mp4" 0.2 "$OUT/moveup-tools/portal-filter.webp" 1280
+cp "$IDEA/moveup-tools-video/out/case-study/07-phone-portal.mp4" "$OUT/moveup-tools/phone-portal.mp4"
+poster "$OUT/moveup-tools/phone-portal.mp4" 0.2 "$OUT/moveup-tools/phone-portal.webp" 540
+for f in lebi/mascot-cheer.webp lebi/mascot-hold.webp lumio/screen-index.webp moveup-tools/portal-filter.mp4 moveup-tools/portal-filter.webp moveup-tools/phone-portal.mp4 moveup-tools/phone-portal.webp; do
+  say "$OUT/$f"
+done
+
 echo "Lebi screens to WebP"
 for f in mockup-1 user-journey before-guest-logged after-guest-logged landing-page-1 dashboard-guest; do
   if [ -f "$OUT/lebi/$f.png" ]; then

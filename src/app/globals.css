@@ -165,6 +165,41 @@ body {
   }
 }
 
+/* Scroll-linked depth for the home scenes: the main device settles from a
+   slight tilt, secondary layers drift at their own speed. Browsers without
+   scroll-driven animations, and visitors who prefer less motion, get the
+   elements still. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-rise {
+      animation: scroll-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+    .scroll-float {
+      animation: scroll-float linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+@keyframes scroll-rise {
+  from {
+    transform: perspective(1400px) rotateX(10deg) scale(0.94);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes scroll-float {
+  from {
+    translate: 0 var(--float-from, 60px);
+  }
+  to {
+    translate: 0 var(--float-to, -60px);
+  }
+}
+
 /* Device frames: phone, tablet and browser mockups. */
 .device {
   position: relative;

@@ -159,7 +159,7 @@ export default function LoopVideo({
           type="button"
           onClick={toggle}
           aria-label="Play video"
-          className="play-btn absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="play-btn pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         >
           <PlayIcon className="h-6 w-6" />
         </button>
@@ -168,7 +168,7 @@ export default function LoopVideo({
           type="button"
           onClick={toggle}
           aria-label={playing ? "Pause video" : "Play video"}
-          className="absolute bottom-3 right-3 z-10 grid h-8 w-8 place-items-center rounded-full bg-black/55 text-white opacity-80 backdrop-blur transition-opacity duration-200 hover:opacity-100 focus-visible:opacity-100"
+          className="pointer-events-auto absolute bottom-3 right-3 z-10 grid h-8 w-8 place-items-center rounded-full bg-black/55 text-white opacity-80 backdrop-blur transition-opacity duration-200 hover:opacity-100 focus-visible:opacity-100"
         >
           {playing ? (
             <PauseIcon className="h-3.5 w-3.5" />

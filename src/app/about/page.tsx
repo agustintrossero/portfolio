@@ -104,11 +104,9 @@ export default function AboutPage() {
           <h2 className="eyebrow sm:pt-1">Capabilities</h2>
           <ul className="flex flex-wrap gap-2.5">
             {skills.map((skill, i) => (
-              <Reveal key={skill} delay={i * 45}>
-                <li className="rounded-full border border-line px-3.5 py-1.5 text-[14px] text-ink transition-colors duration-200 hover:border-line-strong">
+              <Reveal as="li" key={skill} delay={i * 45} className="rounded-full border border-line px-3.5 py-1.5 text-[14px] text-ink transition-colors duration-200 hover:border-line-strong">
                   {skill}
-                </li>
-              </Reveal>
+                </Reveal>
             ))}
           </ul>
         </div>
@@ -120,8 +118,7 @@ export default function AboutPage() {
           <h2 className="eyebrow sm:pt-1">Elsewhere</h2>
           <ul className="flex flex-col gap-3 text-[16px]">
             {site.socials.map((s, i) => (
-              <Reveal key={s.label} delay={i * 55}>
-                <li>
+              <Reveal as="li" key={s.label} delay={i * 55}>
                   <a
                     href={s.href}
                     target="_blank"
@@ -133,8 +130,7 @@ export default function AboutPage() {
                       ↗
                     </span>
                   </a>
-                </li>
-              </Reveal>
+                </Reveal>
             ))}
           </ul>
         </div>

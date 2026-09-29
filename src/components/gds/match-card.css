@@ -1,0 +1,276 @@
+/* Match Card (GDS, Sports, Match, Type=Vertical), ported from the GDS video.
+   Every property mirrors the variable bindings of the Figma component, so the
+   same markup re-skins itself when the brand class (.gds-m0 to .gds-m6)
+   changes. Operator logo and team colours are data, not tokens. */
+
+.gds-mc {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: var(--t-space-sm) var(--t-space-sm) var(--t-space-xs);
+  background: var(--t-color-neutral-white-100);
+  border: 1px solid var(--t-color-neutral-gray-200);
+  border-radius: var(--t-radius-lg);
+  color: var(--t-color-neutral-black);
+  font-family: var(--t-font-family-base);
+  letter-spacing: var(--t-font-letter-spacing-base);
+  box-shadow: 0 1px 2px rgba(0, 8, 31, 0.06);
+  text-align: left;
+}
+.gds-mc p {
+  margin: 0;
+}
+.gds-mc__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--t-space-xs);
+}
+.gds-mc__chip {
+  background: var(--t-color-primary-base);
+  color: var(--t-color-neutral-white);
+  font-size: var(--t-font-size-xxs);
+  line-height: var(--t-font-line-height-xxs);
+  font-weight: var(--t-font-weight-bold);
+  padding: var(--t-space-xxs) var(--t-space-sm);
+  border-radius: var(--t-radius-sm);
+}
+.gds-mc__date {
+  font-size: var(--t-font-size-xxs);
+  line-height: var(--t-font-line-height-xxs);
+  font-weight: var(--t-font-weight-medium);
+  text-transform: uppercase;
+}
+.gds-mc__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--t-space-xs);
+}
+.gds-mc__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--t-space-xs);
+}
+.gds-mc__team {
+  display: flex;
+  align-items: center;
+  gap: var(--t-space-xxs);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--t-font-size-xs);
+  line-height: var(--t-font-line-height-xs);
+  font-weight: var(--t-font-weight-regular);
+}
+.gds-mc__x {
+  width: 20px;
+  text-align: center;
+  font-weight: var(--t-font-weight-medium);
+}
+.gds-logo {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex: none;
+  display: grid;
+  place-items: center;
+  background: var(--c);
+  color: #fff;
+  font: 700 7px/1 var(--font-gds-inter, "Inter"), sans-serif;
+  font-style: normal;
+  letter-spacing: 0;
+}
+.gds-mc__odd {
+  display: flex;
+  height: 24px;
+  flex: none;
+}
+.gds-mc__odd b {
+  width: 50px;
+  display: grid;
+  place-items: center;
+  background: var(--t-color-neutral-white-100);
+  border: 1px solid var(--t-color-neutral-gray-200);
+  border-right: 0;
+  border-radius: var(--t-radius-sm) 0 0 var(--t-radius-sm);
+  font-size: var(--t-font-size-xs);
+  font-weight: var(--t-font-weight-medium);
+  color: var(--t-color-neutral-gray-900);
+}
+.gds-op {
+  width: 50px;
+  display: grid;
+  place-items: center;
+  background: #111;
+  color: #ffe21c;
+  border-radius: 0 var(--t-radius-sm) var(--t-radius-sm) 0;
+}
+.gds-op i {
+  font: 800 11px/1 var(--font-gds-inter, "Inter"), sans-serif;
+  letter-spacing: -0.02em;
+  transform: skewX(-12deg);
+  font-style: normal;
+}
+.gds-mc__hot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--t-space-sm);
+  margin-top: 2px;
+}
+.gds-mc__hot-h {
+  display: flex;
+  align-items: center;
+  gap: var(--t-space-xxs);
+  color: var(--t-color-code-code);
+  font-size: var(--t-font-size-xxs);
+  line-height: var(--t-font-line-height-base);
+  font-weight: var(--t-font-weight-bold);
+}
+.gds-mc__hot-h svg {
+  width: 11px;
+  height: 11px;
+  fill: currentColor;
+}
+.gds-mc__hot p {
+  font-size: var(--t-font-size-xxs);
+  line-height: var(--t-font-line-height-xs);
+  max-width: 185px;
+}
+.gds-mc__hotodd {
+  width: 50px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--t-color-neutral-white-100);
+  border: 1px solid var(--t-color-neutral-gray-400);
+  border-radius: var(--t-radius-sm);
+}
+.gds-mc__hotodd .gds-op {
+  width: auto;
+  height: 22px;
+  border-radius: 0;
+}
+.gds-mc__hotodd b {
+  height: 22px;
+  display: grid;
+  place-items: center;
+  color: var(--t-color-code-code);
+  font-size: var(--t-font-size-xs);
+  font-weight: var(--t-font-weight-bold);
+}
+.gds-mc__post {
+  display: flex;
+  align-items: center;
+  gap: var(--t-space-xs);
+  padding: var(--t-space-xs) 0;
+}
+.gds-mc__img {
+  width: 54px;
+  height: 54px;
+  flex: none;
+  border-radius: var(--t-radius-lg);
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(
+    140deg,
+    var(--t-color-primary-700),
+    var(--t-color-primary-400) 55%,
+    var(--t-color-secondary-base)
+  );
+}
+.gds-mc__img svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.gds-mc__eye {
+  display: flex;
+  align-items: center;
+  gap: var(--t-space-xxs);
+  color: var(--t-color-primary-base);
+  font-size: var(--t-font-size-xxs);
+  line-height: var(--t-font-line-height-xxs);
+  font-weight: var(--t-font-weight-bold);
+  text-transform: uppercase;
+}
+.gds-mc__eye svg {
+  width: 10px;
+  height: 10px;
+}
+.gds-mc__title {
+  margin-top: 3px !important;
+  font-size: var(--t-font-size-xxs);
+  line-height: var(--t-font-line-height-xs);
+  letter-spacing: var(--t-font-letter-spacing-md);
+  text-decoration: underline;
+  text-decoration-color: var(--t-color-neutral-gray-400);
+  text-underline-offset: 2px;
+}
+.gds-mc__cta {
+  display: grid;
+  place-items: center;
+  height: var(--t-btn-height-md);
+  border: 1px solid var(--t-color-secondary-base);
+  border-radius: var(--t-btn-border-radius-sm);
+  color: var(--t-color-secondary-base);
+  font-family: var(--t-btn-font-family);
+  font-size: var(--t-font-size-sm);
+  font-weight: var(--t-font-weight-medium);
+  line-height: var(--t-btn-line-height-lg);
+}
+.gds-mc__upd {
+  text-align: center;
+  font-size: var(--t-font-size-xxs);
+  line-height: var(--t-font-line-height-xxs);
+  color: var(--t-color-neutral-gray-500);
+}
+
+/* Stage: brand layers stacked in one grid cell. The incoming brand wipes in
+   from the left over the outgoing one, like the GDS video. */
+.gds-stage {
+  display: grid;
+  justify-items: center;
+  zoom: 1;
+}
+/* Larger card from desktop up; phones keep the native 300px. */
+@media (min-width: 1024px) {
+  .gds-stage {
+    zoom: var(--gds-zoom, 1);
+  }
+}
+/* Every brand renders at the same height, so the outgoing layer never peeks
+   out under the incoming one. 384px is the tallest brand (Poppins and Inter,
+   measured with each font loaded); layers also stretch to the tallest one. */
+.gds-layer {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+}
+.gds-layer > .gds-mc {
+  flex: 1 1 auto;
+  min-height: 384px;
+}
+.gds-layer .gds-mc {
+  box-shadow:
+    0 1px 2px rgba(0, 8, 31, 0.06),
+    0 24px 60px -24px rgba(0, 0, 0, 0.55);
+}
+.gds-warm {
+  visibility: hidden;
+}
+.gds-swap-in {
+  animation: gds-wipe 0.7s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+@keyframes gds-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}

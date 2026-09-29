@@ -53,7 +53,7 @@ export default function ThemeToggle() {
       aria-label="Dark theme"
       aria-pressed={dark}
       title={dark ? "Switch to light theme" : "Switch to dark theme"}
-      className="grid h-9 w-9 place-items-center rounded-full text-muted transition-colors duration-200 hover:bg-paper-2 hover:text-ink"
+      className="grid h-8 w-8 place-items-center rounded-full text-muted transition-colors duration-200 hover:bg-paper-2 hover:text-ink sm:h-9 sm:w-9"
     >
       {/* Moon while light, sun while dark. CSS picks the icon, so the markup
           is identical on the server and in the browser. */}

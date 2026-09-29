@@ -294,16 +294,14 @@ export default async function CaseStudyPage({
             <Section id="opportunities" label="Opportunities">
               <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {project.opportunities.map((op, i) => (
-                  <Reveal key={op.title} delay={(i % 2) * 90} className="h-full">
-                    <li className="h-full rounded-xl border border-line bg-paper-2 p-5 transition-colors duration-200 hover:border-line-strong">
+                  <Reveal as="li" key={op.title} delay={(i % 2) * 90} className="h-full rounded-xl border border-line bg-paper-2 p-5 transition-colors duration-200 hover:border-line-strong">
                       <h3 className="text-[15px] font-semibold tracking-tight text-ink">
                         {op.title}
                       </h3>
                       <p className="mt-2 text-[14px] leading-relaxed text-muted">
                         {op.hmw}
                       </p>
-                    </li>
-                  </Reveal>
+                    </Reveal>
                 ))}
               </ul>
             </Section>
@@ -313,8 +311,7 @@ export default async function CaseStudyPage({
             <Section id="approach" label="Approach">
               <ol className="flex flex-col gap-8">
                 {project.approach.map((step, i) => (
-                  <Reveal key={step.title} delay={i * 60}>
-                    <li className="flex gap-5">
+                  <Reveal as="li" key={step.title} delay={i * 60} className="flex gap-5">
                       <span className="font-mono text-[13px] tabular-nums text-muted-2">
                         {String(i + 1).padStart(2, "0")}
                       </span>
@@ -326,8 +323,7 @@ export default async function CaseStudyPage({
                           {step.body}
                         </p>
                       </div>
-                    </li>
-                  </Reveal>
+                    </Reveal>
                 ))}
               </ol>
             </Section>
@@ -337,15 +333,13 @@ export default async function CaseStudyPage({
             <Section id="impact" label="Impact & Outcomes">
               <ul className="flex flex-col gap-4">
                 {project.impact.map((item, i) => (
-                  <Reveal key={item} delay={i * 60}>
-                    <li className="flex gap-3 leading-relaxed text-ink/90">
+                  <Reveal as="li" key={item} delay={i * 60} className="flex gap-3 leading-relaxed text-ink/90">
                       <span
                         aria-hidden
                         className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink"
                       />
                       <span className="text-[17px]">{item}</span>
-                    </li>
-                  </Reveal>
+                    </Reveal>
                 ))}
               </ul>
             </Section>

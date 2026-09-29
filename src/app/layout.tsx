@@ -47,9 +47,11 @@ export default function RootLayout({
 }>) {
   return (
     // The theme script may add data-theme before hydration, so React is told
-    // not to flag that attribute on <html>.
+    // not to flag that attribute on <html>. data-scroll-behavior keeps smooth
+    // scrolling for in-page anchors but lets route changes jump to the top.
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >

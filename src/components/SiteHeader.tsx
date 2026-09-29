@@ -17,7 +17,7 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-line bg-paper/80 backdrop-blur-md">
       <div className="mx-auto flex h-[60px] max-w-5xl items-center justify-between px-6 sm:px-8">
         <Link href="/" className="group flex items-baseline gap-2.5">
-          <span className="text-[15px] font-semibold tracking-tight text-ink">
+          <span className="whitespace-nowrap text-[15px] font-semibold tracking-tight text-ink">
             {site.name}
           </span>
           <span className="hidden text-[13px] text-muted sm:inline">
@@ -25,12 +25,12 @@ export default function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="flex items-center gap-1 text-[14px]">
+        <nav className="flex items-center gap-0.5 text-[14px] sm:gap-1">
           {/* Work: links to the list, with a hover and focus dropdown of cases */}
           <div className="group relative">
             <Link
               href="/"
-              className={`flex items-center gap-1 rounded-full px-3 py-1.5 transition-colors duration-200 hover:text-ink ${
+              className={`flex items-center gap-1 rounded-full px-2 py-1.5 transition-colors duration-200 hover:text-ink sm:px-3 ${
                 workActive ? "text-ink" : "text-muted"
               }`}
             >
@@ -66,7 +66,7 @@ export default function SiteHeader() {
 
           <Link
             href="/about"
-            className={`rounded-full px-3 py-1.5 transition-colors duration-200 hover:text-ink ${
+            className={`rounded-full px-2 py-1.5 transition-colors duration-200 hover:text-ink sm:px-3 ${
               aboutActive ? "text-ink" : "text-muted"
             }`}
           >
@@ -79,7 +79,7 @@ export default function SiteHeader() {
             href={site.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-1 rounded-full border border-line-strong px-3.5 py-1.5 text-ink transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-paper"
+            className="ml-0.5 rounded-full border border-line-strong px-3 py-1.5 text-ink transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-paper sm:ml-1 sm:px-3.5"
           >
             CV
           </a>

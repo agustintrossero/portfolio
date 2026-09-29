@@ -6,27 +6,30 @@ import type { CSSProperties, ReactNode } from "react";
 type RevealVariant = "up" | "left" | "right" | "scale" | "tilt";
 
 /**
- * Fades + slides its children in when they scroll into view.
- * Hidden state only applies once <html> has `.reveal-ready` (set
- * synchronously in the layout), so no-JS / reduced-motion shows everything.
+ * Fades and slides its children in when they scroll into view.
+ * The hidden state lives in CSS under @media (scripting: enabled), so without
+ * JS, or with reduced motion, everything is simply visible.
+ * Use `as="li"` inside lists, so the markup stays valid.
  */
 export default function Reveal({
   children,
+  as: Tag = "div",
   delay = 0,
   variant = "up",
   className = "",
   once = true,
 }: {
   children: ReactNode;
+  as?: "div" | "li";
   delay?: number;
   variant?: RevealVariant;
   className?: string;
   once?: boolean;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const node = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = node.current;
     if (!el) return;
 
     if (typeof IntersectionObserver === "undefined") {
@@ -60,8 +63,14 @@ export default function Reveal({
     : undefined;
 
   return (
-    <div ref={ref} style={style} className={`reveal ${variantClass} ${className}`}>
+    <Tag
+      ref={(el: HTMLElement | null) => {
+        node.current = el;
+      }}
+      style={style}
+      className={`reveal ${variantClass} ${className}`}
+    >
       {children}
-    </div>
+    </Tag>
   );
 }
