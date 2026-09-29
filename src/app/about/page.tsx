@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${site.name} — ${site.role}.`,
+  description: `About ${site.name}, ${site.role}.`,
 };
 
 const skills = [
@@ -47,8 +47,8 @@ export default function AboutPage() {
             <Reveal delay={160}>
               <div className="mt-8 flex max-w-xl flex-col gap-5 text-[17px] leading-relaxed text-muted">
                 <p>
-                  I lead the design of digital products end to end — from
-                  research and strategy through polished, accessible UI — and I
+                  I lead the design of digital products end to end, from
+                  research and strategy through polished, accessible UI, and I
                   can take it all the way into code. That blend lets me move
                   fast, keep designs honest about what&apos;s buildable, and
                   ship work I stand behind.
@@ -57,7 +57,7 @@ export default function AboutPage() {
                   Outside of product design I&apos;m a tattoo artist, a
                   musician, and a football coach for women&apos;s and men&apos;s
                   teams. Those worlds keep my creativity, adaptability, and
-                  leadership sharp — and they show up in how I approach design
+                  leadership sharp, and they show up in how I approach design
                   problems.
                 </p>
               </div>
@@ -83,7 +83,7 @@ export default function AboutPage() {
             </Reveal>
           </div>
 
-          {/* Portrait — drop your photo at /public/portrait.jpg */}
+          {/* Portrait: drop your photo at /public/portrait.jpg */}
           <Reveal variant="right" delay={200} className="order-first sm:order-none">
             <div className="relative aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-2xl border border-line bg-paper-2">
               <Image

@@ -1,5 +1,5 @@
 /**
- * Global site configuration — single source of truth for identity,
+ * Global site configuration: the single source of truth for identity,
  * contact, and social links. Edit here; every page reads from this.
  */
 export const site = {

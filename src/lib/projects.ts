@@ -1,12 +1,12 @@
 /**
- * PROJECTS — the content layer for every case study.
+ * PROJECTS: the content layer for every case study.
  *
  * Each entry powers two things automatically:
  *   1. A row in the homepage "Selected Work" list (or "More work" if kind:"gallery").
  *   2. Its own case-study page at /work/<slug>/ (deep cases only).
  *
  * The case-study template renders ONLY the sections you fill in, so a
- * half-finished project won't break — leave fields out and they vanish.
+ * half-finished project won't break: leave fields out and they vanish.
  *
  * To add a project: copy the shape below, give it a unique `slug`, set
  * `published: true` when it's ready to show. That's the only file you touch.
@@ -15,7 +15,7 @@
 export type ApproachStep = {
   /** Short heading for this part of the approach, e.g. "Research". */
   title: string;
-  /** 1–3 sentences describing what you did and why. */
+  /** One to three sentences describing what you did and why. */
   body: string;
 };
 
@@ -30,9 +30,9 @@ export type Opportunity = {
 export type CaseImage = {
   /** Path inside /public, e.g. "/work/paypal/flow.png". */
   src: string;
-  /** Accessible alt text — always describe the image. */
+  /** Accessible alt text. Always describe the image. */
   alt: string;
-  /** Intrinsic pixel width — keeps aspect ratio correct (no distortion). */
+  /** Intrinsic pixel width, which keeps the aspect ratio correct. */
   width: number;
   /** Intrinsic pixel height. */
   height: number;
@@ -58,36 +58,34 @@ export type ExternalLink = {
   href: string;
 };
 
-/** The hero visual — a product screen shown inside a device mockup. */
+/** The hero visual: a product screen or a looping clip inside a device mockup. */
 export type Showcase = {
   /** Which frame to render the screen in. */
   device: "phone" | "tablet" | "browser";
-  /** Screen image (path inside /public). */
+  /** Screen image (path inside /public). Doubles as the video poster. */
   src: string;
-  /** Accessible alt text. */
+  /** Accessible description of what the screen or clip shows. */
   alt: string;
-  /** Real prototype clip (mp4). If set, a play button plays it inline. */
+  /** Looping clip (mp4). Plays muted while on screen, with a pause control. */
   video?: string;
   /** Poster for the video (defaults to `src`). */
   poster?: string;
-  /** Show a decorative play button + "Prototype" chip until a clip exists. */
-  videoSlot?: boolean;
   /** Optional caption under the device. */
   caption?: string;
 };
 
 export type Project = {
-  /** URL slug — must be unique, lowercase, no spaces. */
+  /** URL slug. Must be unique, lowercase, no spaces. */
   slug: string;
   /** Company or client, e.g. "PayPal". */
   company: string;
   /** Your role, e.g. "Lead UX/UI Designer". */
   role: string;
-  /** Year or range, e.g. "2024" or "2022–2023". */
+  /** Year or range, e.g. "2024" or "2022 to 2023". */
   period?: string;
-  /** Big hero statement — the case's thesis, e.g. "Designing flexibility for growth." */
+  /** Big hero statement, the case's thesis, e.g. "Designing flexibility for growth." */
   headline?: string;
-  /** 1–2 line description for the homepage list. Keep it tight. */
+  /** One or two lines for the homepage list. Keep it tight. */
   summary: string;
   /** Discipline tags shown in UPPERCASE, e.g. ["UX", "Design Systems"]. */
   tags: string[];
@@ -98,7 +96,7 @@ export type Project = {
 
   /** Cover image for the case-study header (path inside /public). */
   cover?: { src: string; alt: string; width: number; height: number };
-  /** Hero visual — a screen inside a device mockup (phone/tablet/browser). */
+  /** Hero visual: a screen or a looping clip inside a device mockup. */
   showcase?: Showcase;
   /** Full-bleed hero image (a pre-composed mockup); no frame. Beats showcase/cover. */
   heroImage?: { src: string; alt: string; width: number; height: number };
@@ -111,13 +109,13 @@ export type Project = {
   challenge?: string;
   /** The problem framed as several "How might we…" opportunity cards. */
   opportunities?: Opportunity[];
-  /** How you solved it — a sequence of steps. */
+  /** How you solved it, as a sequence of steps. */
   approach?: ApproachStep[];
   /** Results & outcomes. Each string is a bullet; lead with the metric. */
   impact?: string[];
   /** A clip where movement is the argument (theme swaps, live interaction). */
   video?: CaseVideo;
-  /** "A glimpse of outputs" — screenshots of Figma files / final screens. */
+  /** "A glimpse of outputs": screenshots of Figma files or final screens. */
   images?: CaseImage[];
   /** Optional outbound links (Figma, Behance, live site). */
   links?: ExternalLink[];
@@ -150,11 +148,10 @@ export const projects: Project[] = [
     },
     showcase: {
       device: "browser",
-      src: "/work/gds/screen.svg",
-      alt: "Placeholder — the Global Design System composed into a product UI",
-      videoSlot: true,
-      caption:
-        "The same block adapting across brands, themes and breakpoints — prototype video.",
+      src: "/work/gds/light-dark.webp",
+      alt: "The Odds Comparison Table rendered in two brand themes: TPO in light and Prensa Dark",
+      video: "/work/gds/light-dark.mp4",
+      caption: "Same block, two themes: TPO in light and Prensa Dark.",
     },
     overview:
       "I lead the Global Design System (GDS) — the token architecture, the library of reusable blocks, and the responsive layout rules that sit underneath a family of products. The problem it solves is repetition: the same blocks had to live across many assets, each with its own brand and its own light/dark theme. GDS turns that into one source of truth, and Toffee Web is the reference product that shows the system executed correctly, end to end.",
@@ -260,11 +257,11 @@ export const projects: Project[] = [
     },
     showcase: {
       device: "phone",
-      src: "/work/lumio/screen.svg",
-      alt: "Placeholder — the Lumio Index and bookmaker comparison on mobile",
-      videoSlot: true,
+      src: "/work/lumio/tour-phone.webp",
+      alt: "A tour of the Lumio app: the Lumio Index, plans, Apple Pay and the wallet",
+      video: "/work/lumio/tour-phone.mp4",
       caption:
-        "The Lumio Index expanding into the factors behind the score — prototype video.",
+        "A tour of the app. The wallet and Apple Pay screens are concepts designed for this case study.",
     },
     overview:
       "Lumio is an analysis platform for sports betting — explicitly not a sportsbook, casino, or tipster service. It reads odds across bookmakers and turns them into a single decision aid: the Lumio Index, a confidence score, paired with value detection and side-by-side bookmaker comparison. I led product design (confirm scope) — owning the core interaction model for the Index, the comparison experience, and the dark, data-first system that holds them together. The through-line was clarity: making a noisy, distrusted category legible enough to think in.",
@@ -353,125 +350,6 @@ export const projects: Project[] = [
     links: [{ label: "Figma", href: "#" }],
   },
 
-  /* ═══════════════════════ 3 · CONTENT CREATOR AI ════════════════════════ */
-  {
-    slug: "content-creator-ai",
-    company: "Content Creator AI", // (workflow proposed "MoveUp"; using the tool's name — confirm)
-    role: "Product Designer — AI Workflow", // (confirm — adjust to Lead/Senior if that's the real title)
-    period: "2024", // (confirm)
-    headline: "Automate the busywork. Keep the human call.",
-    summary:
-      "An AI workflow that finds sports-betting articles, generates the featured image, and drafts the social post — turning a manual, multi-tool routine into one review-and-approve step, with a person deciding what ships.",
-    tags: [
-      "PRODUCT DESIGN",
-      "AI WORKFLOW",
-      "AUTOMATION",
-      "HUMAN-IN-THE-LOOP",
-      "CONTENT OPS",
-      "EDITORIAL TOOLING",
-    ],
-    published: true,
-    cover: {
-      src: "/work/content-creator-ai/cover.svg",
-      alt: "Placeholder cover — an AI content workflow ending in a human approval step",
-      width: 1600,
-      height: 900,
-    },
-    showcase: {
-      device: "browser",
-      src: "/work/content-creator-ai/screen.svg",
-      alt: "Placeholder — the AI content workflow and its human approval step",
-      videoSlot: true,
-      caption:
-        "The workflow end to end — source, image, post, human approval — prototype video.",
-    },
-    overview:
-      "A content team was sourcing sports-betting articles, producing a featured image, and writing each social post by hand — repetitive work that ate hours and scaled badly. I designed the AI workflow that automates the three mechanical steps — discovery, image generation, and post assembly — while deliberately leaving editorial judgment and the publish decision to a person. I owned the product decisions: what to automate, where the human belongs, and how to keep output on-brand and safe to release.",
-    opportunities: [
-      {
-        title: "Busywork vs. judgment",
-        hmw: "How might we remove the repetitive find-image-write steps without removing the editorial judgment that makes a post worth publishing?",
-      },
-      {
-        title: "Where the human belongs",
-        hmw: "How might we place the person at the one point where their judgment changes the outcome, instead of gating every step?",
-      },
-      {
-        title: "On-brand generation",
-        hmw: "How might we make an AI-generated image and caption read as ours, rather than as generic model output an editor has to rebuild?",
-      },
-      {
-        title: "Trust in an automated draft",
-        hmw: "How might we let an editor approve or reject in seconds, with enough context to trust a draft they didn't write?",
-      },
-      {
-        title: "Compliance in betting content",
-        hmw: "How might we keep automated sports-betting copy inside legal and responsible-gambling limits before anything reaches approval?",
-      },
-      {
-        title: "Failure without silence",
-        hmw: "How might we surface a dead source or a failed image instead of quietly shipping a broken post?",
-      },
-    ],
-    approach: [
-      {
-        title: "Automate the mechanics, not the judgment",
-        body: "Split the routine into mechanical steps — find, generate, assemble — and one judgment step — approve. Only the mechanical steps were automated. The person's value was never the copy-paste; it was deciding whether a given article and angle should go out at all.",
-      },
-      {
-        title: "One human gate, placed last",
-        body: "Put a single review at the end, on a fully assembled draft, rather than a sign-off at each stage. One finished artifact is faster to judge than four partial ones, and it keeps the decision at the last point where a person can still stop a bad post.",
-      },
-      {
-        title: "Draft, never auto-publish",
-        body: "The workflow builds a ready-to-post draft and stops there. Auto-publishing sports-betting content carries brand and compliance risk no automation should absorb alone, so the publish action stays with the person — a deliberate limit on what the system is allowed to do.",
-      },
-      {
-        title: "Constrain the generation",
-        body: "Fed image and caption generation brand and format constraints instead of open prompts, so output arrives close to publishable. The trade-off is less variety for far less editing — the editor tweaks rather than rebuilds.",
-      },
-      {
-        title: "Make the draft inspectable",
-        body: "Showed the source article, the generated image, and the assembled post together at the approval step. An editor has to see why a draft looks the way it does to trust it; a black-box output just gets rewritten from scratch, erasing the time the automation saved.",
-      },
-      {
-        title: "Fail loud, not silent",
-        body: "Designed explicit failure states for dead sources and failed generations, so the pipeline flags them for a person instead of shipping something broken. One silently bad post would cost more trust than the whole workflow saves.",
-      },
-    ],
-    impact: [
-      "A multi-tool manual routine collapsed to one review-and-approve action per post, cutting production time substantially (confirm).",
-      "The team shifted from assembling posts to deciding which ones ship — same output, far less mechanical work.",
-      "Editorial judgment and the publish decision stayed with a person, keeping brand and compliance risk off the model.",
-      "Output arrives near-publishable, so the editor reviews and tweaks instead of rebuilding from scratch.",
-      "The workflow can take on more posts per day without adding manual hours (confirm).",
-    ],
-    // video: {
-    //   src: "/work/content-creator-ai/workflow-run.mp4",
-    //   poster: "/work/content-creator-ai/workflow-poster.jpg",
-    //   caption: "The workflow end to end — source found, image generated, post assembled, human approves.",
-    // },
-    images: [
-      {
-        src: "/work/content-creator-ai/block-1.svg",
-        alt: "Placeholder — the approval step showing source, generated image and assembled post together",
-        caption: "The approval step: source, image and post, side by side.",
-        span: "half",
-        width: 1200,
-        height: 900,
-      },
-      {
-        src: "/work/content-creator-ai/block-2.svg",
-        alt: "Placeholder — before/after: the old manual routine vs. one approval view",
-        caption: "Before/after — a multi-tool routine, collapsed to one gate.",
-        span: "half",
-        width: 1200,
-        height: 900,
-      },
-    ],
-    links: [{ label: "Figma", href: "#" }],
-  },
-
   /* ══════════════════════════════ 4 · LEBI ═══════════════════════════════ */
   {
     slug: "lebi",
@@ -497,7 +375,7 @@ export const projects: Project[] = [
       height: 1200,
     },
     heroImage: {
-      src: "/work/lebi/mockup-1.png",
+      src: "/work/lebi/mockup-1.webp",
       alt: "Lebi's gamified dashboard shown on a laptop, with the Lebi mascot",
       width: 1800,
       height: 1155,
@@ -565,7 +443,7 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        src: "/work/lebi/user-journey.png",
+        src: "/work/lebi/user-journey.webp",
         alt: "User-journey map for a football-fan persona, across awareness to loyalty",
         caption:
           "User-journey map — 4 personas, and the friction in the first-prediction flow.",
@@ -574,7 +452,7 @@ export const projects: Project[] = [
         height: 800,
       },
       {
-        src: "/work/lebi/before-guest-logged.png",
+        src: "/work/lebi/before-guest-logged.webp",
         alt: "The earlier Lebi experience — one dense journey for everyone",
         caption: "Before — one experience for everyone.",
         span: "half",
@@ -582,7 +460,7 @@ export const projects: Project[] = [
         height: 1155,
       },
       {
-        src: "/work/lebi/after-guest-logged.png",
+        src: "/work/lebi/after-guest-logged.webp",
         alt: "The redesigned Lebi experience — guest discovery split from the power dashboard",
         caption: "After — guest discovery, split from the power dashboard.",
         span: "half",
@@ -590,7 +468,7 @@ export const projects: Project[] = [
         height: 1155,
       },
       {
-        src: "/work/lebi/dashboard-guest.png",
+        src: "/work/lebi/dashboard-guest.webp",
         alt: "The guest landing — a lighter discovery experience for newcomers",
         caption: "The guest landing — discovery for newcomers.",
         span: "half",
@@ -598,7 +476,7 @@ export const projects: Project[] = [
         height: 1155,
       },
       {
-        src: "/work/lebi/landing-page-1.png",
+        src: "/work/lebi/landing-page-1.webp",
         alt: "A Lebi landing page built from the app's own component library",
         caption: "A landing page, built from the app's own design system.",
         span: "half",

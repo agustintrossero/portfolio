@@ -37,7 +37,7 @@ export default function Reveal({
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Reveal when in view — or when already scrolled past (e.g. a
+          // Reveal when in view, or when already scrolled past (e.g. a
           // reload restores a mid-page scroll position), so nothing stays hidden.
           if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
             el.classList.add("is-visible");

@@ -18,12 +18,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.baseUrl),
   title: {
-    default: `${site.name} — ${site.role}`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} · ${site.role}`,
+    template: `%s · ${site.name}`,
   },
   description: site.tagline,
   openGraph: {
-    title: `${site.name} — ${site.role}`,
+    title: `${site.name} · ${site.role}`,
     description: site.tagline,
     url: site.baseUrl,
     siteName: site.name,
@@ -31,10 +31,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.role}`,
+    title: `${site.name} · ${site.role}`,
     description: site.tagline,
   },
 };
+
+// Runs before the first paint: applies a saved dark choice so the page
+// never flashes the wrong theme. Light is the default and needs no attribute.
+const themeScript = `try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}`;
 
 export default function RootLayout({
   children,
@@ -42,11 +46,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // The theme script may add data-theme before hydration, so React is told
+    // not to flag that attribute on <html>.
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

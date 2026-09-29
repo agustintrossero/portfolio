@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "@/components/ThemeToggle";
 import { site } from "@/lib/site";
 import { caseStudies } from "@/lib/projects";
 
@@ -25,7 +26,7 @@ export default function SiteHeader() {
         </Link>
 
         <nav className="flex items-center gap-1 text-[14px]">
-          {/* Work — links to the list, with a hover/focus dropdown of cases */}
+          {/* Work: links to the list, with a hover and focus dropdown of cases */}
           <div className="group relative">
             <Link
               href="/"
@@ -43,7 +44,7 @@ export default function SiteHeader() {
             </Link>
 
             <div className="invisible absolute right-0 top-full w-64 translate-y-1 pt-2 opacity-0 transition-all duration-150 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-              <ul className="overflow-hidden rounded-xl border border-line bg-paper-2/95 p-1.5 shadow-xl shadow-black/40 backdrop-blur-md">
+              <ul className="overflow-hidden rounded-xl border border-line bg-paper-2/95 p-1.5 shadow-xl shadow-black/10 backdrop-blur-md dark:shadow-black/40">
                 {cases.map((p, i) => (
                   <li key={p.slug}>
                     <Link
@@ -72,11 +73,13 @@ export default function SiteHeader() {
             About
           </Link>
 
+          <ThemeToggle />
+
           <a
             href={site.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 rounded-full border border-line-strong px-3.5 py-1.5 text-ink transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-paper"
+            className="ml-1 rounded-full border border-line-strong px-3.5 py-1.5 text-ink transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-paper"
           >
             CV
           </a>

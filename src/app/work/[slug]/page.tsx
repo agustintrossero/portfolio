@@ -150,7 +150,7 @@ export default async function CaseStudyPage({
           </Link>
         </div>
 
-        {/* Header — big two-tone thesis headline over a subtle glow */}
+        {/* Header: big two-tone thesis headline over a subtle glow */}
         <header className="relative pt-8 pb-12 sm:pt-10 sm:pb-16">
           <div
             aria-hidden
@@ -209,7 +209,7 @@ export default async function CaseStudyPage({
           </div>
         </header>
 
-        {/* Hero visual — full-bleed mockup, device showcase, or a flat cover */}
+        {/* Hero visual: full-bleed mockup, device showcase or a flat cover */}
         {project.heroImage ? (
           <Reveal variant="scale">
             <figure className="relative mx-auto max-w-3xl">
@@ -237,7 +237,6 @@ export default async function CaseStudyPage({
                 alt={project.showcase.alt}
                 video={project.showcase.video}
                 poster={project.showcase.poster}
-                videoSlot={project.showcase.videoSlot}
                 sizes={
                   project.showcase.device === "phone"
                     ? "300px"
@@ -269,7 +268,7 @@ export default async function CaseStudyPage({
           )
         )}
 
-        {/* Body — each section renders only if it has content */}
+        {/* Body: each section renders only if it has content */}
         <div className="mt-6">
           {project.overview && (
             <Section id="overview" label="Overview">

@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-5xl px-6 sm:px-8">
-      {/* Hero — positioning on the left, a floating device on the right */}
+      {/* Hero: positioning on the left, a floating device on the right */}
       <section className="relative pt-14 pb-14 sm:pt-20 sm:pb-20">
         <div
           aria-hidden
@@ -35,7 +35,7 @@ export default function Home() {
             </Reveal>
             <Reveal delay={180}>
               <p className="mt-6 max-w-md text-[16px] leading-relaxed text-muted">
-                A focused look at the work — the role, the problem, and how I
+                A focused look at the work: the role, the problem, and how I
                 solved it. Want the longer story?{" "}
                 <Link
                   href="/about"
@@ -74,8 +74,9 @@ export default function Home() {
               <div className="relative">
                 <DeviceFrame
                   device="phone"
-                  src="/work/home/screen.svg"
-                  alt="A taste of the product work"
+                  src="/work/lumio/tour-phone.webp"
+                  video="/work/lumio/tour-phone.mp4"
+                  alt="A tour of the Lumio app, one of the case studies"
                   sizes="300px"
                 />
               </div>
@@ -84,7 +85,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Selected Work — deep case studies, the centerpiece */}
+      {/* Selected Work: deep case studies, the centerpiece */}
       <section id="work" aria-labelledby="work-heading" className="scroll-mt-24">
         <div className="mb-2 flex items-baseline justify-between">
           <h2 id="work-heading" className="eyebrow">
@@ -97,7 +98,7 @@ export default function Home() {
         <WorkList projects={cases} />
       </section>
 
-      {/* More work — quick-scan gallery for fast readers */}
+      {/* More work: quick-scan gallery for fast readers */}
       {gallery.length > 0 && (
         <section aria-labelledby="more-heading" className="mt-20">
           <div className="mb-5 flex items-baseline justify-between">
