@@ -136,7 +136,9 @@ export type SceneMedia =
       poster: string;
       alt: string;
       phone?: { video: string; poster: string; alt: string };
-    };
+    }
+  // A clip that already carries its own devices, shown without a frame.
+  | { kind: "clip"; video: string; poster: string; alt: string };
 
 /** How a project introduces itself on the home. */
 export type Scene = {

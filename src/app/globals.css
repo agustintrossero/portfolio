@@ -341,8 +341,10 @@ body {
   transition: opacity 1.2s ease;
 }
 
-/* The deck: four cards fanned from the front (rank 0) to the back (rank 3).
-   Transforms are relative to the card, so the fan scales with the deck. */
+/* The deck: cards fanned from the front (rank 0) to the back (rank 3). Any
+   further cards wait unseen behind the last one and show up as the deck
+   moves on. Transforms are relative to the card, so the fan scales with the
+   deck. */
 .deck {
   position: relative;
   aspect-ratio: 10 / 7;
@@ -374,12 +376,15 @@ body {
   transform: translate3d(12%, 14%, 0) rotate(4.5deg) scale(0.9);
   opacity: 0.78;
 }
-.deck-card[data-rank="3"] {
+.deck-card:is([data-rank="3"], [data-rank="4"], [data-rank="5"]) {
   transform: translate3d(18%, 0, 0) rotate(7.5deg) scale(0.85);
   opacity: 0.55;
 }
-/* The card leaving the front drops out in front of the deck, then slips in
-   at the back. */
+.deck-card:is([data-rank="4"], [data-rank="5"]) {
+  opacity: 0;
+}
+/* The card leaving the front drops out in front of the deck and waits at the
+   back, unseen; once the class goes, its rank sets how visible it is. */
 .deck-card.is-leaving {
   animation: deck-to-back 900ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
@@ -403,7 +408,7 @@ body {
   }
   100% {
     transform: translate3d(18%, 0, 0) rotate(7.5deg) scale(0.85);
-    opacity: 0.55;
+    opacity: 0;
     z-index: 1;
   }
 }

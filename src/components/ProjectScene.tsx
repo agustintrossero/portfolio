@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import DeviceFrame from "@/components/DeviceFrame";
+import LoopVideo from "@/components/LoopVideo";
 import Reveal from "@/components/Reveal";
 import BrandSwap from "@/components/gds/BrandSwap";
 import type { Project, SceneMedia } from "@/lib/projects";
@@ -76,6 +77,13 @@ function Media({ media }: { media: SceneMedia }) {
               />
             </div>
           )}
+        </div>
+      );
+
+    case "clip":
+      return (
+        <div className="scroll-rise overflow-hidden rounded-2xl shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-white/10">
+          <LoopVideo src={media.video} poster={media.poster} label={media.alt} ratio="16 / 9" />
         </div>
       );
   }

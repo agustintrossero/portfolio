@@ -219,7 +219,7 @@ export default function HeroShowcase({
         {/* The project index doubles as the deck control */}
         <nav
           aria-label="Projects"
-          className="mt-12 grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-4 lg:mt-14"
+          className="mt-12 grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:mt-14 lg:grid-cols-6"
         >
           {items.map((item, i) => (
             <a
