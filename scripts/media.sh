@@ -100,7 +100,7 @@ report() {
   for f in "$@"; do say "$OUT/$dir/$f"; done
 }
 
-mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools"
+mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools" "$OUT/foundry"
 
 echo "Home: phone clips"
 phone "$IDEA/lumio-video/out/case-study/02-tour-screen-only.mp4" "$OUT/lumio/tour-phone.mp4"
@@ -138,6 +138,9 @@ report gds teaser.mp4 teaser.webp
 report lebi teaser.mp4 teaser.webp
 report lumio teaser.mp4 teaser.webp
 report moveup-tools teaser.mp4 teaser.webp
+teaser "$IDEA/foundry-video/out/foundry-mosaic-16x9.mp4" 0.3 9.8 "$OUT/foundry/teaser.mp4"
+poster "$OUT/foundry/teaser.mp4" 7.2 "$OUT/foundry/teaser.webp" 960
+report foundry teaser.mp4 teaser.webp
 
 echo "Home: scene layers"
 webp "$IDEA/lebi-video/mascot/mascot-cheer.png" "$OUT/lebi/mascot-cheer.webp"
@@ -216,6 +219,34 @@ copy "$MU/case-study/06-survey-results.mp4" "$OUT/moveup-tools/survey.mp4"
 poster "$OUT/moveup-tools/survey.mp4" 2.5 "$OUT/moveup-tools/survey.webp" 1280
 share "$MU/case-study/posters/moveup-mosaic-16x9.png" "$OUT/moveup-tools/cover.jpg"
 report moveup-tools mosaic.mp4 mosaic.webp studio-brief.mp4 studio-brief.webp studio-clips.mp4 studio-clips.webp brand-assets.mp4 brand-assets.webp pods.mp4 pods.webp survey.mp4 survey.webp cover.jpg
+
+echo "Foundry case study"
+FD="$IDEA/foundry-video/out"
+hero "$FD/foundry-tour-16x9.mp4" "$OUT/foundry/tour.mp4" 30
+still "$FD/case-study/posters/foundry-tour-16x9.png" "$OUT/foundry/tour.webp" 1600
+copy "$FD/case-study/01-library-search.mp4" "$OUT/foundry/library.mp4"
+poster "$OUT/foundry/library.mp4" 2 "$OUT/foundry/library.webp" 1280
+copy "$FD/case-study/02-present-on-seven-sites.mp4" "$OUT/foundry/present-on.mp4"
+poster "$OUT/foundry/present-on.mp4" 3 "$OUT/foundry/present-on.webp" 1280
+copy "$FD/case-study/03-data-contract.mp4" "$OUT/foundry/contract.mp4"
+poster "$OUT/foundry/contract.mp4" 3 "$OUT/foundry/contract.webp" 1280
+# From the design zip to Open PR. The cut stops at 21.2 s: right after it the
+# pull request section shows the internal preview URL, which stays private.
+chapter "$FD/foundry-design-to-pr-16x9.mp4" 10.9 21.2 "$OUT/foundry/design-to-pr.mp4"
+poster "$FD/foundry-design-to-pr-16x9.mp4" 15.5 "$OUT/foundry/design-to-pr.webp" 1280
+# The pull request card on its own, cropped inside its edges, so nothing of
+# the page behind it (where that URL sits) comes along.
+if stale "$FD/foundry-design-to-pr-16x9.mp4" "$OUT/foundry/pull-request.webp"; then
+  ffmpeg -v error -y -ss 24.2 -i "$FD/foundry-design-to-pr-16x9.mp4" -frames:v 1 -vf "crop=760:530:1050:158" "$TMP/card.png"
+  cwebp -quiet -q 90 "$TMP/card.png" -o "$OUT/foundry/pull-request.webp"
+fi
+# The reuse matrix, cut before its closing title.
+chapter "$FD/foundry-reuse-16x9.mp4" 0.8 9.8 "$OUT/foundry/reuse.mp4"
+poster "$FD/foundry-reuse-16x9.mp4" 9 "$OUT/foundry/reuse.webp" 1280
+hero "$FD/foundry-mosaic-16x9.mp4" "$OUT/foundry/mosaic.mp4" 30
+still "$FD/case-study/posters/foundry-mosaic-16x9.png" "$OUT/foundry/mosaic.webp" 1600
+share "$FD/case-study/posters/foundry-mosaic-16x9.png" "$OUT/foundry/cover.jpg"
+report foundry tour.mp4 tour.webp library.mp4 library.webp present-on.mp4 present-on.webp contract.mp4 contract.webp design-to-pr.mp4 design-to-pr.webp pull-request.webp reuse.mp4 reuse.webp mosaic.mp4 mosaic.webp cover.jpg
 
 echo "Site: CV and portrait"
 # The CV is rendered from Desktop/Agus/CV/cv.html by its own render.sh. The

@@ -885,6 +885,165 @@ export const projects: Project[] = [
     ],
   },
 
+  /* ═══════════════════════════════ 5 · FOUNDRY ═══════════════════════════ */
+  {
+    slug: "foundry",
+    company: "Foundry",
+    role: "Product and design lead",
+    period: "2026",
+    headline: "Reuse first. Then build.",
+    scene: {
+      eyebrow: "Internal tool · Design to code",
+      headline: "Reuse first. | Then build.",
+      line: "The block registry of seven sites: see where every block runs, reuse it, or take a new design all the way to a pull request.",
+      chips: ["Product design", "Design systems", "Design to code"],
+      teaser: {
+        src: "/work/foundry/teaser.mp4",
+        poster: "/work/foundry/teaser.webp",
+        alt: "Real block previews pulling back into a wall of blocks: 176 blocks, one registry",
+      },
+      tint: "155, 81, 224",
+      surface: {
+        bg: "#08070C",
+        ink: "#EFECF5",
+        muted: "#A8A2BA",
+        accent: "#FF2E9A",
+        accentGradient: "linear-gradient(90deg, #FF2E9A, #9B51E0 55%, #22D3EE)",
+        line: "rgba(239, 236, 245, 0.12)",
+        glow: "radial-gradient(45% 55% at 68% 45%, rgba(155, 81, 224, 0.26), transparent 70%), radial-gradient(30% 40% at 92% 85%, rgba(34, 211, 238, 0.14), transparent 70%)",
+      },
+      media: {
+        kind: "browser",
+        video: "/work/foundry/library.mp4",
+        poster: "/work/foundry/library.webp",
+        alt: "Searching the Foundry library: every block with its preview, engine and one dot per site",
+      },
+    },
+    summary:
+      "The block registry of MoveUp Console: every block of seven sites in one place, and a path from a design to a pull request. The idea and the design are mine; an engineer on the team built it.",
+    tags: [
+      "PRODUCT DESIGN",
+      "DESIGN SYSTEMS",
+      "DESIGN TO CODE",
+      "INTERNAL TOOLS",
+      "WORKFLOW",
+      "DEVELOPER EXPERIENCE",
+    ],
+    published: true,
+    cover: {
+      src: "/work/foundry/cover.jpg",
+      alt: "A wall of real block previews: 176 blocks, one registry",
+      width: 1200,
+      height: 675,
+    },
+    heroVideo: {
+      src: "/work/foundry/tour.mp4",
+      poster: "/work/foundry/tour.webp",
+      alt: "Foundry in MoveUp Console: searching the block library and opening a block that runs on all seven sites",
+      caption:
+        "Captured from the live tool, read only, with interactions animated over real captures. Registry figures as of September 2026.",
+    },
+    stats: [
+      { value: "176", label: "blocks in one registry" },
+      { value: "7", label: "sites on two engines" },
+      { value: "70%", label: "of blocks run on two or more sites" },
+      { value: "9", label: "blocks run on all seven" },
+    ],
+    overview:
+      "Foundry is the first module of MoveUp Console, an internal suite to build the components, publish the content and read the numbers across every site in the network. It is the registry of the blocks behind seven sites on two engines, and it answers one question: which blocks exist, on which site, on which engine, and where each one is in the pipeline. The idea and the design are mine, from the library to the flow that takes a design to a pull request. An engineer on the team built it in code and added what developers need to receive new blocks and updates.",
+    opportunities: [
+      {
+        title: "One source of truth",
+        hmw: "How might we know, for any block, where it runs and where it stands, without anyone keeping a list by hand?",
+      },
+      {
+        title: "Reuse before building",
+        hmw: "How might we make reusing an existing block the easiest path, before anyone designs a new one?",
+      },
+      {
+        title: "A design developers can plug in",
+        hmw: "How might we hand over a new block in a shape developers can plug into a site, with no back and forth?",
+      },
+      {
+        title: "Safe by default",
+        hmw: "How might we let anyone ask for a deploy without anything running blindly in production?",
+      },
+    ],
+    approach: [
+      {
+        title: "Read from the sites, not typed",
+        body: "Nobody keeps the registry by hand. Foundry reads the blocks each site actually registers: UAT tells it a block exists and production tells it the block is live. The library lists every block with its live preview, data contract, engine and repo, and one dot per site: live, in UAT, draft or absent.",
+        media: {
+          src: "/work/foundry/library.mp4",
+          poster: "/work/foundry/library.webp",
+          alt: "Searching the library: each block with its preview, engine and one dot per site",
+        },
+      },
+      {
+        title: "One block, seven sites",
+        body: "Reuse starts with a search. A block page shows every site the block already runs on, with its engine and stage, so a team can pick it up instead of drawing it again. Foundry lists and never merges: the same block can run on seven sites with different code, one rendering per site.",
+        media: {
+          src: "/work/foundry/present-on.mp4",
+          poster: "/work/foundry/present-on.webp",
+          alt: "A block page listing its seven sites: deployed on three, in UAT on four, each with a deploy request",
+        },
+      },
+      {
+        title: "The data contract comes first",
+        body: "Making a block is a four step wizard: data and site, design, map and tokens, publish. It starts with the data contract, the fields the block reads from one of the shared data objects, so design and code agree on the data before anything is drawn.",
+        media: {
+          src: "/work/foundry/contract.mp4",
+          poster: "/work/foundry/contract.webp",
+          alt: "The first step of Make a block: the block name, the target site and the data object it reads",
+        },
+      },
+      {
+        title: "Design in. Block out.",
+        body: "The design arrives as a zip: a preview, the HTML and CSS, the editable fields and a note. The designer sets the look, the sample content and the fields, with no PHP and no data wiring. Foundry renders it live and opens a draft pull request in the right repo, with a scaffold a developer refines before the merge.",
+        media: {
+          src: "/work/foundry/design-to-pr.mp4",
+          poster: "/work/foundry/design-to-pr.webp",
+          alt: "Uploading the design zip, the live preview of the new block, then Open PR",
+        },
+      },
+      {
+        title: "Tested on a real request",
+        body: "I ran the whole flow on a real request: an editorial popup with three operators for ToffeeWeb, closable and responsive. A similar modal already lived in the ToffeeWeb theme, so I designed an editorial variant in Claude Design with ToffeeWeb's real tokens, packed it as a zip and opened the pull request from Foundry. The test also caught a failing upload of binary files, fixed the same day. The block now waits in review with its live preview.",
+        image: {
+          src: "/work/foundry/pull-request.webp",
+          alt: "The draft pull request for the new block: twelve files, labelled for ToffeeWeb",
+          width: 760,
+          height: 530,
+          caption: "The pull request card recreates the real draft pull request, without its author.",
+        },
+      },
+      {
+        title: "Reuse, measured",
+        body: "Reuse is counted, not assumed. The 176 blocks make 458 placements across the seven sites: 229 live, 227 in UAT and 2 in draft. 123 blocks, 70% of the registry, already run on two or more sites, and 9 run on all seven.",
+        media: {
+          src: "/work/foundry/reuse.mp4",
+          poster: "/work/foundry/reuse.webp",
+          alt: "A matrix of 176 blocks by seven sites filling in, live, in UAT or draft",
+        },
+      },
+      {
+        title: "Deploys stay deliberate",
+        body: "Every block moves through Draft, pull request with preview, In UAT, To deploy and Deployed, and its stage comes from the app, GitHub, UAT and production, never from someone updating a status. Deploy to production never runs anything blindly: it records who asked for which block on which site, and hands back the exact steps for the manual deploy.",
+      },
+    ],
+    impact: [
+      "One registry for seven sites: 176 blocks, each with its sites, engine and stage, read from the sites themselves.",
+      "Reuse made visible: 123 blocks already run on two or more sites, and nine on all seven.",
+      "A path from a design to a draft pull request, tested end to end on a real ToffeeWeb request.",
+      "Deploys that stay deliberate: every request to production is recorded, and nothing runs on its own.",
+    ],
+    mosaic: {
+      src: "/work/foundry/mosaic.mp4",
+      poster: "/work/foundry/mosaic.webp",
+      alt: "A wall of 38 real block previews, each with its engine and sites: 176 blocks, one registry",
+    },
+  },
+
   /* ════════════════════════════ GALLERY (quick) ══════════════════════════ */
   {
     slug: "dima-world-cup",
