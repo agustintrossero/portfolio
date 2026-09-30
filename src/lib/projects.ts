@@ -1082,13 +1082,13 @@ export const projects: Project[] = [
         "The sites run live inside the phones. Operators, figures and codes are the placeholders of the template sets.",
     },
     stats: [
-      { value: "5", label: "sites on one set of 71 sections" },
+      { value: "8", label: "casino sites on one set of 71 sections" },
       { value: "30", label: "blocks and 59 variants in the library" },
       { value: "75", label: "data fields, every one answered" },
       { value: "67", label: "automated quality checks" },
     ],
     overview:
-      "Core Studio is the platform MoveUp runs its sites on, and the casino template set is the set of screens its casino sites are built from: home, intent page, review, bonus page and promo code page, 71 sections in all. I designed the set on ItaliaCasinos, where it was defined and validated, and it became the reference every later site starts from. Five sites have been rebuilt from it so far, from Italy to LatAm, New Jersey and Switzerland, each in its own identity.",
+      "Core Studio is the platform MoveUp runs its sites on, and the casino template set is the set of screens its casino sites are built from: home, intent page, review, bonus page and promo code page, 71 sections in all. I designed the set on ItaliaCasinos, where it was defined and validated, and it became the reference every later site starts from. The set runs eight casino sites; the five shown here were rebuilt from it, each in its own identity, from Italy to LatAm, New Jersey and Switzerland.",
     opportunities: [
       {
         title: "A new site, not a redesign",
@@ -1149,7 +1149,7 @@ export const projects: Project[] = [
       },
     ],
     impact: [
-      "One template set now runs five sites in five identities, from Italy to LatAm, New Jersey and Switzerland, and the next site starts from the same blocks.",
+      "One template set runs eight casino sites. The five shown here span Italy, LatAm, New Jersey and Switzerland, and the next site starts from the same blocks.",
       "Every figure has a field behind it: 75 fields answered by Core Studio, with a first build phase of 10.",
       "A block library that cannot drift from the product, because it is cut from the final site on every build.",
       "Accessibility and quality checked on every site, with 45 static gates and 22 rendered checks.",
