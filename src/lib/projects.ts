@@ -36,6 +36,8 @@ export type ApproachStep = {
   body: string;
   /** The clip that proves this step, shown beside it. */
   media?: CaseClip;
+  /** Or a still (a research artifact, a screen) when a clip is not the proof. */
+  image?: CaseImage;
 };
 
 /** A framed opportunity, shown as a "How might we…" card. */
@@ -330,9 +332,9 @@ export const projects: Project[] = [
   /* ══════════════════════════════ 2 · LEBI ═══════════════════════════════ */
   {
     slug: "lebi",
-    company: "Lebi", // client: MoveUp Media
-    role: "Design Lead", // created it + led the design team (confirm exact title)
-    period: "2025",
+    company: "Lebi",
+    role: "Creator and design lead",
+    period: "2024 to 2025",
     headline: "It began as scattered ideas. I gave it a spine.",
     scene: {
       eyebrow: "SaaS platform · Leadership",
@@ -362,30 +364,36 @@ export const projects: Project[] = [
       flip: true,
     },
     summary:
-      "A gamified sports-predictions SaaS I created and led at MoveUp Media — from positioning and a modular design system to the calls that turned scattered ideas into a shipped product.",
+      "A free sports predictions platform I created and led at MoveUp Media: players compete for real prizes, and brands launch sponsored leagues on the same template.",
     tags: [
       "DESIGN LEADERSHIP",
       "PRODUCT DIRECTION",
+      "SAAS",
       "DESIGN SYSTEMS",
       "UX RESEARCH",
-      "PLG",
-      "AI PROTOTYPING",
+      "GAMIFICATION",
     ],
     published: true,
     cover: {
       src: "/work/lebi/cover.jpg",
-      alt: "Lebi — brand cover illustration",
+      alt: "Lebi brand illustration: a jersey, a trophy, coins and a phone",
       width: 1800,
       height: 1200,
     },
-    heroImage: {
-      src: "/work/lebi/mockup-1.webp",
-      alt: "Lebi's gamified dashboard shown on a laptop, with the Lebi mascot",
-      width: 1800,
-      height: 1155,
+    heroVideo: {
+      src: "/work/lebi/onboarding.mp4",
+      poster: "/work/lebi/onboarding.webp",
+      alt: "Lebi's mascot says let's play, then the onboarding on a phone: email, verification code, basic details, name and avatar, and the challenges home",
+      caption: "Shown in English with prizes in US dollars. The product runs in Portuguese, for Brazil.",
     },
+    stats: [
+      { value: "20+", label: "user interviews" },
+      { value: "4", label: "personas mapped" },
+      { value: "40%", label: "fewer design questions from engineering" },
+      { value: "81", label: "screens in the light theme" },
+    ],
     overview:
-      "Lebi is a gamified sports-predictions platform — a game to play, not a betting product — that I created and led at MoveUp Media. It started with scattered ideas and no identity; my job was less drawing screens than engineering a product: setting the positioning, standing up a modular design system, and making the calls that moved it from concept to a shipped SaaS. I led the design end to end and directed the designers building alongside me.",
+      "Lebi is a free sports predictions platform. Players compete by predicting matches and win real prizes, and brands launch sponsored leagues on the same template. I created it and led its design at MoveUp Media, taking it from scattered ideas with no identity to a shipped SaaS: the positioning, a modular design system from day one, the research, and the calls that shaped the product.",
     opportunities: [
       {
         title: "Structure from chaos",
@@ -393,14 +401,10 @@ export const projects: Project[] = [
       },
       {
         title: "A game, not a bet",
-        hmw: "How might we position Lebi as a game to play — not a betting product — and hold that line across the whole experience?",
+        hmw: "How might we position Lebi as a game to play, not a betting product, and hold that line across the whole experience?",
       },
       {
-        title: "Design that feeds delivery",
-        hmw: "How might we set up design to feed fast, continuous development instead of blocking it?",
-      },
-      {
-        title: "Newcomer vs. power user",
+        title: "Newcomer and power user",
         hmw: "How might we serve a curious newcomer and a data-hungry power user without overwhelming either?",
       },
       {
@@ -408,73 +412,100 @@ export const projects: Project[] = [
         hmw: "How might we test game mechanics early, before engineering commits a sprint to them?",
       },
       {
-        title: "Marketing that keeps its promise",
-        hmw: "How might we make the landing pages promise exactly what the product delivers?",
+        title: "Prizes people can trust",
+        hmw: "How might we pay out real prizes safely without scaring away players who just want to play?",
+      },
+      {
+        title: "Any sponsor, same template",
+        hmw: "How might we let a brand launch its own league without new design work?",
       },
     ],
     approach: [
       {
-        title: "Positioning first: game, not bet",
-        body: "Before any screen, I fixed what Lebi was — a game to play, not a betting product — and made every later call answer to it. Naming the category up front kept the team from drifting toward the sportsbook mental model.",
+        title: "Positioning first: a game, not a bet",
+        body: "Before any screen, I fixed what Lebi was: a game to play, not a betting product. Every later call answered to that, which kept the team away from the sportsbook mental model.",
       },
       {
-        title: "A modular design system from day one",
-        body: "Built a component system before the product, not after. It let a small team ship continuously and kept product and marketing visually one thing — the leverage the whole pace depended on.",
+        title: "A design system from day one",
+        body: "I built a modular component system before the product, not after, so a small team could ship continuously. The same library later built the marketing landing pages, including a pre-launch NBA challenge, so marketing promised exactly what the product delivered.",
       },
       {
-        title: "Validate mechanics with AI prototypes",
-        body: "Used AI-driven prototypes to simulate the game mechanics and pressure-test them before engineering committed. It's far cheaper to learn a mechanic doesn't land in a prototype than in a sprint.",
+        title: "Validate mechanics before building",
+        body: "I used AI prototypes to simulate the game mechanics and pressure-test them before engineering committed. Learning that a mechanic does not land is cheaper in a prototype than in a sprint.",
       },
       {
         title: "The pivot: split the journeys",
-        body: "Our first bet was one landing experience for everyone. 20+ interviews killed it — newcomers drowned in data built for power users. I restructured the architecture to separate a Guest discovery journey from a logged-in power dashboard. Holding the nerve to pivot on the research was the call that mattered most.",
+        body: "Research across four personas mapped the friction in the first prediction. Our first bet was one landing for everyone, and more than 20 interviews showed newcomers drowning in data meant for power users. I restructured the architecture into a guest discovery journey and a logged-in dashboard.",
+        image: {
+          src: "/work/lebi/user-journey.webp",
+          alt: "User journey map for a football fan persona, from awareness to loyalty",
+          width: 1800,
+          height: 800,
+        },
+      },
+      {
+        title: "Prizes people can trust",
+        body: "Real prizes need real identities. Winnings stay locked until the player verifies in five steps (details, document, a selfie with the document, an email code and a confirmation), then a review; approved players cash out as gift cards on a partner platform. The mascot accompanies the key moments, so security never feels cold.",
+        media: {
+          src: "/work/lebi/wallet.mp4",
+          poster: "/work/lebi/wallet.webp",
+          alt: "Locked winnings, the five step identity verification with the mascot, the approval and the cash out",
+        },
+      },
+      {
+        title: "One template, any sponsor",
+        body: "Leagues are a template: any sponsor, any sport, any prize. Brands such as Betnacional launch their own sponsored leagues without new design work.",
+        media: {
+          src: "/work/lebi/sponsors.mp4",
+          poster: "/work/lebi/sponsors.webp",
+          alt: "Sponsored leagues by Betnacional: League Fusion, Brasileirão, Conexão NBA and Libertadores",
+        },
       },
       {
         title: "Handoff as a product",
-        body: "Shipped behavior specs, motion guidelines and edge cases — not just redlines. Treating handoff as a deliverable cut engineering's design questions by ~40% and kept sprint velocity up. (confirm 40%)",
-      },
-      {
-        title: "Marketing on the same system",
-        body: "Built two landing pages — general onboarding and a pre-launch NBA challenge — from the same component library as the app, so the promise made in marketing matched the product exactly.",
+        body: "I delivered behavior specs, motion guidelines and edge cases, not just redlines. Treating handoff as a deliverable cut engineering's design questions by 40% and kept sprints moving.",
       },
     ],
     impact: [
-      "Took Lebi from no identity and scattered ideas to a structured, shipped SaaS with a clear game-vs-bet positioning.",
-      "A modular design system from day one let a small team ship continuously and kept product + marketing visually one.",
-      "The research-driven pivot — Guest journey vs. power dashboard — cut newcomer overwhelm and smoothed onboarding. (confirm onboarding metric)",
-      "Handoff-as-a-product cut engineering design Q&A by ~40% and kept sprint velocity high. (confirm)",
-      "Directed the design team and aligned engineering and stakeholders on one shared definition of the product.",
+      "Took Lebi from scattered ideas with no identity to a shipped SaaS with a clear position: a game, not a bet.",
+      "After more than 20 interviews, newcomers get a lighter discovery journey and power users keep their full dashboard.",
+      "Engineering's design questions dropped by 40% once handoff became a deliverable.",
+      "Brands launch sponsored leagues on one template: any sponsor, any sport, any prize.",
     ],
+    mosaic: {
+      src: "/work/lebi/screens.mp4",
+      poster: "/work/lebi/screens.webp",
+      alt: "A 3D wall of 81 light theme screens: sign up, sign in, predictions, rankings, prizes, wallet and verification",
+    },
     images: [
       {
-        src: "/work/lebi/user-journey.webp",
-        alt: "User-journey map for a football-fan persona, across awareness to loyalty",
-        caption:
-          "User-journey map — 4 personas, and the friction in the first-prediction flow.",
+        src: "/work/lebi/mockup-1.webp",
+        alt: "The logged-in dashboard in the dark theme, on desktop and laptop, with the Lebi mascot",
+        caption: "The logged-in dashboard, dark theme.",
         span: "wide",
         width: 1800,
-        height: 800,
+        height: 1155,
       },
       {
         src: "/work/lebi/before-guest-logged.webp",
-        alt: "The earlier Lebi experience — one dense journey for everyone",
-        caption: "Before — one experience for everyone.",
+        alt: "The earlier Lebi experience, one dense journey for everyone",
+        caption: "Before: one experience for everyone.",
         span: "half",
         width: 1800,
         height: 1155,
       },
       {
         src: "/work/lebi/after-guest-logged.webp",
-        alt: "The redesigned Lebi experience — guest discovery split from the power dashboard",
-        caption: "After — guest discovery, split from the power dashboard.",
+        alt: "The redesigned Lebi experience, guest discovery split from the logged-in dashboard",
+        caption: "After: guest discovery, split from the dashboard.",
         span: "half",
         width: 1800,
         height: 1155,
       },
       {
         src: "/work/lebi/dashboard-guest.webp",
-        alt: "The guest landing — a lighter discovery experience for newcomers",
-        caption: "The guest landing — discovery for newcomers.",
+        alt: "The guest landing, a lighter discovery experience for newcomers",
+        caption: "The guest landing.",
         span: "half",
         width: 1800,
         height: 1155,
@@ -482,13 +513,12 @@ export const projects: Project[] = [
       {
         src: "/work/lebi/landing-page-1.webp",
         alt: "A Lebi landing page built from the app's own component library",
-        caption: "A landing page, built from the app's own design system.",
+        caption: "A landing page built from the product's own design system.",
         span: "half",
         width: 1800,
         height: 1155,
       },
     ],
-    links: [{ label: "Figma", href: "#" }],
   },
 
   /* ══════════════════════════════ 3 · LUMIO ══════════════════════════════ */

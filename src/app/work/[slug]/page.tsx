@@ -71,7 +71,7 @@ function Section({
 
 function Figure({ image }: { image: CaseImage }) {
   return (
-    <figure className={image.span === "half" ? "" : "sm:col-span-2"}>
+    <figure>
       <div className="overflow-hidden rounded-xl border border-line bg-paper-2">
         <Image
           src={image.src}
@@ -446,7 +446,7 @@ export default async function CaseStudyPage({
           )}
 
           {/* Approach: the heart of the case. Steps with a clip become a
-              zigzag row, so each decision sits next to its proof. */}
+              zigzag row, so each decision sits next to its proof (a clip or a still). */}
           {project.approach && project.approach.length > 0 && (
             <section
               id="approach"
@@ -473,7 +473,7 @@ export default async function CaseStudyPage({
                       </div>
                     </div>
                   );
-                  if (!step.media) {
+                  if (!step.media && !step.image) {
                     return (
                       <Reveal as="li" key={step.title} className="lg:max-w-[46%]">
                         {text}
@@ -491,7 +491,11 @@ export default async function CaseStudyPage({
                         {text}
                       </div>
                       <div className="lg:col-span-7">
-                        <Clip clip={step.media} />
+                        {step.media ? (
+                          <Clip clip={step.media} />
+                        ) : (
+                          step.image && <Figure image={{ ...step.image, span: "half" }} />
+                        )}
                       </div>
                     </Reveal>
                   );
@@ -557,7 +561,11 @@ export default async function CaseStudyPage({
             {project.images && project.images.length > 0 && (
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {project.images.map((img, i) => (
-                  <Reveal key={img.src} delay={(i % 2) * 90}>
+                  <Reveal
+                    key={img.src}
+                    delay={(i % 2) * 90}
+                    className={img.span === "half" ? "" : "sm:col-span-2"}
+                  >
                     <Figure image={img} />
                   </Reveal>
                 ))}
