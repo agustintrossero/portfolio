@@ -1,4 +1,6 @@
+import { Fragment, type CSSProperties } from "react";
 import Link from "next/link";
+import HeroShowcase, { type ShowcaseItem } from "@/components/HeroShowcase";
 import ProjectScene from "@/components/ProjectScene";
 import Reveal from "@/components/Reveal";
 import { caseStudies, galleryItems } from "@/lib/projects";
@@ -8,82 +10,77 @@ export default function Home() {
   const cases = caseStudies().filter((project) => project.scene);
   const gallery = galleryItems();
 
-  // Two-tone the tagline: muted lead-in, ink on the last two words.
+  // The tagline arrives word by word: muted lead-in, ink on the last two words.
   const words = site.tagline.replace(/\.$/, "").split(" ");
-  const head = words.slice(0, -2).join(" ");
-  const tail = words.slice(-2).join(" ");
+  const lead = words.length - 2;
+
+  // The hero deck: one card per case, with its short clip and glow colour.
+  const deck: ShowcaseItem[] = cases.flatMap((project) => {
+    const scene = project.scene;
+    if (!scene?.teaser || !scene.tint) return [];
+    return [
+      {
+        slug: project.slug,
+        company: project.company,
+        eyebrow: scene.eyebrow,
+        bg: scene.surface.bg,
+        tint: scene.tint,
+        teaser: scene.teaser,
+      },
+    ];
+  });
 
   return (
     <>
-      {/* Hero: short positioning, then an index of the work below it */}
-      <section className="relative">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 -top-24 h-[440px] hero-glow"
-        />
-        <div className="relative mx-auto max-w-5xl px-6 pt-16 pb-14 sm:px-8 sm:pt-24 sm:pb-16">
-          <Reveal>
-            <p className="eyebrow mb-5">{site.role}</p>
-          </Reveal>
-          <Reveal delay={90}>
-            <h1 className="max-w-3xl text-balance text-[2.5rem] font-semibold leading-[1.03] tracking-tight sm:text-[3.6rem]">
-              <span className="text-muted-2">{head} </span>
-              <span className="text-ink">{tail}.</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={180}>
-            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-muted">
-              A focused look at the work: the role, the problem, and how I
-              solved it. Want the longer story?{" "}
-              <Link
-                href="/about"
-                className="text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-ink"
+      {/* Hero: the intro beside a live deck of the case studies */}
+      <HeroShowcase items={deck}>
+        <Reveal>
+          <p className="eyebrow mb-5">{site.role}</p>
+        </Reveal>
+        <h1 className="text-balance text-[2.5rem] font-semibold leading-[1.03] tracking-tight sm:text-[3.4rem] lg:text-[3.1rem] xl:text-[3.4rem]">
+          {words.map((word, i) => (
+            <Fragment key={i}>
+              <span
+                className={`hero-word ${i < lead ? "text-muted-2" : "text-ink"}`}
+                style={{ "--i": i } as CSSProperties}
               >
-                More about me
-              </Link>
-              .
-            </p>
-          </Reveal>
-          <Reveal delay={260}>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#work"
-                className="rounded-full bg-ink px-5 py-2.5 text-[14px] font-medium text-paper transition-opacity hover:opacity-90"
-              >
-                View work ↓
-              </a>
-              <a
-                href={`mailto:${site.email}`}
-                className="rounded-full border border-line-strong px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:border-ink"
-              >
-                Get in touch
-              </a>
-            </div>
-          </Reveal>
-
-          {/* Quick index for fast readers: jump straight to a project */}
-          <Reveal delay={340}>
-            <nav
-              aria-label="Projects"
-              className="mt-14 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-6 sm:grid-cols-4"
+                {word}
+                {i === words.length - 1 && "."}
+              </span>
+              {i < words.length - 1 && " "}
+            </Fragment>
+          ))}
+        </h1>
+        <Reveal delay={420}>
+          <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-muted">
+            A focused look at the work: the role, the problem, and how I
+            solved it. Want the longer story?{" "}
+            <Link
+              href="/about"
+              className="text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-ink"
             >
-              {cases.map((project, i) => (
-                <a key={project.slug} href={`#${project.slug}`} className="group">
-                  <span className="font-mono text-[11px] tabular-nums text-muted-2">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="mt-1 block text-[15px] font-medium text-ink transition-colors duration-200 group-hover:text-accent">
-                    {project.company}
-                  </span>
-                  <span className="block text-[13px] text-muted">
-                    {project.scene?.eyebrow}
-                  </span>
-                </a>
-              ))}
-            </nav>
-          </Reveal>
-        </div>
-      </section>
+              More about me
+            </Link>
+            .
+          </p>
+        </Reveal>
+        <Reveal delay={520}>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#work"
+              className="rounded-full bg-ink px-5 py-2.5 text-[14px] font-medium text-paper transition-opacity hover:opacity-90"
+            >
+              View work ↓
+            </a>
+            <a
+              href={`mailto:${site.email}`}
+              className="rounded-full border border-line-strong px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:border-ink"
+            >
+              Get in touch
+            </a>
+          </div>
+        </Reveal>
+      </HeroShowcase>
 
       {/* Selected work: one full-width scene per project */}
       <section id="work" aria-labelledby="work-heading" className="scroll-mt-16">

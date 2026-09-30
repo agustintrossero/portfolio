@@ -152,6 +152,10 @@ export type Scene = {
   media: SceneMedia;
   /** Put the media on the left on wide screens. */
   flip?: boolean;
+  /** Short loop for the card in the home hero deck. */
+  teaser?: CaseClip;
+  /** "r, g, b" of the glow the home hero takes while this card is in front. */
+  tint?: string;
 };
 
 export type Project = {
@@ -222,6 +226,12 @@ export const projects: Project[] = [
       headline: "Build once. | Ship every brand.",
       line: "One source of 161 tokens behind sixteen sites: seven media brands, Affily.bet and eight casino sites.",
       chips: ["Design systems", "Tokens", "Multi-brand"],
+      teaser: {
+        src: "/work/gds/teaser.mp4",
+        poster: "/work/gds/teaser.webp",
+        alt: "One match card switching brands as its tokens change",
+      },
+      tint: "96, 120, 190",
       surface: {
         bg: "#0A0A0C",
         ink: "#F3F3F1",
@@ -341,6 +351,12 @@ export const projects: Project[] = [
       headline: "Free predictions. | Real prizes.",
       line: "A sports predictions platform I created and led at MoveUp Media, where brands launch sponsored leagues on one template.",
       chips: ["SaaS", "Leadership", "Gamification"],
+      teaser: {
+        src: "/work/lebi/teaser.mp4",
+        poster: "/work/lebi/teaser.webp",
+        alt: "The Lebi mascot cheering next to free predictions, real prizes, then the sign up on a phone",
+      },
+      tint: "107, 60, 240",
       surface: {
         bg: "#F5F1FF",
         ink: "#16161D",
@@ -533,6 +549,12 @@ export const projects: Project[] = [
       headline: "Stop betting | in the dark.",
       line: "An AI analysis app that gives every match a confidence score, designed and built in house from onboarding to upgrade.",
       chips: ["Product design", "AI product", "Monetization"],
+      teaser: {
+        src: "/work/lumio/teaser.mp4",
+        poster: "/work/lumio/teaser.webp",
+        alt: "The O in lumio lights up in the dark: stop betting in the dark",
+      },
+      tint: "255, 196, 0",
       surface: {
         bg: "#060606",
         ink: "#F5F5F2",
@@ -699,6 +721,12 @@ export const projects: Project[] = [
       headline: "One portal, | every tool.",
       line: "The internal platform I designed and built for MoveUp Media: the portal and six tools, from AI video production to brand assets.",
       chips: ["SaaS", "AI tools", "Design engineering"],
+      teaser: {
+        src: "/work/moveup-tools/teaser.mp4",
+        poster: "/work/moveup-tools/teaser.webp",
+        alt: "The portal home pulling back into a wall of screens: seven tools, one platform",
+      },
+      tint: "214, 36, 110",
       surface: {
         bg: "#0A0712",
         ink: "#F4F1FA",

@@ -114,6 +114,33 @@ poster "$OUT/lebi/wallet-phone.mp4" 2 "$OUT/lebi/wallet-phone.webp" 720
 report lumio tour-phone.mp4 tour-phone.webp
 report lebi onboarding-phone.mp4 onboarding-phone.webp wallet-phone.mp4 wallet-phone.webp
 
+echo "Home: hero deck"
+# Short loops for the cards in the home hero, cut from each case main clip.
+# Each poster is the frame that best stands for the project, since visitors
+# who prefer less motion only see the poster.
+teaser() { slice "$1" "$2" "$3" "$4" 960:540 28; }
+# A teaser that plays once and holds its last frame: source, start, end,
+# output, seconds to hold.
+held() {
+  stale "$1" "$4" || return 0
+  ffmpeg -v error -y -ss "$2" -t "$(awk "BEGIN { print $3 - $2 }")" -i "$1" \
+    -vf "fps=30,scale=960:540:flags=lanczos,tpad=stop_mode=clone:stop_duration=$5" "${x264[@]}" -crf 28 "$4"
+}
+teaser "$IDEA/gds-video/out/gds-theme-swap-16x9.mp4" 14 22 "$OUT/gds/teaser.mp4"
+poster "$OUT/gds/teaser.mp4" 1 "$OUT/gds/teaser.webp" 960
+# Lebi keeps to its intro: after 3.5 s the title fades out behind the phone,
+# which reads as an overlap at card size. The last frame holds instead.
+held "$IDEA/lebi-video/out/lebi-onboarding-16x9.mp4" 0.2 3.5 "$OUT/lebi/teaser.mp4" 3
+poster "$OUT/lebi/teaser.mp4" 2 "$OUT/lebi/teaser.webp" 960
+teaser "$IDEA/lumio-video/out/lumio-intro-16x9.mp4" 1.5 8 "$OUT/lumio/teaser.mp4"
+poster "$OUT/lumio/teaser.mp4" 3 "$OUT/lumio/teaser.webp" 960
+teaser "$IDEA/moveup-tools-video/out/moveup-mosaic-16x9.mp4" 1 9 "$OUT/moveup-tools/teaser.mp4"
+poster "$OUT/moveup-tools/teaser.mp4" 5 "$OUT/moveup-tools/teaser.webp" 960
+report gds teaser.mp4 teaser.webp
+report lebi teaser.mp4 teaser.webp
+report lumio teaser.mp4 teaser.webp
+report moveup-tools teaser.mp4 teaser.webp
+
 echo "Home: scene layers"
 webp "$IDEA/lebi-video/mascot/mascot-cheer.png" "$OUT/lebi/mascot-cheer.webp"
 webp "$IDEA/lebi-video/mascot/mascot-hold.png" "$OUT/lebi/mascot-hold.webp"
