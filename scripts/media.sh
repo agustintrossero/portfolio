@@ -46,17 +46,22 @@ hero() {
   ffmpeg -v error -y -i "$1" -vf "fps=30,scale=1920:1080:flags=lanczos" "${x264[@]}" -crf "${3:-28}" "$2"
 }
 
-# One chapter of a longer clip as a 720p loop: source, start, end, output,
-# optional CRF. The last half second fades into the first, so the cut loops
-# without a jump.
-chapter() {
+# Part of a longer clip as a loop: source, start, end, output, size, CRF.
+# The last half second fades into the first, so the cut loops without a jump.
+cut() {
   stale "$1" "$4" || return 0
   local len fade=0.5
   len=$(awk "BEGIN { print $3 - $2 }")
   ffmpeg -v error -y -ss "$2" -t "$len" -i "$1" -filter_complex \
-    "[0:v]fps=30,scale=1280:720:flags=lanczos,split[a][b];[a]trim=start=$fade,setpts=PTS-STARTPTS[body];[b]trim=end=$fade,setpts=PTS-STARTPTS[head];[body][head]xfade=transition=fade:duration=$fade:offset=$(awk "BEGIN { print $len - 2 * $fade }")" \
-    "${x264[@]}" -crf "${5:-23}" "$4"
+    "[0:v]fps=30,scale=$5:flags=lanczos,split[a][b];[a]trim=start=$fade,setpts=PTS-STARTPTS[body];[b]trim=end=$fade,setpts=PTS-STARTPTS[head];[body][head]xfade=transition=fade:duration=$fade:offset=$(awk "BEGIN { print $len - 2 * $fade }")" \
+    "${x264[@]}" -crf "$6" "$4"
 }
+
+# One chapter of a 16:9 clip as a 720p loop (optional fifth argument: CRF).
+chapter() { cut "$1" "$2" "$3" "$4" 1280:720 "${5:-23}"; }
+
+# Part of a screen-only clip as a phone loop (optional fifth argument: CRF).
+phonecut() { cut "$1" "$2" "$3" "$4" 720:1560 "${5:-27}"; }
 
 # Poster from a video: one frame at a given second, as WebP of a given width.
 poster() {
@@ -100,8 +105,10 @@ mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools"
 echo "Home: phone clips"
 phone "$IDEA/lumio-video/out/case-study/02-tour-screen-only.mp4" "$OUT/lumio/tour-phone.mp4"
 poster "$OUT/lumio/tour-phone.mp4" 0.5 "$OUT/lumio/tour-phone.webp" 720
-phone "$IDEA/lebi-video/out/case-study/01-onboarding-screen-only.mp4" "$OUT/lebi/onboarding-phone.mp4"
-poster "$OUT/lebi/onboarding-phone.mp4" 6 "$OUT/lebi/onboarding-phone.webp" 720
+# The screen-only render still carries the intro title over the first 4 s
+# (lebi.html, intro: 4.2), so the loop starts after it.
+phonecut "$IDEA/lebi-video/out/case-study/01-onboarding-screen-only.mp4" 4.2 34 "$OUT/lebi/onboarding-phone.mp4"
+poster "$OUT/lebi/onboarding-phone.mp4" 1.5 "$OUT/lebi/onboarding-phone.webp" 720
 phone "$IDEA/lebi-video/out/case-study/02-wallet-screen-only.mp4" "$OUT/lebi/wallet-phone.mp4"
 poster "$OUT/lebi/wallet-phone.mp4" 2 "$OUT/lebi/wallet-phone.webp" 720
 report lumio tour-phone.mp4 tour-phone.webp
