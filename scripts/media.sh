@@ -44,6 +44,18 @@ hero() {
   ffmpeg -v error -y -i "$1" -vf "fps=30,scale=1920:1080:flags=lanczos" "${x264[@]}" -crf "${3:-28}" "$2"
 }
 
+# One chapter of a longer clip as a 720p loop: source, start, end, output,
+# optional CRF. The last half second fades into the first, so the cut loops
+# without a jump.
+chapter() {
+  stale "$1" "$4" || return 0
+  local len fade=0.5
+  len=$(awk "BEGIN { print $3 - $2 }")
+  ffmpeg -v error -y -ss "$2" -t "$len" -i "$1" -filter_complex \
+    "[0:v]fps=30,scale=1280:720:flags=lanczos,split[a][b];[a]trim=start=$fade,setpts=PTS-STARTPTS[body];[b]trim=end=$fade,setpts=PTS-STARTPTS[head];[body][head]xfade=transition=fade:duration=$fade:offset=$(awk "BEGIN { print $len - 2 * $fade }")" \
+    "${x264[@]}" -crf "${5:-23}" "$4"
+}
+
 # Poster from a video: one frame at a given second, as WebP of a given width.
 poster() {
   stale "$1" "$3" || return 0
@@ -134,3 +146,22 @@ still "$IDEA/lebi-video/out/case-study/04-sponsors-poster.jpg" "$OUT/lebi/sponso
 hero "$IDEA/lebi-video/out/lebi-screens-16x9.mp4" "$OUT/lebi/screens.mp4" 30
 still "$IDEA/lebi-video/out/case-study/03-screens-poster.jpg" "$OUT/lebi/screens.webp" 1600
 report lebi onboarding.mp4 onboarding.webp wallet.mp4 wallet.webp sponsors.mp4 sponsors.webp screens.mp4 screens.webp
+
+echo "Lumio case study"
+hero "$IDEA/lumio-video/out/lumio-intro-16x9.mp4" "$OUT/lumio/intro.mp4" 25
+still "$IDEA/lumio-video/out/case-study/01-intro-poster.jpg" "$OUT/lumio/intro.webp" 1600
+# The tour has five chapters (see CAPS in lumio-video/iphone.html). Each cut
+# skips the caption change at its start (0.55 s). The first two stop before
+# the next chapter; the payment cut runs through the last three and ends on
+# the wallet, before the tour fades back home.
+TOUR="$IDEA/lumio-video/out/lumio-tour-16x9.mp4"
+chapter "$TOUR" 0.9 8.15 "$OUT/lumio/index.mp4"
+poster "$TOUR" 4.2 "$OUT/lumio/index.webp" 1280
+chapter "$TOUR" 8.8 15.25 "$OUT/lumio/pro.mp4"
+poster "$TOUR" 11.5 "$OUT/lumio/pro.webp" 1280
+chapter "$TOUR" 15.9 34.3 "$OUT/lumio/payment.mp4"
+poster "$TOUR" 19.4 "$OUT/lumio/payment.webp" 1280
+hero "$IDEA/lumio-video/out/lumio-screens-16x9.mp4" "$OUT/lumio/screens.mp4" 30
+still "$IDEA/lumio-video/out/case-study/03-screens-poster.jpg" "$OUT/lumio/screens.webp" 1600
+share "$IDEA/lumio-video/out/case-study/01-intro-poster.jpg" "$OUT/lumio/cover.jpg"
+report lumio intro.mp4 intro.webp index.mp4 index.webp pro.mp4 pro.webp payment.mp4 payment.webp screens.mp4 screens.webp cover.jpg

@@ -525,7 +525,7 @@ export const projects: Project[] = [
   {
     slug: "lumio",
     company: "Lumio",
-    role: "Lead Product Designer", // (confirm actual title/scope)
+    role: "Creator and design lead",
     period: "2025",
     headline: "Odds are everywhere. Confidence isn't.",
     scene: {
@@ -553,115 +553,137 @@ export const projects: Project[] = [
       },
     },
     summary:
-      "An AI analysis layer over the betting market — not a sportsbook. It scores every bet with the Lumio Index and shows where the value actually sits.",
+      "An AI analysis app for sports bettors: every match gets a confidence score, the Lumio Index, and the reasons behind it. I created it and led the design end to end, and the team built it in house.",
     tags: [
       "PRODUCT DESIGN",
       "UX/UI",
-      "DATA VISUALIZATION",
-      "INFORMATION DESIGN",
       "AI PRODUCT",
-      "INTERACTION DESIGN",
+      "DATA VISUALIZATION",
+      "MONETIZATION",
+      "PAYMENTS",
     ],
     published: true,
     cover: {
-      src: "/work/lumio/cover.svg",
-      alt: "Placeholder cover — Lumio, a dark data-first betting analysis interface",
-      width: 1600,
-      height: 900,
+      src: "/work/lumio/cover.jpg",
+      alt: "The lumio logo with its O lit like a bulb, over the line no guru, no promises, just data",
+      width: 1200,
+      height: 675,
     },
-    showcase: {
-      device: "phone",
-      src: "/work/lumio/tour-phone.webp",
-      alt: "A tour of the Lumio app: the Lumio Index, plans, Apple Pay and the wallet",
-      video: "/work/lumio/tour-phone.mp4",
-      caption:
-        "A tour of the app. The wallet and Apple Pay screens are concepts designed for this case study.",
+    heroVideo: {
+      src: "/work/lumio/intro.mp4",
+      poster: "/work/lumio/intro.webp",
+      alt: "The O in lumio lights up like a bulb in the dark and its light reveals the app: stop betting in the dark, see every stat, not a hunch but probability, choose your level of play, invite friends",
+      caption: "Shown in English with prices in US dollars. The product runs in Portuguese, for Brazil.",
     },
+    stats: [
+      { value: "95", label: "screens and states" },
+      { value: "5", label: "optional sign up questions" },
+      { value: "3", label: "risk levels, color coded" },
+      { value: "2", label: "themes, light and dark" },
+    ],
     overview:
-      "Lumio is an analysis platform for sports betting — explicitly not a sportsbook, casino, or tipster service. It reads odds across bookmakers and turns them into a single decision aid: the Lumio Index, a confidence score, paired with value detection and side-by-side bookmaker comparison. I led product design (confirm scope) — owning the core interaction model for the Index, the comparison experience, and the dark, data-first system that holds them together. The through-line was clarity: making a noisy, distrusted category legible enough to think in.",
+      "Lumio is an AI analysis app for sports bettors. It reads match data and gives every match a confidence score, the Lumio Index, so a bet starts from probability instead of a hunch. I created Lumio and led its design end to end: onboarding, sign up, the Index, plans, payment and profile, 95 screens and states in all. The engineering team built it in house.",
     opportunities: [
       {
-        title: "From odds to a read",
-        hmw: "How might we turn a scatter of bookmaker odds into a single number a user can trust at a glance?",
+        title: "Clarity over noise",
+        hmw: "How might we cut through tips, promises and promos with one number a bettor can read at a glance?",
       },
       {
-        title: "Analysis, not tips",
-        hmw: "How might we express confidence in a bet without promising an outcome or reading as a tipster service?",
+        title: "A score that explains itself",
+        hmw: "How might we show the reasons behind the Lumio Index, so it reads as analysis and not as one more tip?",
       },
       {
-        title: "Where the value hides",
-        hmw: "How might we surface where a bet is mispriced across bookmakers, instead of leaving the user to compare tables by hand?",
+        title: "Personal, never pushy",
+        hmw: "How might we learn enough at sign up to personalize the picks, without forcing anyone to answer?",
       },
       {
-        title: "Legible AI",
-        hmw: "How might we show why the Lumio Index landed on a score, so the number feels earned rather than arbitrary?",
+        title: "Free that works",
+        hmw: "How might we make the free plan useful on its own and Pro clearly worth paying for?",
       },
       {
-        title: "Not a sportsbook",
-        hmw: "How might we make the product unmistakably a place to analyze bets, not place them?",
+        title: "Payment without doubt",
+        hmw: "How might we make paying feel certain, even while a payment is still processing?",
       },
       {
-        title: "Calm at high density",
-        hmw: "How might we keep a data-dense product quiet enough to actually think in?",
+        title: "No dead ends",
+        hmw: "How might we keep people oriented when there is no data, no connection or no analysis for a match?",
       },
     ],
     approach: [
       {
-        title: "The Index as the spine",
-        body: "Made the Lumio Index the primary object on every screen — one confidence score the eye lands on first. Odds, books and context are arranged as support for that number, so the interface answers 'is this worth it?' before it answers anything else.",
+        title: "Name the problem first",
+        body: "The onboarding names the problem before it sells anything: tips, promises and promos everywhere, very little clarity. Then it shows Lumio's answer, from data to context to a decision, on a real card. For the launch I designed a First Club: the first 1,000 players get full access, with a live count of the places left.",
       },
       {
-        title: "Motion that explains the score",
-        body: "Designed the Index as an interaction, not a static badge: opening it decomposes the score into the factors behind it. Motion carries the causality — the number expands into its reasoning — which is what turns an AI output into something a user can interrogate rather than simply accept. (confirm final interaction)",
+        title: "Personal from the first pick",
+        body: "Sign up asks five quick questions, and every one is optional: the sportsbooks you use, your team, your experience, your risk level and how you want alerts. Risk is framed in plain odds (for a cautious player, anything over 1.5 is too risky), so the picks match the player from day one. It all stays editable later in a cards configurator.",
+        image: {
+          src: "/work/lumio/signup.webp",
+          alt: "Four sign up steps: which sportsbooks do you use, your favorite team, how experienced a bettor you are, and your level of risk",
+          width: 1600,
+          height: 900,
+        },
       },
       {
-        title: "Comparison built to find value, not list it",
-        body: "Rejected the standard odds-table dump. Bookmaker comparison is framed around the outlier — the book pricing a bet differently from the market — so value detection is the default reading of the screen instead of something the user has to calculate.",
+        title: "One number, with its reasons",
+        body: "Every card leads with the Lumio Index, a confidence score shown as a bar and a percentage, next to its risk level and the best odds available. Risk is color coded from green to red, so it reads before the number does. Open a card and the score explains itself: supporting stats, recent results and the reasons for the pick in plain language, with odds from partner sportsbooks one tap away.",
+        media: {
+          src: "/work/lumio/index.mp4",
+          poster: "/work/lumio/index.webp",
+          alt: "The home with the top probabilities, then the Lumio Index detail for Manchester City: 82 percent, recent matches and why this pick",
+        },
       },
       {
-        title: "A hard line from the sportsbook",
-        body: "Kept every affordance on the analysis side of the line — no 'place bet' moment, no casino cues. The product reads as a lens on the market, which protects both its positioning and the user's trust in it as an impartial read. (confirm regulatory framing)",
+        title: "Free that works, Pro worth paying for",
+        body: "The free plan works on its own: three cards a day, with the odds capped. Pro unlocks every card, including the rare, epic and legendary daily cards, plus early access to new stats and Telegram alerts, billed daily, weekly or monthly. Around the plans sit the growth loops: a three day VIP trial for early users, a free VIP day for a seven day streak, coupons, and a month of Pro for inviting three friends.",
+        media: {
+          src: "/work/lumio/pro.mp4",
+          poster: "/work/lumio/pro.webp",
+          alt: "From the free plan to the upgrade screen: rare, epic and legendary cards, billed daily, weekly or monthly, then the payment method",
+        },
       },
       {
-        title: "Dark, quiet, data-first",
-        body: "Chose a dark, low-chroma system so the data carries the color and nothing competes with it. In a category that usually shouts, the restraint is deliberate — it frames the product as something to think with, not something selling to you.",
+        title: "Payment without doubt",
+        body: "Payment covers every outcome: a new card, a saved one or an instant method, then processing, success or a decline with a clear way out. The processing screen says what happens next, and success confirms the plan with a full summary, so nobody wonders whether they paid.",
+        media: {
+          src: "/work/lumio/payment.mp4",
+          poster: "/work/lumio/payment.webp",
+          alt: "Paying for Pro with Apple Pay and Face ID, then the processing screen, the success summary, the active Pro plan and the wallet",
+          caption:
+            "Apple Pay stands in for Pix, the instant payment the product uses in Brazil, and the wallet at the end is a concept designed for this case study. The Apple Pay sheet and Face ID recreate the system UI.",
+        },
       },
       {
-        title: "Confidence, framed honestly",
-        body: "Calibrated the Index to communicate confidence, not certainty — language and visual weight tuned so a high score never reads as a guarantee. Getting this framing right is what keeps an analysis product credible past the first session. (confirm)",
+        title: "No dead ends",
+        body: "The 95 screens and states include the unhappy paths: no picks today, a failed load, no connection, not enough data for a match, a declined payment, a cancellation that asks why. Each one says what happened and what to do next.",
+        image: {
+          src: "/work/lumio/states.webp",
+          alt: "Four unhappy states: no picks available today, no internet connection, no analysis available for a match, and a declined payment",
+          width: 1600,
+          height: 900,
+        },
       },
     ],
     impact: [
-      "A dense, multi-bookmaker market compressed into one read — the Lumio Index — so a bet can be judged at a glance instead of by parsing tables across books. (confirm with testing)",
-      "Value detection made the default reading of the screen: the product points to where a bet is mispriced across books, rather than leaving the user to find it. (confirm)",
-      "The Index is built to be questioned — its score decomposes into the factors behind it, so the AI output can be interrogated rather than taken on faith. (confirm the UI exposes this)",
-      "Reads unmistakably as analysis, not a sportsbook — protecting both the positioning and the user's trust in the score. (confirm)",
-      "A dark, low-noise system that stays legible at high data density — a deliberate break from the category's cluttered norm.",
+      "Designed Lumio end to end, 95 screens and states from the first onboarding slide to the legal pages, built in house by the engineering team.",
+      "Every pick leads with one confidence score, color coded by risk and explained in plain language.",
+      "A complete path from free to Pro, with a trial, rewards, referrals and a payment flow designed for every outcome, unhappy paths included.",
     ],
-    // video: {
-    //   src: "/work/lumio/index-interaction.mp4",
-    //   poster: "/work/lumio/index-poster.jpg",
-    //   caption: "The Lumio Index expanding into the factors behind the score.",
-    // },
+    mosaic: {
+      src: "/work/lumio/screens.mp4",
+      poster: "/work/lumio/screens.webp",
+      alt: "A wall of 95 Lumio screens and states lit by the glowing O: onboarding, registration, home, the Lumio Index, plans, payment, wallet, profile, modals and legal",
+    },
     images: [
       {
-        src: "/work/lumio/block-1.svg",
-        alt: "Placeholder — the Lumio Index, collapsed and expanded",
-        caption: "The Lumio Index — the confidence score at the center.",
-        span: "half",
-        width: 1200,
-        height: 900,
-      },
-      {
-        src: "/work/lumio/block-2.svg",
-        alt: "Placeholder — bookmaker comparison surfacing the value outlier",
-        caption: "Bookmaker comparison, framed around the value outlier.",
-        span: "half",
-        width: 1200,
+        src: "/work/lumio/themes.webp",
+        alt: "The home and the Lumio Index detail, in the light theme and in the dark theme",
+        caption: "The home and the Lumio Index, in light and dark.",
+        span: "wide",
+        width: 1600,
         height: 900,
       },
     ],
-    links: [{ label: "Figma", href: "#" }],
   },
 
   /* ══════════════════════════ 4 · MOVEUP TOOLS ══════════════════════════ */
@@ -733,7 +755,7 @@ export const projects: Project[] = [
   },
 ];
 
-/** Only published projects, in declared order — used everywhere public. */
+/** Only published projects, in declared order. Used everywhere public. */
 export const publishedProjects = (): Project[] =>
   projects.filter((p) => p.published);
 
