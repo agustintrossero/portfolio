@@ -1,0 +1,10 @@
+# Netlify builds the static export on every push to main and serves out/ as
+# plain files, the same way a CLI deploy (netlify deploy --dir out) does.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # A static export needs no Next.js runtime, so the adapter is skipped.
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
