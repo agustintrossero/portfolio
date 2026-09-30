@@ -8,16 +8,80 @@ export const metadata: Metadata = {
   description: `About ${site.name}, ${site.role}.`,
 };
 
-const skills = [
-  "UX Research",
-  "UI Design",
-  "Design Systems",
-  "Prototyping",
-  "Figma",
-  "Framer",
-  "React",
-  "Frontend Dev",
+// Everything below comes from the CV (Desktop/Agus/CV/cv.html).
+const capabilities = [
+  {
+    group: "Design systems",
+    items: "Token architecture, multi-brand theming, light and dark modes, Figma Variables, component specs, documentation, design QA",
+  },
+  {
+    group: "Product design",
+    items: "UX/UI, user research, usability testing, interaction design, prototyping, information architecture, data-dense UI, accessibility (WCAG), branding",
+  },
+  {
+    group: "Design engineering",
+    items: "React, Next.js, TypeScript, Tailwind CSS, HTML, CSS, JavaScript, Git",
+  },
+  {
+    group: "AI",
+    items: "AI coding agents (Claude Code), AI prototyping, APIs from Anthropic, Gemini, ElevenLabs and Seedance",
+  },
+  { group: "Tools", items: "Figma, Framer, Jira, Adobe Creative Cloud" },
+  { group: "Languages", items: "Spanish (native), English (C2, near-native)" },
 ];
+
+const experience = [
+  {
+    company: "MoveUp Media",
+    role: "Senior Product UX/UI Designer",
+    period: "Feb 2025 to present",
+    place: "Remote (Paris, France)",
+    note: "A multi-brand sports media group across 20+ markets. The Global Design System, MoveUp Tools, Foundry, Lumio, Lebi and the Casino Template Set.",
+  },
+  {
+    company: "Siciliamia",
+    role: "Team Leader UX/UI Designer",
+    period: "Dec 2023 to Feb 2025",
+    place: "Remote (Sicily, Italy)",
+    note: "Online shops for desktop, tablet and mobile. Led a team of three designers from research to handoff and grew the design system that kept every shop consistent.",
+  },
+  {
+    company: "Digital Tie",
+    role: "UX/UI Designer & Frontend Developer (React)",
+    period: "Jan 2020 to Dec 2023",
+    place: "Remote (Buenos Aires, Argentina)",
+    note: "A digital marketing agency: web and mobile interfaces and branding for its clients, research and design workshops, and front ends built in React.",
+  },
+  {
+    company: "Freelance",
+    role: "Designer & Developer",
+    period: "2019 to 2023",
+    note: "Brand identities and graphic design for small businesses, then websites and online stores, designed and built end to end.",
+  },
+];
+
+const education = [
+  { period: "2024", title: "Google UX Design Professional Certificate", school: "Google" },
+  { period: "2022 to 2024", title: "UX/UI Design and Advanced UX/UI", school: "Coderhouse" },
+  {
+    period: "2021 to 2023",
+    title: "Full Stack Web Development",
+    school: "Digital House, with React at Coderhouse and React & Redux on Coursera",
+  },
+  { period: "2005 to 2010", title: "Advertising studies", school: "UCES, Buenos Aires" },
+];
+
+/** A labelled row, like the sections of a case study. */
+function Section({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <section className="border-t border-line py-12 sm:py-16">
+      <div className="grid gap-x-10 gap-y-5 sm:grid-cols-[180px_1fr]">
+        <h2 className="eyebrow sm:pt-1">{label}</h2>
+        <div>{children}</div>
+      </div>
+    </section>
+  );
+}
 
 export default function AboutPage() {
   return (
@@ -80,6 +144,12 @@ export default function AboutPage() {
                 </a>
               </div>
             </Reveal>
+
+            <Reveal delay={300}>
+              <p className="mt-6 text-[14px] text-muted">
+                Based in {site.location}. Open to remote.
+              </p>
+            </Reveal>
           </div>
 
           {/* Portrait: the LinkedIn photo, built by scripts/media.sh */}
@@ -97,19 +167,47 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Skills */}
-      <section className="border-t border-line py-12 sm:py-16">
-        <div className="grid gap-x-10 gap-y-5 sm:grid-cols-[180px_1fr]">
-          <h2 className="eyebrow sm:pt-1">Capabilities</h2>
-          <ul className="flex flex-wrap gap-2.5">
-            {skills.map((skill, i) => (
-              <Reveal as="li" key={skill} delay={i * 45} className="rounded-full border border-line px-3.5 py-1.5 text-[14px] text-ink transition-colors duration-200 hover:border-line-strong">
-                  {skill}
-                </Reveal>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <Section label="Experience">
+        <ol className="flex flex-col gap-9">
+          {experience.map((job, i) => (
+            <Reveal as="li" key={job.company} delay={i * 60}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h3 className="text-[17px] font-semibold tracking-tight text-ink">
+                  {job.company}
+                  <span className="font-normal text-muted"> · {job.role}</span>
+                </h3>
+                <p className="font-mono text-[12px] text-muted-2">{job.period}</p>
+              </div>
+              {job.place && <p className="mt-1 text-[14px] text-muted-2">{job.place}</p>}
+              <p className="mt-2 max-w-2xl leading-relaxed text-muted">{job.note}</p>
+            </Reveal>
+          ))}
+        </ol>
+      </Section>
+
+      <Section label="Capabilities">
+        <dl className="flex flex-col gap-5">
+          {capabilities.map((c, i) => (
+            <Reveal key={c.group} delay={i * 50} className="grid gap-x-8 gap-y-1 sm:grid-cols-[160px_1fr]">
+              <dt className="text-[15px] font-medium text-ink">{c.group}</dt>
+              <dd className="leading-relaxed text-muted">{c.items}</dd>
+            </Reveal>
+          ))}
+        </dl>
+      </Section>
+
+      <Section label="Education">
+        <ul className="flex flex-col gap-4">
+          {education.map((e, i) => (
+            <Reveal as="li" key={e.title} delay={i * 50} className="grid gap-x-8 gap-y-1 sm:grid-cols-[120px_1fr]">
+              <span className="font-mono text-[12px] text-muted-2 sm:pt-1">{e.period}</span>
+              <span className="leading-relaxed text-muted">
+                <span className="font-medium text-ink">{e.title}</span> · {e.school}
+              </span>
+            </Reveal>
+          ))}
+        </ul>
+      </Section>
 
       {/* Elsewhere */}
       <section className="border-t border-line py-12 sm:py-16">
