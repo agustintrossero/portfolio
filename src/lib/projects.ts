@@ -21,6 +21,8 @@ export type CaseClip = {
   /** Accessible description of what the clip shows. */
   alt: string;
   caption?: string;
+  /** Lighter 720p copy, served to screens up to 767px wide. */
+  small?: string;
 };
 
 /** A headline number for the "at a glance" strip. Only confirmed facts. */
@@ -63,36 +65,10 @@ export type CaseImage = {
   span?: "wide" | "half";
 };
 
-/** A short clip shown where the *motion* is the argument. */
-export type CaseVideo = {
-  /** Path to the mp4 inside /public, e.g. "/work/gds/theme-swap.mp4". */
-  src: string;
-  /** Poster image shown before play (path inside /public). */
-  poster?: string;
-  /** Optional caption under the video. */
-  caption?: string;
-};
-
 export type ExternalLink = {
   /** e.g. "Figma", "Behance", "Live site". */
   label: string;
   href: string;
-};
-
-/** The hero visual: a product screen or a looping clip inside a device mockup. */
-export type Showcase = {
-  /** Which frame to render the screen in. */
-  device: "phone" | "tablet" | "browser";
-  /** Screen image (path inside /public). Doubles as the video poster. */
-  src: string;
-  /** Accessible description of what the screen or clip shows. */
-  alt: string;
-  /** Looping clip (mp4). Plays muted while on screen, with a pause control. */
-  video?: string;
-  /** Poster for the video (defaults to `src`). */
-  poster?: string;
-  /** Optional caption under the device. */
-  caption?: string;
 };
 
 /** A project's own colours. They ignore the site theme, so each project
@@ -180,13 +156,9 @@ export type Project = {
   /** "gallery" = quick-scan item (compact card, no deep page). Default: deep case. */
   kind?: "case" | "gallery";
 
-  /** Cover image for the case-study header (path inside /public). */
+  /** Share image, and the hero visual of a case without a main clip. */
   cover?: { src: string; alt: string; width: number; height: number };
-  /** Hero visual: a screen or a looping clip inside a device mockup. */
-  showcase?: Showcase;
-  /** Full-bleed hero image (a pre-composed mockup); no frame. Beats showcase/cover. */
-  heroImage?: { src: string; alt: string; width: number; height: number };
-  /** Main clip of the case, full width on the project's surface. Beats every other hero visual. */
+  /** Main clip of the case, full width on the project's surface. */
   heroVideo?: CaseClip;
   /** "At a glance" numbers under the hero. */
   stats?: Stat[];
@@ -199,16 +171,12 @@ export type Project = {
 
   /** Context + your role. The "what was this and what did I own" paragraph. */
   overview?: string;
-  /** The problem / opportunity, as one paragraph. What needed solving and why. */
-  challenge?: string;
   /** The problem framed as several "How might we…" opportunity cards. */
   opportunities?: Opportunity[];
   /** How you solved it, as a sequence of steps. */
   approach?: ApproachStep[];
   /** Results & outcomes. Each string is a bullet; lead with the metric. */
   impact?: string[];
-  /** A clip where movement is the argument (theme swaps, live interaction). */
-  video?: CaseVideo;
   /** "A glimpse of outputs": screenshots of Figma files or final screens. */
   images?: CaseImage[];
   /** Optional outbound links (Figma, Behance, live site). */
@@ -264,6 +232,7 @@ export const projects: Project[] = [
     },
     heroVideo: {
       src: "/work/gds/theme-swap.mp4",
+      small: "/work/gds/theme-swap-sm.mp4",
       poster: "/work/gds/theme-swap.webp",
       alt: "One token cycling through seven brands, the 161 tokens of the collection, and the Match Card re-skinning brand by brand",
     },
@@ -336,6 +305,7 @@ export const projects: Project[] = [
     ],
     mosaic: {
       src: "/work/gds/block-library.mp4",
+      small: "/work/gds/block-library-sm.mp4",
       poster: "/work/gds/block-library.webp",
       alt: "The 51 section blocks of the library, grouped in six families, with a wave switching the brand of the whole collection",
     },
@@ -400,6 +370,7 @@ export const projects: Project[] = [
     },
     heroVideo: {
       src: "/work/lebi/onboarding.mp4",
+      small: "/work/lebi/onboarding-sm.mp4",
       poster: "/work/lebi/onboarding.webp",
       alt: "Lebi's mascot says let's play, then the onboarding on a phone: email, verification code, basic details, name and avatar, and the challenges home",
       caption: "Shown in English with prizes in US dollars. The product runs in Portuguese, for Brazil.",
@@ -492,6 +463,7 @@ export const projects: Project[] = [
     ],
     mosaic: {
       src: "/work/lebi/screens.mp4",
+      small: "/work/lebi/screens-sm.mp4",
       poster: "/work/lebi/screens.webp",
       alt: "A 3D wall of 81 light theme screens: sign up, sign in, predictions, rankings, prizes, wallet and verification",
     },
@@ -596,6 +568,7 @@ export const projects: Project[] = [
     },
     heroVideo: {
       src: "/work/lumio/intro.mp4",
+      small: "/work/lumio/intro-sm.mp4",
       poster: "/work/lumio/intro.webp",
       alt: "The O in lumio lights up like a bulb in the dark and its light reveals the app: stop betting in the dark, see every stat, not a hunch but probability, choose your level of play, invite friends",
       caption: "Shown in English with prices in US dollars. The product runs in Portuguese, for Brazil.",
@@ -696,6 +669,7 @@ export const projects: Project[] = [
     ],
     mosaic: {
       src: "/work/lumio/screens.mp4",
+      small: "/work/lumio/screens-sm.mp4",
       poster: "/work/lumio/screens.webp",
       alt: "A wall of 95 Lumio screens and states lit by the glowing O: onboarding, registration, home, the Lumio Index, plans, payment, wallet, profile, modals and legal",
     },
@@ -770,6 +744,7 @@ export const projects: Project[] = [
     },
     heroVideo: {
       src: "/work/moveup-tools/mosaic.mp4",
+      small: "/work/moveup-tools/mosaic-sm.mp4",
       poster: "/work/moveup-tools/mosaic.webp",
       alt: "The portal home pulls back into a wall of screens from the seven tools: seven tools, one platform, then the MoveUp Tools logo",
       caption: "Captured from the live product. Colleagues' names are fictional.",
@@ -938,6 +913,7 @@ export const projects: Project[] = [
     },
     heroVideo: {
       src: "/work/foundry/tour.mp4",
+      small: "/work/foundry/tour-sm.mp4",
       poster: "/work/foundry/tour.webp",
       alt: "Foundry in MoveUp Console: searching the block library and opening a block that runs on all seven sites",
       caption:
@@ -1039,6 +1015,7 @@ export const projects: Project[] = [
     ],
     mosaic: {
       src: "/work/foundry/mosaic.mp4",
+      small: "/work/foundry/mosaic-sm.mp4",
       poster: "/work/foundry/mosaic.webp",
       alt: "A wall of 38 real block previews, each with its engine and sites: 176 blocks, one registry",
     },
@@ -1098,6 +1075,7 @@ export const projects: Project[] = [
     },
     heroVideo: {
       src: "/work/casino-template-set/phones.mp4",
+      small: "/work/casino-template-set/phones-sm.mp4",
       poster: "/work/casino-template-set/phones.webp",
       alt: "ItaliaCasinos alone on a phone, then four more sites join: five identities scroll the same sections in sync, open their menus, reach the same review and copy its bonus code",
       caption:

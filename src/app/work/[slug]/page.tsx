@@ -4,7 +4,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import CaseNav, { type NavItem } from "@/components/CaseNav";
 import Reveal from "@/components/Reveal";
-import DeviceFrame from "@/components/DeviceFrame";
 import LoopVideo from "@/components/LoopVideo";
 import {
   getProject,
@@ -31,14 +30,12 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return {};
   const title = `${project.company} · ${project.role}`;
+  const images = project.cover ? [{ url: project.cover.src, alt: project.cover.alt }] : undefined;
   return {
     title,
     description: project.summary,
-    openGraph: {
-      title,
-      description: project.summary,
-      images: project.cover ? [{ url: project.cover.src }] : undefined,
-    },
+    openGraph: { title, description: project.summary, images },
+    twitter: { card: "summary_large_image", title, description: project.summary, images },
   };
 }
 
@@ -130,6 +127,7 @@ function ClipBand({
         <Reveal variant="scale">
           <LoopVideo
             src={clip.src}
+            small={clip.small}
             poster={clip.poster}
             label={clip.alt}
             ratio="16 / 9"
@@ -209,13 +207,11 @@ export default async function CaseStudyPage({
   const next = published[(idx + 1) % published.length];
   const surface = project.scene?.surface;
 
-  const hasGlimpse =
-    !!project.video || (project.images && project.images.length > 0);
+  const hasGlimpse = !!project.images?.length;
 
   // Build the sticky sub-nav from the sections that actually exist.
   const navItems: NavItem[] = [
     project.overview && { id: "overview", label: "Overview" },
-    project.challenge && { id: "challenge", label: "Challenge" },
     project.opportunities?.length && {
       id: "opportunities",
       label: "Opportunities",
@@ -225,9 +221,6 @@ export default async function CaseStudyPage({
     project.mosaic && { id: "scale", label: "Scale" },
     hasGlimpse && { id: "glimpse", label: "Glimpse" },
   ].filter(Boolean) as NavItem[];
-
-  const showcaseWrap =
-    project.showcase?.device === "phone" ? "max-w-[300px]" : "max-w-3xl";
 
   // Steps with a clip alternate sides, counted among themselves.
   let clipCount = 0;
@@ -313,69 +306,27 @@ export default async function CaseStudyPage({
         </header>
       </div>
 
-      {/* Hero visual: the main clip on the project's colour, or a framed visual */}
+      {/* Hero visual: the main clip on the project's colour, or the cover */}
       {project.heroVideo ? (
         <ClipBand label="Main clip" clip={project.heroVideo} glow={surface?.glow} />
       ) : (
-        <div className="mx-auto max-w-5xl px-6 sm:px-8">
-          {project.heroImage ? (
+        project.cover && (
+          <div className="mx-auto max-w-5xl px-6 sm:px-8">
             <Reveal variant="scale">
-              <figure className="relative mx-auto max-w-3xl">
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-0 -top-12 bottom-0 -z-10 hero-glow"
-                />
+              <div className="mb-4 overflow-hidden rounded-2xl border border-line bg-paper-2">
                 <Image
-                  src={project.heroImage.src}
-                  alt={project.heroImage.alt}
-                  width={project.heroImage.width}
-                  height={project.heroImage.height}
+                  src={project.cover.src}
+                  alt={project.cover.alt}
+                  width={project.cover.width}
+                  height={project.cover.height}
                   className="h-auto w-full"
                   priority
-                  sizes="(min-width: 1024px) 768px, 100vw"
+                  sizes="(min-width: 1024px) 1024px, 100vw"
                 />
-              </figure>
+              </div>
             </Reveal>
-          ) : project.showcase ? (
-            <Reveal variant="scale">
-              <figure className={`mx-auto ${showcaseWrap}`}>
-                <DeviceFrame
-                  device={project.showcase.device}
-                  src={project.showcase.src}
-                  alt={project.showcase.alt}
-                  video={project.showcase.video}
-                  poster={project.showcase.poster}
-                  sizes={
-                    project.showcase.device === "phone"
-                      ? "300px"
-                      : "(min-width: 768px) 768px, 90vw"
-                  }
-                />
-                {project.showcase.caption && (
-                  <figcaption className="mt-4 text-center text-[13px] text-muted-2">
-                    {project.showcase.caption}
-                  </figcaption>
-                )}
-              </figure>
-            </Reveal>
-          ) : (
-            project.cover && (
-              <Reveal variant="scale">
-                <div className="mb-4 overflow-hidden rounded-2xl border border-line bg-paper-2">
-                  <Image
-                    src={project.cover.src}
-                    alt={project.cover.alt}
-                    width={project.cover.width}
-                    height={project.cover.height}
-                    className="h-auto w-full"
-                    priority
-                    sizes="(min-width: 1024px) 1024px, 100vw"
-                  />
-                </div>
-              </Reveal>
-            )
-          )}
-        </div>
+          </div>
+        )
       )}
 
       <div className="mx-auto max-w-5xl px-6 sm:px-8">
@@ -408,16 +359,6 @@ export default async function CaseStudyPage({
               <Reveal>
                 <p className="text-[17px] leading-relaxed text-ink/90">
                   {project.overview}
-                </p>
-              </Reveal>
-            </Section>
-          )}
-
-          {project.challenge && (
-            <Section id="challenge" label="The Challenge">
-              <Reveal>
-                <p className="text-[17px] leading-relaxed text-ink/90">
-                  {project.challenge}
                 </p>
               </Reveal>
             </Section>
@@ -537,27 +478,6 @@ export default async function CaseStudyPage({
       {hasGlimpse && (
         <div className="mx-auto max-w-5xl px-6 sm:px-8">
           <Section id="glimpse" label="A glimpse">
-            {project.video && (
-              <Reveal variant="scale">
-                <figure className="mb-5">
-                  <div className="overflow-hidden rounded-xl border border-line bg-paper-2">
-                    <video
-                      className="h-auto w-full"
-                      src={project.video.src}
-                      poster={project.video.poster}
-                      controls
-                      playsInline
-                      preload="metadata"
-                    />
-                  </div>
-                  {project.video.caption && (
-                    <figcaption className="mt-3 text-[13px] text-muted-2">
-                      {project.video.caption}
-                    </figcaption>
-                  )}
-                </figure>
-              </Reveal>
-            )}
             {project.images && project.images.length > 0 && (
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {project.images.map((img, i) => (

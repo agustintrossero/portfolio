@@ -63,6 +63,13 @@ chapter() { slice "$1" "$2" "$3" "$4" 1280:720 "${5:-23}"; }
 # Part of a screen-only clip as a phone loop (optional fifth argument: CRF).
 phonecut() { slice "$1" "$2" "$3" "$4" 720:1560 "${5:-27}"; }
 
+# Lighter 720p copy of a full-width 1080p clip, for phones: source, output,
+# optional CRF. It starts from the web clip, so it keeps the same cut.
+small() {
+  stale "$1" "$2" || return 0
+  ffmpeg -v error -y -i "$1" -vf "scale=1280:720:flags=lanczos" "${x264[@]}" -crf "${3:-30}" "$2"
+}
+
 # Poster from a video: one frame at a given second, as WebP of a given width.
 poster() {
   stale "$1" "$3" || return 0
@@ -267,6 +274,13 @@ chapter "$CS/03-block-library-16x9.mp4" 14.6 28.4 "$OUT/casino-template-set/ever
 poster "$CS/03-block-library-16x9.mp4" 27 "$OUT/casino-template-set/every-site.webp" 1280
 share "$OUT/casino-template-set/phones.webp" "$OUT/casino-template-set/cover.jpg"
 report casino-template-set phones.mp4 phones.webp scene.mp4 scene.webp data-matrix.mp4 data-matrix.webp library.mp4 library.webp every-site.mp4 every-site.webp cover.jpg
+
+echo "Phone versions of the full-width clips"
+for clip in gds/theme-swap gds/block-library lebi/onboarding lebi/screens lumio/intro lumio/screens \
+  moveup-tools/mosaic foundry/tour foundry/mosaic casino-template-set/phones; do
+  small "$OUT/$clip.mp4" "$OUT/$clip-sm.mp4"
+  say "$OUT/$clip-sm.mp4"
+done
 
 echo "Site: CV and portrait"
 # The CV is rendered from Desktop/Agus/CV/cv.html by its own render.sh. The

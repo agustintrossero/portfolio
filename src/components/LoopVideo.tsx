@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 type Props = {
   /** mp4 path inside /public. */
   src: string;
+  /** Lighter copy for screens up to 767px wide (optional). */
+  small?: string;
   /** Still frame shown before playback and whenever motion is not wanted. */
   poster: string;
   /** Accessible description of what the clip shows. */
@@ -48,6 +50,7 @@ function PauseIcon({ className }: { className: string }) {
  */
 export default function LoopVideo({
   src,
+  small,
   poster,
   label,
   ratio = "16 / 9",
@@ -143,7 +146,7 @@ export default function LoopVideo({
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
-        src={src}
+        src={small ? undefined : src}
         poster={poster}
         muted
         loop
@@ -152,7 +155,12 @@ export default function LoopVideo({
         aria-label={label}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
-      />
+      >
+        {/* The browser takes the first source that matches when it starts
+            loading, so phones get the light copy. */}
+        {small && <source src={small} type="video/mp4" media="(max-width: 767px)" />}
+        {small && <source src={src} type="video/mp4" />}
+      </video>
 
       {waiting && !playing ? (
         <button
