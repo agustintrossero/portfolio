@@ -690,8 +690,9 @@ export const projects: Project[] = [
   {
     slug: "moveup-tools",
     company: "MoveUp Tools",
-    role: "Lead UX/UI Designer", // (confirm how to credit design and build)
-    headline: "One portal. Every tool.",
+    role: "Creator and design engineer",
+    period: "2026 to present",
+    headline: "Internal tools are products too. I treated them that way.",
     scene: {
       eyebrow: "Internal SaaS · AI tools",
       headline: "One portal, | every tool.",
@@ -720,16 +721,137 @@ export const projects: Project[] = [
       flip: true,
     },
     summary:
-      "The internal SaaS of MoveUp Media: the company's apps and news behind one sign-in. I designed and built the portal and six of its tools, from AI video to brand assets.",
-    tags: ["SAAS", "INTERNAL PLATFORM", "AI TOOLS", "DESIGN ENGINEERING"],
+      "The internal platform of MoveUp Media: one portal, behind the company's Google sign in, for its apps and news. I designed and built the portal and six of its tools, from AI video production to brand assets.",
+    tags: [
+      "PRODUCT DESIGN",
+      "DESIGN ENGINEERING",
+      "SAAS",
+      "AI PRODUCT",
+      "INTERNAL TOOLS",
+      "DATA VISUALIZATION",
+    ],
     published: true,
-    showcase: {
-      device: "phone",
-      src: "/work/moveup-tools/tour-phone.webp",
-      alt: "A tour of MoveUp Tools on mobile: the portal, Video Studio, Brand Assets, news and a survey",
-      video: "/work/moveup-tools/tour-phone.mp4",
-      caption: "The portal and its tools on mobile. Colleagues' names are fictional.",
+    cover: {
+      src: "/work/moveup-tools/cover.jpg",
+      alt: "Seven tools, one platform: a wall of MoveUp Tools screens",
+      width: 1200,
+      height: 675,
     },
+    heroVideo: {
+      src: "/work/moveup-tools/mosaic.mp4",
+      poster: "/work/moveup-tools/mosaic.webp",
+      alt: "The portal home pulls back into a wall of screens from the seven tools: seven tools, one platform, then the MoveUp Tools logo",
+      caption: "Captured from the live product. Colleagues' names are fictional.",
+    },
+    stats: [
+      { value: "11", label: "apps in one portal" },
+      { value: "7", label: "tools I designed and built" },
+      { value: "3", label: "AI services in Video Studio" },
+      { value: "$1.51", label: "for a 10 second AI clip, estimated at $1.80" },
+    ],
+    overview:
+      "MoveUp Tools is the internal platform of MoveUp Media, a digital media group with sports and news brands. One portal, behind the company's Google sign in, brings together 11 apps and the company news. I designed and built the portal and six of its tools: Video Studio, Brand Assets, PODs, Bugs & Tickets, News and Surveys. The other apps, such as the wiki and the help desk, are integrations I did not build.",
+    opportunities: [
+      {
+        title: "One front door",
+        hmw: "How might we give every team one place for its tools and the company news, behind the sign in it already has?",
+      },
+      {
+        title: "AI video without surprises",
+        hmw: "How might we let the team produce AI video while every paid generation stays deliberate and its cost visible?",
+      },
+      {
+        title: "Brands on tap",
+        hmw: "How might we let anyone find the right logo for any brand, and adapt a promo banner without waiting for a designer?",
+      },
+      {
+        title: "Delivery at a glance",
+        hmw: "How might we show each POD's roadmap and the team's quality trends without digging through Jira?",
+      },
+      {
+        title: "Notices that land",
+        hmw: "How might we make sure the notices that need action are seen before their deadline?",
+      },
+      {
+        title: "Many tools, one platform",
+        hmw: "How might we give each tool its own character and still make them feel like one product?",
+      },
+    ],
+    approach: [
+      {
+        title: "One portal, one sign in",
+        body: "Everything sits behind Google sign in, open only to company accounts. The portal groups 11 apps into five categories, with search, pinned favorites and the company news beside them, and a shared top bar jumps between apps without going back home.",
+        media: {
+          src: "/work/moveup-tools/portal-filter.mp4",
+          poster: "/work/moveup-tools/portal-filter.webp",
+          alt: "The portal home filtered to Studio and Creative: Video Studio and Brand Assets, with the news feed beside them",
+        },
+      },
+      {
+        title: "One platform, many voices",
+        body: "Designing and building it myself let each tool keep its own character inside one platform: Video Studio in burgundy, Brand Assets in pink, all on one type system (Bai Jamjuree, Manrope and Fira Code), one gradient and one top bar.",
+      },
+      {
+        title: "From brief to video",
+        body: "Video Studio turns a story into a short AI video. The editor works in five steps (brief, references, scenes, generate and clips) with a node canvas that shows how every piece connects, and Autopilot goes from a news link to a script read by an avatar with a fixed voice and style. Automations add intros, outros and music, or turn an article into a 16:9 video. It runs on Seedance, ElevenLabs and Gemini, in Portuguese and English.",
+        media: {
+          src: "/work/moveup-tools/studio-brief.mp4",
+          poster: "/work/moveup-tools/studio-brief.webp",
+          alt: "Video Studio: the studio home, the projects, then the brief, the references and the scenes of a project",
+        },
+      },
+      {
+        title: "Real clips, real costs",
+        body: "Every generation costs money, so none happens by accident. The studio shows the estimated cost before generating, asks for a payload preview and an explicit click for anything paid, and shows the final cost on every clip. A 10 second clip came in at $1.51 against an estimate of $1.80.",
+        media: {
+          src: "/work/moveup-tools/studio-clips.mp4",
+          poster: "/work/moveup-tools/studio-clips.webp",
+          alt: "The generated clip with its final cost of $1.51, then the node canvas linking the brief, the character sheet and the scene",
+        },
+      },
+      {
+        title: "Every brand, one library",
+        body: "Brand Assets keeps the logos and formats of every brand, own and partner, in one library with a brand filter, search and upload, plus the management of users and brands. Its Image Creator re-skins a promo banner for another operator: it swaps the logo and the bonus code and leaves the background untouched. A chat assistant is always one click away.",
+        media: {
+          src: "/work/moveup-tools/brand-assets.mp4",
+          poster: "/work/moveup-tools/brand-assets.webp",
+          alt: "Brand Assets: the dashboard, the library filtered by brand, brand management and the Image Creator",
+        },
+      },
+      {
+        title: "Delivery and quality at a glance",
+        body: "PODs reads Jira and draws each POD's roadmap on a timeline by month or quarter, filtered by person and exportable as HTML. Bugs & Tickets searches the WordPress and help desk tickets, splits bugs by where they came from with a 30 day trend, and its QA tab follows time in QA, reopen rate, bugs that reached production and automated coverage.",
+        media: {
+          src: "/work/moveup-tools/pods.mp4",
+          poster: "/work/moveup-tools/pods.webp",
+          alt: "The PODs timeline: each POD's epics as bars across the months, filtered by person",
+        },
+      },
+      {
+        title: "News and polls, built in",
+        body: "News sorts company notices by category, marks what is unread and flags what needs action before a deadline, with each article in a side panel. Surveys keep answers private and show the results as bars.",
+        media: {
+          src: "/work/moveup-tools/survey.mp4",
+          poster: "/work/moveup-tools/survey.webp",
+          alt: "The results of a project retrospective survey filling in as bars",
+        },
+      },
+    ],
+    impact: [
+      "The front door every department uses: 11 apps and the company news behind one Google sign in.",
+      "AI video without surprise bills: the cost is visible before any paid generation, and a 10 second clip came in at $1.51 against a $1.80 estimate.",
+      "Seven tools, the portal included, designed and built end to end by me and running in production.",
+    ],
+    images: [
+      {
+        src: "/work/moveup-tools/mobile.webp",
+        alt: "The portal, Video Studio, Brand Assets and News on mobile",
+        caption: "The portal and three of its tools on mobile.",
+        span: "wide",
+        width: 1600,
+        height: 900,
+      },
+    ],
   },
 
   /* ════════════════════════════ GALLERY (quick) ══════════════════════════ */

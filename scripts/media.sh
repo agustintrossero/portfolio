@@ -7,6 +7,8 @@
 # FORCE=1 to rebuild everything (for example after changing a CRF).
 # The Lebi screens (mockup, journey, before/after, landings) came from
 # rodrigopeixoto.me as PNG and are committed as WebP, so they are not here.
+# The phone sheets (a row of real screens as one image) come from
+# scripts/phone-sheets.mjs.
 # Needs ffmpeg and cwebp (Homebrew). Run it with bash, not zsh.
 
 set -euo pipefail
@@ -102,11 +104,8 @@ phone "$IDEA/lebi-video/out/case-study/01-onboarding-screen-only.mp4" "$OUT/lebi
 poster "$OUT/lebi/onboarding-phone.mp4" 6 "$OUT/lebi/onboarding-phone.webp" 720
 phone "$IDEA/lebi-video/out/case-study/02-wallet-screen-only.mp4" "$OUT/lebi/wallet-phone.mp4"
 poster "$OUT/lebi/wallet-phone.mp4" 2 "$OUT/lebi/wallet-phone.webp" 720
-phone "$IDEA/moveup-tools-video/out/moveup-tour-screen.mp4" "$OUT/moveup-tools/tour-phone.mp4" 32
-poster "$OUT/moveup-tools/tour-phone.mp4" 1 "$OUT/moveup-tools/tour-phone.webp" 720
 report lumio tour-phone.mp4 tour-phone.webp
 report lebi onboarding-phone.mp4 onboarding-phone.webp wallet-phone.mp4 wallet-phone.webp
-report moveup-tools tour-phone.mp4 tour-phone.webp
 
 echo "Home: scene layers"
 webp "$IDEA/lebi-video/mascot/mascot-cheer.png" "$OUT/lebi/mascot-cheer.webp"
@@ -165,3 +164,24 @@ hero "$IDEA/lumio-video/out/lumio-screens-16x9.mp4" "$OUT/lumio/screens.mp4" 30
 still "$IDEA/lumio-video/out/case-study/03-screens-poster.jpg" "$OUT/lumio/screens.webp" 1600
 share "$IDEA/lumio-video/out/case-study/01-intro-poster.jpg" "$OUT/lumio/cover.jpg"
 report lumio intro.mp4 intro.webp index.mp4 index.webp pro.mp4 pro.webp payment.mp4 payment.webp screens.mp4 screens.webp cover.jpg
+
+echo "MoveUp Tools case study"
+MU="$IDEA/moveup-tools-video/out"
+hero "$MU/moveup-mosaic-16x9.mp4" "$OUT/moveup-tools/mosaic.mp4" 30
+still "$MU/case-study/posters/moveup-mosaic-16x9.png" "$OUT/moveup-tools/mosaic.webp" 1600
+# Video Studio in two cuts: from the studio home to the scenes, then the
+# clips with their final cost, the canvas and the closing title.
+chapter "$MU/moveup-video-studio-16x9.mp4" 3.8 14.8 "$OUT/moveup-tools/studio-brief.mp4"
+poster "$MU/moveup-video-studio-16x9.mp4" 9 "$OUT/moveup-tools/studio-brief.webp" 1280
+chapter "$MU/moveup-video-studio-16x9.mp4" 15 31 "$OUT/moveup-tools/studio-clips.mp4"
+poster "$MU/moveup-video-studio-16x9.mp4" 17.5 "$OUT/moveup-tools/studio-clips.webp" 1280
+# Brand Assets starts once its opening title has faded: the title counts
+# brands, a number that is not published.
+chapter "$MU/moveup-brand-assets-16x9.mp4" 3.5 21 "$OUT/moveup-tools/brand-assets.mp4"
+poster "$MU/moveup-brand-assets-16x9.mp4" 8 "$OUT/moveup-tools/brand-assets.webp" 1280
+copy "$MU/case-study/04-pods-timeline.mp4" "$OUT/moveup-tools/pods.mp4"
+poster "$OUT/moveup-tools/pods.mp4" 3 "$OUT/moveup-tools/pods.webp" 1280
+copy "$MU/case-study/06-survey-results.mp4" "$OUT/moveup-tools/survey.mp4"
+poster "$OUT/moveup-tools/survey.mp4" 2.5 "$OUT/moveup-tools/survey.webp" 1280
+share "$MU/case-study/posters/moveup-mosaic-16x9.png" "$OUT/moveup-tools/cover.jpg"
+report moveup-tools mosaic.mp4 mosaic.webp studio-brief.mp4 studio-brief.webp studio-clips.mp4 studio-clips.webp brand-assets.mp4 brand-assets.webp pods.mp4 pods.webp survey.mp4 survey.webp cover.jpg
