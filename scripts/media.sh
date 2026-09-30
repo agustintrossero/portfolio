@@ -109,10 +109,8 @@ poster "$OUT/lumio/tour-phone.mp4" 0.5 "$OUT/lumio/tour-phone.webp" 720
 # (lebi.html, intro: 4.2), so the loop starts after it.
 phonecut "$IDEA/lebi-video/out/case-study/01-onboarding-screen-only.mp4" 4.2 34 "$OUT/lebi/onboarding-phone.mp4"
 poster "$OUT/lebi/onboarding-phone.mp4" 1.5 "$OUT/lebi/onboarding-phone.webp" 720
-phone "$IDEA/lebi-video/out/case-study/02-wallet-screen-only.mp4" "$OUT/lebi/wallet-phone.mp4"
-poster "$OUT/lebi/wallet-phone.mp4" 2 "$OUT/lebi/wallet-phone.webp" 720
 report lumio tour-phone.mp4 tour-phone.webp
-report lebi onboarding-phone.mp4 onboarding-phone.webp wallet-phone.mp4 wallet-phone.webp
+report lebi onboarding-phone.mp4 onboarding-phone.webp
 
 echo "Home: hero deck"
 # Short loops for the cards in the home hero, cut from each case main clip.
@@ -143,13 +141,12 @@ report moveup-tools teaser.mp4 teaser.webp
 
 echo "Home: scene layers"
 webp "$IDEA/lebi-video/mascot/mascot-cheer.png" "$OUT/lebi/mascot-cheer.webp"
-webp "$IDEA/lebi-video/mascot/mascot-hold.png" "$OUT/lebi/mascot-hold.webp"
 still "$IDEA/lumio-video/screens/expanded.png" "$OUT/lumio/screen-index.webp" 720
 copy "$IDEA/moveup-tools-video/out/case-study/01-portal-filter.mp4" "$OUT/moveup-tools/portal-filter.mp4"
 poster "$OUT/moveup-tools/portal-filter.mp4" 0.2 "$OUT/moveup-tools/portal-filter.webp" 1280
 copy "$IDEA/moveup-tools-video/out/case-study/07-phone-portal.mp4" "$OUT/moveup-tools/phone-portal.mp4"
 poster "$OUT/moveup-tools/phone-portal.mp4" 0.2 "$OUT/moveup-tools/phone-portal.webp" 540
-report lebi mascot-cheer.webp mascot-hold.webp
+report lebi mascot-cheer.webp
 report lumio screen-index.webp
 report moveup-tools portal-filter.mp4 portal-filter.webp phone-portal.mp4 phone-portal.webp
 

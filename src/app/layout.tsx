@@ -28,11 +28,15 @@ export const metadata: Metadata = {
     url: site.baseUrl,
     siteName: site.name,
     type: "website",
+    // The home hero at 1200x630, captured still (reduced motion) from the
+    // built site. Case pages override it with their own cover.
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "The home of the portfolio: the headline beside a deck of four case studies" }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} · ${site.role}`,
     description: site.tagline,
+    images: ["/og.jpg"],
   },
 };
 
