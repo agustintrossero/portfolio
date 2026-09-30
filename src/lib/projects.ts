@@ -1044,6 +1044,140 @@ export const projects: Project[] = [
     },
   },
 
+  /* ═════════════════════════ 6 · CASINO TEMPLATE SET ═════════════════════════ */
+  {
+    slug: "casino-template-set",
+    company: "Casino Template Set",
+    role: "Design lead",
+    period: "2026",
+    headline: "Same blocks. Same data. Five identities.",
+    scene: {
+      eyebrow: "Template system · Data design",
+      headline: "Same blocks. Same data. | Five identities.",
+      line: "The template set behind MoveUp's casino sites: designed once, then rebuilt in five identities from one block library and one data model.",
+      chips: ["Design systems", "Data design", "Multi-site"],
+      teaser: {
+        src: "/work/casino-template-set/teaser.mp4",
+        poster: "/work/casino-template-set/teaser.webp",
+        alt: "Five casino sites in five identities scrolling their home in sync",
+      },
+      tint: "190, 44, 64",
+      surface: {
+        bg: "#0A0A0C",
+        ink: "#F3F3F1",
+        muted: "#A0A09B",
+        lead: "#7C7C78",
+        accent: "#F3F3F1",
+        line: "rgba(243, 243, 241, 0.16)",
+        glow: "radial-gradient(50% 55% at 40% 48%, rgba(170, 36, 56, 0.24), transparent 70%)",
+      },
+      media: {
+        kind: "clip",
+        video: "/work/casino-template-set/scene.mp4",
+        poster: "/work/casino-template-set/scene.webp",
+        alt: "Five phones with five casino sites, each in its own identity, scrolling the same home sections in sync",
+      },
+      flip: true,
+    },
+    summary:
+      "The set of screens MoveUp's casino sites are built from on Core Studio. I designed it on ItaliaCasinos, cut its block library from the final site and wrote down every field its screens need, so each new site keeps the blocks and the data and changes only its identity.",
+    tags: [
+      "DESIGN SYSTEMS",
+      "TEMPLATES",
+      "DATA DESIGN",
+      "MULTI-SITE",
+      "ACCESSIBILITY",
+      "DESIGN QA",
+    ],
+    published: true,
+    cover: {
+      src: "/work/casino-template-set/cover.jpg",
+      alt: "Five phones with five casino sites built from one template set",
+      width: 1200,
+      height: 675,
+    },
+    heroVideo: {
+      src: "/work/casino-template-set/phones.mp4",
+      poster: "/work/casino-template-set/phones.webp",
+      alt: "ItaliaCasinos alone on a phone, then four more sites join: five identities scroll the same sections in sync, open their menus, reach the same review and copy its bonus code",
+      caption:
+        "The sites run live inside the phones. Operators, figures and codes are the placeholders of the template sets.",
+    },
+    stats: [
+      { value: "5", label: "sites on one set of 71 sections" },
+      { value: "30", label: "blocks and 59 variants in the library" },
+      { value: "75", label: "data fields, every one answered" },
+      { value: "67", label: "automated quality checks" },
+    ],
+    overview:
+      "Core Studio is the platform MoveUp runs its sites on, and the casino template set is the set of screens its casino sites are built from: home, intent page, review, bonus page and promo code page, 71 sections in all. I designed the set on ItaliaCasinos, where it was defined and validated, and it became the reference every later site starts from. Five sites have been rebuilt from it so far, from Italy to LatAm, New Jersey and Switzerland, each in its own identity.",
+    opportunities: [
+      {
+        title: "A new site, not a redesign",
+        hmw: "How might we launch a new casino site from the same set, and still give it its own identity?",
+      },
+      {
+        title: "Every figure needs a field",
+        hmw: "How might we make sure every figure on every screen has a real data field behind it?",
+      },
+      {
+        title: "A library that cannot drift",
+        hmw: "How might we keep the block library identical to the sites built with it?",
+      },
+      {
+        title: "Markets as data",
+        hmw: "How might we change country, currency, regulator and language without touching the design?",
+      },
+    ],
+    approach: [
+      {
+        title: "Defined once",
+        body: "I designed the set on ItaliaCasinos, the first site, and validated it there. The rule for everything after it: same blocks, same data, a different identity, market and HTML structure. A new site does not redesign the set; it reuses its sections and blocks, and every site carries its own class prefix, so no two share the same markup.",
+      },
+      {
+        title: "Every figure needs a field",
+        body: "Each figure on each screen reads a field, and nobody could say whether those fields existed: the list had never been written in one place. I wrote it down: 75 fields in 9 records, from the operator and the offer to the market profile and the page settings, each with the value it shows on screen and the name the library uses, so every figure traces back to the block that reads it. Core Studio answered all 75: 11 confirmed, 25 to create, 8 derived or computed, 19 in WordPress, 5 kept by hand and 7 to decide. The first build phase takes 10 of them.",
+        media: {
+          src: "/work/casino-template-set/data-matrix.mp4",
+          poster: "/work/casino-template-set/data-matrix.webp",
+          alt: "A casino card with 13 figures tied to their fields, then 75 fields in nine records, the answers coming in and the build plan",
+        },
+      },
+      {
+        title: "Cut from the final site",
+        body: "The block library has no copy of its own: every block is cut from the final ItaliaCasinos site at build time, so it can never fall behind the site. The rule: a block is a component a developer builds once, and a list, a grid or a section is not a block. That turned the 33 entries of the first version into 21 real components, and the final site added 9: 30 blocks and 59 variants in 8 families.",
+        media: {
+          src: "/work/casino-template-set/library.mp4",
+          poster: "/work/casino-template-set/library.webp",
+          alt: "Eleven blocks marked on the ItaliaCasinos home fly into the library, then the wall of 30 blocks in eight families",
+        },
+      },
+      {
+        title: "Carried to every site",
+        body: "Each new site keeps the blocks and the data and changes the identity. Top Casinos Latino came first, with a dark header: white on its brand red measured 4.00:1 and failed AA, so its button carries near black text. Then Play US Casinos for New Jersey, REX Casinos, light first at the client's request, and casinotell for Switzerland, where promo codes do not exist.",
+        media: {
+          src: "/work/casino-template-set/every-site.mp4",
+          poster: "/work/casino-template-set/every-site.webp",
+          alt: "Ten blocks side by side across the five sites, with an empty column for the next one",
+        },
+      },
+      {
+        title: "The market is data",
+        body: "A market is a record, not a pile of literals: country, locale, currency, separators, legal age, regulator and helplines. The market formats the money; the language only changes the words.",
+      },
+      {
+        title: "Quality gates on every site",
+        body: "Every site passes 45 static gates and 22 rendered checks, from grid gaps and overlaps to contrast and touch targets. Each new gate is proven by breaking a site on purpose.",
+      },
+    ],
+    impact: [
+      "One template set now runs five sites in five identities, from Italy to LatAm, New Jersey and Switzerland, and the next site starts from the same blocks.",
+      "Every figure has a field behind it: 75 fields answered by Core Studio, with a first build phase of 10.",
+      "A block library that cannot drift from the product, because it is cut from the final site on every build.",
+      "Accessibility and quality checked on every site, with 45 static gates and 22 rendered checks.",
+    ],
+  },
+
   /* ════════════════════════════ GALLERY (quick) ══════════════════════════ */
   {
     slug: "dima-world-cup",

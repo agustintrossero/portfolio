@@ -100,7 +100,7 @@ report() {
   for f in "$@"; do say "$OUT/$dir/$f"; done
 }
 
-mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools" "$OUT/foundry"
+mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools" "$OUT/foundry" "$OUT/casino-template-set"
 
 echo "Home: phone clips"
 phone "$IDEA/lumio-video/out/case-study/02-tour-screen-only.mp4" "$OUT/lumio/tour-phone.mp4"
@@ -140,7 +140,10 @@ report lumio teaser.mp4 teaser.webp
 report moveup-tools teaser.mp4 teaser.webp
 teaser "$IDEA/foundry-video/out/foundry-mosaic-16x9.mp4" 0.3 9.8 "$OUT/foundry/teaser.mp4"
 poster "$OUT/foundry/teaser.mp4" 7.2 "$OUT/foundry/teaser.webp" 960
+teaser "$IDEA/casinos-video/out/01-phones-16x9.mp4" 4.6 12.4 "$OUT/casino-template-set/teaser.mp4"
+poster "$OUT/casino-template-set/teaser.mp4" 1.5 "$OUT/casino-template-set/teaser.webp" 960
 report foundry teaser.mp4 teaser.webp
+report casino-template-set teaser.mp4 teaser.webp
 
 echo "Home: scene layers"
 webp "$IDEA/lebi-video/mascot/mascot-cheer.png" "$OUT/lebi/mascot-cheer.webp"
@@ -247,6 +250,23 @@ hero "$FD/foundry-mosaic-16x9.mp4" "$OUT/foundry/mosaic.mp4" 30
 still "$FD/case-study/posters/foundry-mosaic-16x9.png" "$OUT/foundry/mosaic.webp" 1600
 share "$FD/case-study/posters/foundry-mosaic-16x9.png" "$OUT/foundry/cover.jpg"
 report foundry tour.mp4 tour.webp library.mp4 library.webp present-on.mp4 present-on.webp contract.mp4 contract.webp design-to-pr.mp4 design-to-pr.webp pull-request.webp reuse.mp4 reuse.webp mosaic.mp4 mosaic.webp cover.jpg
+
+echo "Casino template set case study"
+CS="$IDEA/casinos-video/out"
+# Five phones of small text: CRF 30 reads the same as 26 at 6 MB instead of 8.
+hero "$CS/01-phones-16x9.mp4" "$OUT/casino-template-set/phones.mp4" 30
+poster "$CS/01-phones-16x9.mp4" 29 "$OUT/casino-template-set/phones.webp" 1600
+# The home scene: the five sites entering and scrolling their home in sync.
+chapter "$CS/01-phones-16x9.mp4" 3.3 15.1 "$OUT/casino-template-set/scene.mp4" 27
+poster "$CS/01-phones-16x9.mp4" 9 "$OUT/casino-template-set/scene.webp" 1280
+chapter "$CS/02-data-matrix-16x9.mp4" 0 25.6 "$OUT/casino-template-set/data-matrix.mp4"
+poster "$CS/02-data-matrix-16x9.mp4" 17.5 "$OUT/casino-template-set/data-matrix.webp" 1280
+chapter "$CS/03-block-library-16x9.mp4" 0.2 14.6 "$OUT/casino-template-set/library.mp4"
+poster "$CS/03-block-library-16x9.mp4" 12 "$OUT/casino-template-set/library.webp" 1280
+chapter "$CS/03-block-library-16x9.mp4" 14.6 28.4 "$OUT/casino-template-set/every-site.mp4"
+poster "$CS/03-block-library-16x9.mp4" 27 "$OUT/casino-template-set/every-site.webp" 1280
+share "$OUT/casino-template-set/phones.webp" "$OUT/casino-template-set/cover.jpg"
+report casino-template-set phones.mp4 phones.webp scene.mp4 scene.webp data-matrix.mp4 data-matrix.webp library.mp4 library.webp every-site.mp4 every-site.webp cover.jpg
 
 echo "Site: CV and portrait"
 # The CV is rendered from Desktop/Agus/CV/cv.html by its own render.sh. The
