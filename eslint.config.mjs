@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local state of the Netlify CLI, including a copy of the built site.
+    ".netlify/**",
   ]),
 ]);
 
