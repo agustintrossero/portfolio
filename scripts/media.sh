@@ -48,7 +48,7 @@ hero() {
 
 # Part of a longer clip as a loop: source, start, end, output, size, CRF.
 # The last half second fades into the first, so the cut loops without a jump.
-cut() {
+slice() {
   stale "$1" "$4" || return 0
   local len fade=0.5
   len=$(awk "BEGIN { print $3 - $2 }")
@@ -58,10 +58,10 @@ cut() {
 }
 
 # One chapter of a 16:9 clip as a 720p loop (optional fifth argument: CRF).
-chapter() { cut "$1" "$2" "$3" "$4" 1280:720 "${5:-23}"; }
+chapter() { slice "$1" "$2" "$3" "$4" 1280:720 "${5:-23}"; }
 
 # Part of a screen-only clip as a phone loop (optional fifth argument: CRF).
-phonecut() { cut "$1" "$2" "$3" "$4" 720:1560 "${5:-27}"; }
+phonecut() { slice "$1" "$2" "$3" "$4" 720:1560 "${5:-27}"; }
 
 # Poster from a video: one frame at a given second, as WebP of a given width.
 poster() {
@@ -192,3 +192,12 @@ copy "$MU/case-study/06-survey-results.mp4" "$OUT/moveup-tools/survey.mp4"
 poster "$OUT/moveup-tools/survey.mp4" 2.5 "$OUT/moveup-tools/survey.webp" 1280
 share "$MU/case-study/posters/moveup-mosaic-16x9.png" "$OUT/moveup-tools/cover.jpg"
 report moveup-tools mosaic.mp4 mosaic.webp studio-brief.mp4 studio-brief.webp studio-clips.mp4 studio-clips.webp brand-assets.mp4 brand-assets.webp pods.mp4 pods.webp survey.mp4 survey.webp cover.jpg
+
+echo "Site: CV and portrait"
+# The CV is rendered from Desktop/Agus/CV/cv.html by its own render.sh. The
+# version with photo and portfolio link is the one meant to be shared.
+CV="$HOME/Desktop/Agus/CV"
+copy "$CV/Agustin_Trossero_CV.pdf" "$ROOT/public/Agustin_Trossero_CV.pdf"
+still "$CV/linkedin-foto.jpg" "$ROOT/public/portrait.webp" 640
+say "$ROOT/public/Agustin_Trossero_CV.pdf"
+say "$ROOT/public/portrait.webp"

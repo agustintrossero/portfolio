@@ -334,7 +334,7 @@ export const projects: Project[] = [
     slug: "lebi",
     company: "Lebi",
     role: "Creator and design lead",
-    period: "2024 to 2025",
+    period: "2025",
     headline: "It began as scattered ideas. I gave it a spine.",
     scene: {
       eyebrow: "SaaS platform · Leadership",
@@ -561,6 +561,7 @@ export const projects: Project[] = [
       "DATA VISUALIZATION",
       "MONETIZATION",
       "PAYMENTS",
+      "BRANDING",
     ],
     published: true,
     cover: {
@@ -582,7 +583,7 @@ export const projects: Project[] = [
       { value: "2", label: "themes, light and dark" },
     ],
     overview:
-      "Lumio is an AI analysis app for sports bettors. It reads match data and gives every match a confidence score, the Lumio Index, so a bet starts from probability instead of a hunch. I created Lumio and led its design end to end: onboarding, sign up, the Index, plans, payment and profile, 95 screens and states in all. The engineering team built it in house.",
+      "Lumio is an AI analysis app for sports bettors. It reads match data and gives every match a confidence score, the Lumio Index, so a bet starts from probability instead of a hunch. I created Lumio and led its design end to end, from the brand identity to the full app: onboarding, sign up, the Index, plans, payment and profile, 95 screens and states in all. The engineering team built it in house.",
     opportunities: [
       {
         title: "Clarity over noise",
@@ -665,7 +666,7 @@ export const projects: Project[] = [
       },
     ],
     impact: [
-      "Designed Lumio end to end, 95 screens and states from the first onboarding slide to the legal pages, built in house by the engineering team.",
+      "Live in Brazil: designed end to end, from the brand identity to 95 screens and states, and built in house by the engineering team.",
       "Every pick leads with one confidence score, color coded by risk and explained in plain language.",
       "A complete path from free to Pro, with a trial, rewards, referrals and a payment flow designed for every outcome, unhappy paths included.",
     ],

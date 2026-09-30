@@ -4,16 +4,16 @@
  */
 export const site = {
   name: "Agustín Trossero",
-  role: "Lead UX/UI Designer",
+  role: "Senior Product UX/UI Designer",
   // One-line positioning statement shown in the top bar / about.
   tagline: "Turning product vision into measurable outcomes.",
   email: "agustintrossero@gmail.com",
-  // Path to the CV inside /public. Drop the PDF there with this exact name.
-  resume: "/Agustin-Trossero-CV.pdf",
-  location: "Argentina",
+  // The CV inside /public, copied from Desktop/Agus/CV by scripts/media.sh.
+  resume: "/Agustin_Trossero_CV.pdf",
+  location: "Madrid, Spain",
   baseUrl: "https://agustin-trossero-portfolio.netlify.app",
 
-  // TODO: confirm/replace these URLs with your real profiles.
+  // The same profiles as the previous portfolio (checked 2026-09-30).
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/agustintrossero" },
     { label: "Behance", href: "https://www.behance.net/agustintrossero" },

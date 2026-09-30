@@ -35,8 +35,7 @@ export default function AboutPage() {
             <Reveal delay={80}>
               <h1 className="max-w-2xl text-balance text-[2rem] font-semibold leading-[1.1] tracking-tight sm:text-[2.75rem]">
                 <span className="text-muted-2">
-                  I&apos;m {site.name.split(" ")[0]}, a{" "}
-                  {site.role.toLowerCase()} who{" "}
+                  I&apos;m {site.name.split(" ")[0]}, a {site.role} who{" "}
                 </span>
                 <span className="text-ink">
                   turns vision into reality with design and code.
@@ -83,11 +82,11 @@ export default function AboutPage() {
             </Reveal>
           </div>
 
-          {/* Portrait: drop your photo at /public/portrait.jpg */}
+          {/* Portrait: the LinkedIn photo, built by scripts/media.sh */}
           <Reveal variant="right" delay={200} className="order-first sm:order-none">
             <div className="relative aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-2xl border border-line bg-paper-2">
               <Image
-                src="/portrait.svg"
+                src="/portrait.webp"
                 alt={`Portrait of ${site.name}`}
                 fill
                 className="object-cover"
