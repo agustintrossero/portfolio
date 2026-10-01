@@ -83,6 +83,13 @@ still() {
   cwebp -quiet -q 80 -resize "$3" 0 "$1" -o "$2"
 }
 
+# Part of a large still as WebP: source, x, y, width, height, output, width.
+crop() {
+  stale "$1" "$6" || return 0
+  ffmpeg -v error -y -i "$1" -vf "crop=$4:$5:$2:$3,scale=$7:-2:flags=lanczos" "$TMP/crop.png"
+  cwebp -quiet -q 84 "$TMP/crop.png" -o "$6"
+}
+
 # Transparent PNG to WebP, keeping the alpha channel intact.
 webp() {
   stale "$1" "$2" || return 0
@@ -107,7 +114,7 @@ report() {
   for f in "$@"; do say "$OUT/$dir/$f"; done
 }
 
-mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools" "$OUT/foundry" "$OUT/casino-template-set"
+mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools" "$OUT/foundry" "$OUT/casino-template-set" "$OUT/leaderboard"
 
 echo "Home: phone clips"
 phone "$IDEA/lumio-video/out/case-study/02-tour-screen-only.mp4" "$OUT/lumio/tour-phone.mp4"
@@ -150,6 +157,9 @@ poster "$OUT/foundry/teaser.mp4" 7.2 "$OUT/foundry/teaser.webp" 960
 teaser "$IDEA/casinos-video/out/01-phones-16x9.mp4" 4.6 12.4 "$OUT/casino-template-set/teaser.mp4"
 poster "$OUT/casino-template-set/teaser.mp4" 1.5 "$OUT/casino-template-set/teaser.webp" 960
 report foundry teaser.mp4 teaser.webp
+teaser "$IDEA/leaderboard-video/out/leaderboard-motion-16x9.mp4" 0.6 6.4 "$OUT/leaderboard/teaser.mp4"
+poster "$OUT/leaderboard/teaser.mp4" 1 "$OUT/leaderboard/teaser.webp" 960
+report leaderboard teaser.mp4 teaser.webp
 report casino-template-set teaser.mp4 teaser.webp
 
 echo "Home: scene layers"
@@ -275,10 +285,41 @@ poster "$CS/03-block-library-16x9.mp4" 27 "$OUT/casino-template-set/every-site.w
 share "$OUT/casino-template-set/phones.webp" "$OUT/casino-template-set/cover.jpg"
 report casino-template-set phones.mp4 phones.webp scene.mp4 scene.webp data-matrix.mp4 data-matrix.webp library.mp4 library.webp every-site.mp4 every-site.webp cover.jpg
 
+echo "Leaderboard case study"
+# Pieces rendered in ~/Desktop/idea/leaderboard-video from the Figma file:
+# the camera tours run over its real exports, the motion piece rebuilds the
+# leaderboard from its design context, the prototype tour uses captures of the
+# public prototype at 2.2x.
+LB="$IDEA/leaderboard-video"
+# CRF 33 keeps the notes legible at 5 MB.
+hero "$LB/out/leaderboard-process-16x9.mp4" "$OUT/leaderboard/process.mp4" 33
+poster "$OUT/leaderboard/process.mp4" 19.8 "$OUT/leaderboard/process.webp" 1600
+loop "$LB/out/leaderboard-motion-16x9.mp4" "$OUT/leaderboard/motion.mp4"
+poster "$OUT/leaderboard/motion.mp4" 0.4 "$OUT/leaderboard/motion.webp" 1280
+loop "$LB/out/leaderboard-handoff-16x9.mp4" "$OUT/leaderboard/handoff.mp4"
+poster "$OUT/leaderboard/handoff.mp4" 25.2 "$OUT/leaderboard/handoff.webp" 1280
+loop "$LB/out/leaderboard-design-system-16x9.mp4" "$OUT/leaderboard/design-system.mp4"
+poster "$OUT/leaderboard/design-system.mp4" 3.6 "$OUT/leaderboard/design-system.webp" 1280
+loop "$LB/out/leaderboard-prototype-16x9.mp4" "$OUT/leaderboard/prototype.mp4"
+poster "$OUT/leaderboard/prototype.mp4" 5.6 "$OUT/leaderboard/prototype.webp" 1280
+phone "$LB/out/leaderboard-motion-screen.mp4" "$OUT/leaderboard/motion-phone.mp4"
+poster "$OUT/leaderboard/motion-phone.mp4" 0.4 "$OUT/leaderboard/motion-phone.webp" 720
+still "$LB/screens-2x/your-card.png" "$OUT/leaderboard/screen-your-card.webp" 720
+webp "$LB/out/badge-gold.png" "$OUT/leaderboard/badge-gold.webp"
+# Mood board and palette, and the desktop layout, cut from the presentation.
+crop "$LB/exports/presentation-1x.png" 2713 1350 2952 822 "$OUT/leaderboard/research.webp" 1800
+crop "$LB/exports/presentation-1x.png" 2967 12218 1540 982 "$OUT/leaderboard/desktop.webp" 1540
+if stale "$LB/out/leaderboard-motion-16x9.mp4" "$OUT/leaderboard/cover.jpg"; then
+  ffmpeg -v error -y -ss 0.6 -i "$LB/out/leaderboard-motion-16x9.mp4" -frames:v 1 "$TMP/cover.png"
+  sips -s format jpeg -s formatOptions 82 -Z 1200 "$TMP/cover.png" --out "$OUT/leaderboard/cover.jpg" >/dev/null
+fi
+report leaderboard process.mp4 process.webp motion.mp4 motion.webp handoff.mp4 handoff.webp design-system.mp4 design-system.webp prototype.mp4 prototype.webp motion-phone.mp4 motion-phone.webp screen-your-card.webp badge-gold.webp research.webp desktop.webp cover.jpg
+
 echo "Phone versions of the full-width clips"
 for clip in gds/theme-swap gds/block-library lebi/onboarding lebi/screens lumio/intro lumio/screens \
-  moveup-tools/mosaic foundry/tour foundry/mosaic casino-template-set/phones; do
-  small "$OUT/$clip.mp4" "$OUT/$clip-sm.mp4"
+  moveup-tools/mosaic foundry/tour foundry/mosaic casino-template-set/phones leaderboard/process; do
+  # The Leaderboard tour is dense with small text: a higher CRF keeps it light.
+  small "$OUT/$clip.mp4" "$OUT/$clip-sm.mp4" "$([ "$clip" = leaderboard/process ] && echo 34 || echo 30)"
   say "$OUT/$clip-sm.mp4"
 done
 

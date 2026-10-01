@@ -510,6 +510,172 @@ export const projects: Project[] = [
     ],
   },
 
+  /* ════════════════════════════ 2b · LEADERBOARD ═════════════════════════ */
+  {
+    slug: "leaderboard",
+    company: "Leaderboard",
+    role: "Product designer",
+    period: "2025",
+    headline: "A hiring challenge, taken all the way to handoff.",
+    scene: {
+      eyebrow: "Design challenge · Process",
+      headline: "The challenge | that got me hired.",
+      line: "A gamified leaderboard taken from research to a design system, two prototypes and an annotated handoff.",
+      chips: ["Process", "Design systems", "Handoff"],
+      teaser: {
+        src: "/work/leaderboard/teaser.mp4",
+        poster: "/work/leaderboard/teaser.webp",
+        alt: "Gold, silver and bronze cards shrink as the leaderboard scrolls, then two players swap places in green and red",
+      },
+      tint: "101, 197, 231",
+      surface: {
+        bg: "#120733",
+        ink: "#DAF5FF",
+        muted: "#9D97C7",
+        accent: "#FFE100",
+        accentGradient: "linear-gradient(90deg, #FFE100, #65C5E7)",
+        line: "rgba(218, 245, 255, 0.14)",
+        glow: "radial-gradient(42% 52% at 66% 44%, rgba(101, 197, 231, 0.22), transparent 70%), radial-gradient(30% 38% at 84% 82%, rgba(255, 225, 0, 0.12), transparent 70%)",
+      },
+      media: {
+        kind: "phone",
+        video: "/work/leaderboard/motion-phone.mp4",
+        poster: "/work/leaderboard/motion-phone.webp",
+        alt: "The leaderboard on a phone: the Top 3 shrink as the list scrolls, two players swap places in green and red, and one tap finds your rank",
+        float: {
+          src: "/work/leaderboard/badge-gold.webp",
+          alt: "The gold rank badge with laurels",
+          width: 768,
+          height: 804,
+        },
+      },
+    },
+    summary:
+      "The design challenge MoveUp Media gave me while I was interviewing: a gamified leaderboard, taken from research to a design system, mobile and desktop prototypes and an annotated handoff. It got me the job, and part of its thinking lives on in Lebi.",
+    tags: [
+      "PRODUCT DESIGN",
+      "DESIGN SYSTEMS",
+      "PROTOTYPING",
+      "HANDOFF",
+      "GAMIFICATION",
+      "MOTION",
+    ],
+    published: true,
+    cover: {
+      src: "/work/leaderboard/cover.jpg",
+      alt: "The leaderboard on a phone beside the line: Top 3 that shrink as you scroll",
+      width: 1200,
+      height: 675,
+    },
+    heroVideo: {
+      src: "/work/leaderboard/process.mp4",
+      small: "/work/leaderboard/process-sm.mp4",
+      poster: "/work/leaderboard/process.webp",
+      alt: "A camera tour of the Figma file: introduction, research, the design system, the annotated design decisions, the prototypes and the conclusion",
+      caption: "The Figma file as delivered. Every note and screen is the original.",
+    },
+    stats: [
+      { value: "105", label: "components in the design system" },
+      { value: "31", label: "annotated design decisions" },
+      { value: "23", label: "prototyped mobile screens" },
+      { value: "2", label: "prototypes, mobile and desktop" },
+    ],
+    overview:
+      "MoveUp Media gave me this challenge during the interviews, while the company was in the early stages of Lebi: design a leaderboard. I treated it as a real product. Research and a mood board first, then an atomic design system built from vectors I drew myself, every flow prototyped on mobile and desktop, and a handoff that explains each decision next to the UI it belongs to. It got me the job, and part of its thinking was adopted by Lebi.",
+    opportunities: [
+      {
+        title: "More than standings",
+        hmw: "How might we turn a list of names and points into a place to compare, follow and talk to other players?",
+      },
+      {
+        title: "Status worth chasing",
+        hmw: "How might we make rank feel like an achievement, from the podium to the next class badge?",
+      },
+      {
+        title: "Find yourself fast",
+        hmw: "How might we keep every player one tap from their own position, however far down the list?",
+      },
+      {
+        title: "Movement at a glance",
+        hmw: "How might we make climbs and drops readable without studying the numbers?",
+      },
+      {
+        title: "A file that explains itself",
+        hmw: "How might we hand over a design that carries its own reasoning, flow by flow?",
+      },
+    ],
+    approach: [
+      {
+        title: "Research first",
+        body: "I benchmarked leaderboards in sports platforms and video games, from football and basketball to golf, boxing and Formula 1. Most only listed names and positions, with no way to compare stats, interact or build a community. That gap became the brief. The palette took its cue from the UEFA Champions League: deep blue for trust and precision, violet for a premium feel.",
+        image: {
+          src: "/work/leaderboard/research.webp",
+          alt: "The mood board and the color palette: deep blues, violets and the Champions League references",
+          width: 1800,
+          height: 502,
+        },
+      },
+      {
+        title: "A system before screens",
+        body: "Before the screens I built the system, atom by atom: color styles, then icons, class badges and rank shields drawn from my own vectors, then rows, cards and whole sections. 105 components, each with its states. The ranking row alone has seven, from climbing and dropping to you and chat.",
+        media: {
+          src: "/work/leaderboard/design-system.mp4",
+          poster: "/work/leaderboard/design-system.webp",
+          alt: "A camera over the design system: class badges and rank shields, the Top 3 cards, every state of the ranking row, icons, compare stats, chat and the trophy room",
+        },
+      },
+      {
+        title: "Motion with a purpose",
+        body: "Each animation explains something. The Top 3 shrink as you scroll and keep their colors, a player who climbs turns green and one who drops turns red, your row stays pinned to the bottom, and one tap scrolls to your exact rank. Tapping rank 1 brings the podium back.",
+        media: {
+          src: "/work/leaderboard/motion.mp4",
+          poster: "/work/leaderboard/motion.webp",
+          alt: "The leaderboard in motion: the Top 3 shrink, two players swap places in green and red, one tap scrolls to your rank and rank 1 brings the podium back",
+          caption: "The motion, rebuilt from the Figma components for this case study.",
+        },
+      },
+      {
+        title: "A handoff that explains itself",
+        body: "Every decision sits next to the UI it explains, 31 notes in all, and the navigation is wired to each flow it opens. The file reads like a spec: what each element is, why it is there and how it behaves.",
+        media: {
+          src: "/work/leaderboard/handoff.mp4",
+          poster: "/work/leaderboard/handoff.webp",
+          alt: "The annotated handoff: the menu wired to every flow, then the notes of the leaderboard and user card flows highlighted one by one",
+        },
+      },
+      {
+        title: "Prototyped end to end",
+        body: "Both prototypes work. On mobile: the leaderboard, player cards, compare stats, chat, your card and the trophy room. On desktop, everything on one screen. Try them yourself from the links above.",
+        media: {
+          src: "/work/leaderboard/prototype.mp4",
+          poster: "/work/leaderboard/prototype.webp",
+          alt: "A tour of the mobile prototype: a player card, compare stats, chat, your card and the trophy room",
+          caption: "Screens captured from the Figma prototype.",
+        },
+      },
+      {
+        title: "One screen on desktop",
+        body: "On desktop every section shares one screen. Your card stays in place, and choosing a player turns it into a compare view instead of opening a new page.",
+        image: {
+          src: "/work/leaderboard/desktop.webp",
+          alt: "The desktop layout: your card, the leaderboard, the trophy room and friends on one screen",
+          width: 1540,
+          height: 982,
+        },
+      },
+    ],
+    impact: [
+      "It got me the job: MoveUp Media hired me after this challenge.",
+      "Part of its thinking was adopted by Lebi, the product MoveUp was starting at the time.",
+      "A file that reads as a spec: research, a 105 component system, 31 annotated decisions and two working prototypes.",
+    ],
+    links: [
+      { label: "Try the mobile prototype", href: "https://www.figma.com/proto/JQ3fUpcpVcHI9wXeYipuMo/Leaderboard?page-id=0%3A1&node-id=2325-1889&starting-point-node-id=2325-1889&scaling=scale-down" },
+      { label: "Try the desktop prototype", href: "https://www.figma.com/proto/JQ3fUpcpVcHI9wXeYipuMo/Leaderboard?page-id=2547%3A9201&node-id=2325-1884&starting-point-node-id=2325-1884&scaling=scale-down" },
+      { label: "Open the Figma file", href: "https://www.figma.com/design/JQ3fUpcpVcHI9wXeYipuMo/Leaderboard?node-id=2547-9239" },
+    ],
+  },
+
   /* ══════════════════════════════ 3 · LUMIO ══════════════════════════════ */
   {
     slug: "lumio",
