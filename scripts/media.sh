@@ -114,7 +114,7 @@ report() {
   for f in "$@"; do say "$OUT/$dir/$f"; done
 }
 
-mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools" "$OUT/foundry" "$OUT/casino-template-set" "$OUT/leaderboard"
+mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools" "$OUT/foundry" "$OUT/casino-template-set" "$OUT/leaderboard" "$OUT/karma"
 
 echo "Home: phone clips"
 phone "$IDEA/lumio-video/out/case-study/02-tour-screen-only.mp4" "$OUT/lumio/tour-phone.mp4"
@@ -158,8 +158,12 @@ teaser "$IDEA/casinos-video/out/01-phones-16x9.mp4" 4.6 12.4 "$OUT/casino-templa
 poster "$OUT/casino-template-set/teaser.mp4" 1.5 "$OUT/casino-template-set/teaser.webp" 960
 report foundry teaser.mp4 teaser.webp
 teaser "$IDEA/leaderboard-video/out/leaderboard-motion-16x9.mp4" 0.6 6.4 "$OUT/leaderboard/teaser.mp4"
+
 poster "$OUT/leaderboard/teaser.mp4" 1 "$OUT/leaderboard/teaser.webp" 960
 report leaderboard teaser.mp4 teaser.webp
+teaser "$IDEA/karma-video/out/karma-vote-clean-16x9.mp4" 3.0 9.2 "$OUT/karma/teaser.mp4"
+poster "$OUT/karma/teaser.mp4" 3.3 "$OUT/karma/teaser.webp" 960
+report karma teaser.mp4 teaser.webp
 report casino-template-set teaser.mp4 teaser.webp
 
 echo "Home: scene layers"
@@ -315,9 +319,31 @@ if stale "$LB/out/leaderboard-motion-16x9.mp4" "$OUT/leaderboard/cover.jpg"; the
 fi
 report leaderboard process.mp4 process.webp motion.mp4 motion.webp handoff.mp4 handoff.webp design-system.mp4 design-system.webp prototype.mp4 prototype.webp motion-phone.mp4 motion-phone.webp screen-your-card.webp badge-gold.webp research.webp desktop.webp cover.jpg
 
+echo "Karma"
+# Pieces rendered in ~/Desktop/idea/karma-video from Agustín's Figma file: the
+# UI is rebuilt from the exported vectors (SST text as outlines, his badges),
+# the sketches, wireframes and avatars come from 4x captures of the public
+# prototype. render-all.sh there renders every master into out/.
+KV="$IDEA/karma-video"
+hero "$KV/out/karma-vote-16x9.mp4" "$OUT/karma/vote.mp4" 30
+poster "$OUT/karma/vote.mp4" 6.4 "$OUT/karma/vote.webp" 1600
+loop "$KV/out/karma-vote-clean-16x9.mp4" "$OUT/karma/scene.mp4"
+poster "$OUT/karma/scene.mp4" 6.4 "$OUT/karma/scene.webp" 1280
+loop "$KV/out/karma-system-16x9.mp4" "$OUT/karma/system.mp4"
+poster "$OUT/karma/system.mp4" 6.6 "$OUT/karma/system.webp" 1280
+loop "$KV/out/karma-badges-16x9.mp4" "$OUT/karma/badges.mp4"
+poster "$OUT/karma/badges.mp4" 3.4 "$OUT/karma/badges.webp" 1280
+loop "$KV/out/karma-process-16x9.mp4" "$OUT/karma/process.mp4"
+poster "$OUT/karma/process.mp4" 3.4 "$OUT/karma/process.webp" 1280
+hero "$KV/out/karma-dashboard-16x9.mp4" "$OUT/karma/dashboard.mp4" 28
+poster "$OUT/karma/dashboard.mp4" 5 "$OUT/karma/dashboard.webp" 1600
+share "$KV/out/karma-cover.png" "$OUT/karma/cover.jpg"
+report karma vote.mp4 vote.webp scene.mp4 scene.webp system.mp4 system.webp badges.mp4 badges.webp process.mp4 process.webp dashboard.mp4 dashboard.webp cover.jpg
+
 echo "Phone versions of the full-width clips"
 for clip in gds/theme-swap gds/block-library lebi/onboarding lebi/screens lumio/intro lumio/screens \
-  moveup-tools/mosaic foundry/tour foundry/mosaic casino-template-set/phones leaderboard/process; do
+  moveup-tools/mosaic foundry/tour foundry/mosaic casino-template-set/phones leaderboard/process \
+  karma/vote karma/dashboard; do
   # The Leaderboard tour is dense with small text: a higher CRF keeps it light.
   small "$OUT/$clip.mp4" "$OUT/$clip-sm.mp4" "$([ "$clip" = leaderboard/process ] && echo 34 || echo 30)"
   say "$OUT/$clip-sm.mp4"

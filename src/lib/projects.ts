@@ -164,6 +164,8 @@ export type Project = {
   stats?: Stat[];
   /** Full-width clip that shows the scope of the work (every screen, every block). */
   mosaic?: CaseClip;
+  /** Sub-nav label of the mosaic band when "Scale" does not fit (e.g. "Dashboard"). */
+  mosaicLabel?: string;
   /** How the project appears on the home. Projects without one are not shown there. */
   scene?: Scene;
 
@@ -1316,6 +1318,163 @@ export const projects: Project[] = [
       "Every figure has a field behind it: 75 fields answered by Core Studio, with a first build phase of 10.",
       "A block library that cannot drift from the product, because it is cut from the final site on every build.",
       "Accessibility and quality checked on every site, with 45 static gates and 22 rendered checks.",
+    ],
+  },
+
+  /* ═══════════════════════════════ 7 · KARMA ═════════════════════════════ */
+  {
+    slug: "karma",
+    company: "Karma",
+    role: "Self-initiated concept for PlayStation",
+    period: "2024",
+    headline: "Toxic players can ruin a good match. The fix was already in your hands.",
+    scene: {
+      eyebrow: "Concept for PlayStation",
+      headline: "Rate the player, | not just the match.",
+      line: "A self-initiated proposal: after an online match, players rate each other with the four face buttons and tag what happened.",
+      chips: ["Concept", "Console UI", "Motion"],
+      teaser: {
+        src: "/work/karma/teaser.mp4",
+        poster: "/work/karma/teaser.webp",
+        alt: "A player's Karma card opens, the arc of their ratings draws in, and holding R2 with circle rates them red",
+      },
+      tint: "5, 205, 117",
+      surface: {
+        bg: "#14161C",
+        ink: "#F2F3F5",
+        muted: "#A7ADBA",
+        accent: "#05CD75",
+        accentGradient: "linear-gradient(90deg, #F74545, #D354EF 36%, #05CD75 68%, #2191D1)",
+        line: "rgba(242, 243, 245, 0.12)",
+        glow: "radial-gradient(42% 52% at 64% 46%, rgba(33, 145, 209, 0.18), transparent 70%), radial-gradient(30% 38% at 82% 80%, rgba(5, 205, 117, 0.12), transparent 70%)",
+      },
+      media: {
+        kind: "clip",
+        video: "/work/karma/scene.mp4",
+        poster: "/work/karma/scene.webp",
+        alt: "The Karma vote on a console card: pick a player from the last match, hold R2, press circle, tag them a Flamer and the vote is saved",
+      },
+    },
+    summary:
+      "A self-initiated proposal for PlayStation: players rate each other after online matches with the controller's own face buttons, tag what happened with one of eight badges, and carry the result on their profile.",
+    tags: [
+      "PRODUCT DESIGN",
+      "CONSOLE UI",
+      "INTERACTION DESIGN",
+      "ILLUSTRATION",
+      "PROTOTYPING",
+      "MOTION",
+    ],
+    published: true,
+    cover: {
+      src: "/work/karma/cover.jpg",
+      alt: "The Karma vote card beside a controller, with R2 held and circle pressed",
+      width: 1200,
+      height: 675,
+    },
+    heroVideo: {
+      src: "/work/karma/vote.mp4",
+      small: "/work/karma/vote-sm.mp4",
+      poster: "/work/karma/vote.webp",
+      alt: "The whole vote: the last match list, a player's card with the arc of their ratings, holding R2 and pressing circle, tagging a Flamer, the saved vote and the player's own Karma card",
+      caption: "Rebuilt from the Figma file for this case study. A concept, not affiliated with Sony Interactive Entertainment.",
+    },
+    stats: [
+      { value: "4", label: "ratings, one per face button" },
+      { value: "8", label: "behaviour badges I drew" },
+      { value: "16", label: "designed vote outcomes" },
+      { value: "43", label: "frames in the clickable prototype" },
+    ],
+    overview:
+      "Karma is a feature I designed on my own and propose to PlayStation. One player who insults, trolls or quits can sour a match for everyone, and the tools players have today come after the fact: mute, block, report. Karma lets every player rate the people they just played with, using the controller already in their hands, and turns those ratings into a reputation that follows them across games. I took it from the problem to a clickable prototype: the rating scale, the vote flow, eight behaviour badges, the player card and a weekly dashboard. It is a concept, not affiliated with Sony Interactive Entertainment.",
+    opportunities: [
+      {
+        title: "Speak without typing",
+        hmw: "How might we let players say what happened in a match without leaving the controller or writing a word?",
+      },
+      {
+        title: "Reward, not only report",
+        hmw: "How might we make good teammates as visible as bad ones?",
+      },
+      {
+        title: "No votes by accident",
+        hmw: "How might we keep a rushed button press from turning into a red rating?",
+      },
+      {
+        title: "A reputation that travels",
+        hmw: "How might we let a player's behaviour follow them from game to game, on the platform itself?",
+      },
+    ],
+    approach: [
+      {
+        title: "Start from the console",
+        body: "Before drawing anything I studied how people already use the console while a game is running: the Control Center slides up as cards over the game, and the controller does all the talking. Karma had to live there, as cards, driven by the same buttons.",
+      },
+      {
+        title: "Borrow a habit people already have",
+        body: "Rating a driver after a ride or a product after a delivery takes a couple of taps and no typing, and everyone knows how it works. Karma borrows that habit for the end of a match: pick the player, give the rating, say why.",
+      },
+      {
+        title: "The scale was already on the controller",
+        body: "The face buttons carry meaning. Cross confirms in blue, circle backs out in red, triangle and square sit in between in green and pink. I turned them into four faces, two negative and two positive, with no neutral middle, so every vote says something.",
+        media: {
+          src: "/work/karma/system.mp4",
+          poster: "/work/karma/system.webp",
+          alt: "Circle, square, triangle and cross take their colours and turn into the four rating faces, then the symbols return under them",
+        },
+      },
+      {
+        title: "Two buttons, on purpose",
+        body: "Circle also means back, so a stray press must never become a red vote. Voting asks for R2 held down with a face button, a deliberate two finger gesture, while circle alone still takes you back to the game.",
+        media: {
+          src: "/work/karma/scene.mp4",
+          poster: "/work/karma/scene.webp",
+          alt: "The vote card beside a controller: R2 fills as it is held, then circle lights the red face",
+        },
+      },
+      {
+        title: "A vocabulary for behaviour",
+        body: "After the rating comes the reason. Four badges name what went wrong: offensive language, trolling, flaming and leaving early. Four thank what went right, adapted from Bartle's player types: explorers, socializers, winners and killers. I drew all eight in vector; for this case study they also move.",
+        media: {
+          src: "/work/karma/badges.mp4",
+          poster: "/work/karma/badges.webp",
+          alt: "The eight badges in their cards, each one moving: a shouting speech bubble, a fading ghost, a troll sticking its tongue out, a flickering campfire, a turning globe, a handshake, a hopping trophy and a target locking on a skull",
+          caption: "The badges are my original vectors from the file, animated for this case study.",
+        },
+      },
+      {
+        title: "Sketch, wireframe, interface",
+        body: "Each screen went from pencil to grey boxes to the final cards and kept the same structure all the way, so the interface could be checked against the plan.",
+        media: {
+          src: "/work/karma/process.mp4",
+          poster: "/work/karma/process.webp",
+          alt: "Three screens, each one going from a pencil sketch to a wireframe to the final interface",
+        },
+      },
+      {
+        title: "Karma on your card",
+        body: "Each player's own card sits on the main menu: the arc shows how others rated them, split by colour, with the two badges they get most. Opening it leads to a dashboard with the week's ratings, who rated them, who they rated and the players from the last match.",
+      },
+      {
+        title: "What a rating could change",
+        body: "Ratings only matter if they lead somewhere. Well rated players could get perks such as PlayStation Plus discounts or matches with other well rated players, and the best could help moderate. Low ratings could limit voice chat and voting, and point players to tips to improve rather than to a ban.",
+      },
+    ],
+    impact: [
+      "A working prototype of the whole vote, from the last match list to the saved vote, with the player card and the dashboard.",
+      "A rating that needs two buttons and no typing, built on symbols every PlayStation player already reads.",
+      "What I would test next: whether players still vote after a loss, how groups could gang up on someone, and how fast karma should fade.",
+    ],
+    mosaic: {
+      src: "/work/karma/dashboard.mp4",
+      small: "/work/karma/dashboard-sm.mp4",
+      poster: "/work/karma/dashboard.webp",
+      alt: "The Karma dashboard assembling itself: badges, the week's ratings as four waves, the score split, the player card, who rated you, who you rated and the last match players",
+      caption: "The dashboard from the file, rebuilt to assemble itself.",
+    },
+    mosaicLabel: "Dashboard",
+    links: [
+      { label: "Try the prototype", href: "https://www.figma.com/proto/ZLUHzCThXRz3BxzvHJN4zM/Karma?page-id=0%3A1&node-id=138-3335&starting-point-node-id=138-3335&scaling=scale-down" },
     ],
   },
 

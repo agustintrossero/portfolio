@@ -218,7 +218,7 @@ export default async function CaseStudyPage({
     },
     project.approach?.length && { id: "approach", label: "Approach" },
     project.impact?.length && { id: "impact", label: "Impact" },
-    project.mosaic && { id: "scale", label: "Scale" },
+    project.mosaic && { id: "scale", label: project.mosaicLabel ?? "Scale" },
     hasGlimpse && { id: "glimpse", label: "Glimpse" },
   ].filter(Boolean) as NavItem[];
 
@@ -471,7 +471,7 @@ export default async function CaseStudyPage({
       {/* Scale: the whole body of work in one clip */}
       {project.mosaic && (
         <div className="mt-4">
-          <ClipBand id="scale" label="Scale" clip={project.mosaic} glow={surface?.glow} />
+          <ClipBand id="scale" label={project.mosaicLabel ?? "Scale"} clip={project.mosaic} glow={surface?.glow} />
         </div>
       )}
 
