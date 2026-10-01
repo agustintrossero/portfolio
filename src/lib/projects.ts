@@ -128,7 +128,7 @@ export type Scene = {
   chips: string[];
   surface: Surface;
   media: SceneMedia;
-  /** Put the media on the left on wide screens. */
+  /** Put the media on the left on wide screens. By default scenes alternate. */
   flip?: boolean;
   /** Short loop for the card in the home hero deck. */
   teaser?: CaseClip;
@@ -349,7 +349,6 @@ export const projects: Project[] = [
           height: 576,
         },
       },
-      flip: true,
     },
     summary:
       "A free sports predictions platform I created and led at MoveUp Media: players compete for real prizes, and brands launch sponsored leagues on the same template.",
@@ -723,7 +722,6 @@ export const projects: Project[] = [
           alt: "The MoveUp Tools portal on mobile",
         },
       },
-      flip: true,
     },
     summary:
       "The internal platform of MoveUp Media: one portal, behind the company's Google sign in, for its apps and news. I designed and built the portal and six of its tools, from AI video production to brand assets.",
@@ -1054,7 +1052,6 @@ export const projects: Project[] = [
         poster: "/work/casino-template-set/scene.webp",
         alt: "Five phones with five casino sites, each in its own identity, scrolling the same home sections in sync",
       },
-      flip: true,
     },
     summary:
       "The set of screens MoveUp's casino sites are built from on Core Studio. I designed it on ItaliaCasinos, cut its block library from the final site and wrote down every field its screens need, so each new site keeps the blocks and the data and changes only its identity.",

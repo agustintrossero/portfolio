@@ -108,6 +108,8 @@ export default function ProjectScene({
   const [lead, accent] = splitHeadline(scene.headline);
   const href = `/work/${project.slug}`;
   const titleId = `${project.slug}-scene`;
+  // Scenes alternate sides down the page unless one asks for a side.
+  const flip = scene.flip ?? index % 2 === 1;
 
   return (
     <section
@@ -126,7 +128,7 @@ export default function ProjectScene({
 
       {/* Clicks fall through to the link above, except on real controls. */}
       <div className="pointer-events-none relative mx-auto grid max-w-5xl items-center gap-14 px-6 py-24 sm:px-8 sm:py-32 lg:grid-cols-12 lg:gap-10">
-        <div className={`lg:col-span-5 ${scene.flip ? "lg:order-last" : ""}`}>
+        <div className={`lg:col-span-5 ${flip ? "lg:order-last" : ""}`}>
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--s-muted)]">
               {String(index + 1).padStart(2, "0")} · {scene.eyebrow}
@@ -171,7 +173,7 @@ export default function ProjectScene({
           </Reveal>
         </div>
 
-        <div className={`relative lg:col-span-7 ${scene.flip ? "lg:order-first" : ""}`}>
+        <div className={`relative lg:col-span-7 ${flip ? "lg:order-first" : ""}`}>
           <Reveal variant="scale" delay={120}>
             <Media media={scene.media} />
           </Reveal>
