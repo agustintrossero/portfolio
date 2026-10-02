@@ -340,6 +340,31 @@ poster "$OUT/karma/dashboard.mp4" 5 "$OUT/karma/dashboard.webp" 1600
 share "$KV/out/karma-cover.png" "$OUT/karma/cover.jpg"
 report karma vote.mp4 vote.webp scene.mp4 scene.webp system.mp4 system.webp badges.mp4 badges.webp process.mp4 process.webp dashboard.mp4 dashboard.webp cover.jpg
 
+echo "Reel"
+# Two 60 second cuts composed in ~/Desktop/idea/reel-video from the masters
+# above, using only footage the case studies already publish (cuts.js checks
+# the partly public ones). render.mjs --cut=reel and --cut=saas render them
+# into out/. They play with controls on /reel at 60 fps, because the motion is
+# the point; phones get 720p at 30 fps.
+RV="$IDEA/reel-video/out"
+REEL="$ROOT/public/reel"
+mkdir -p "$REEL"
+for cut in reel saas; do
+  if stale "$RV/$cut-16x9.mp4" "$REEL/$cut.mp4"; then
+    ffmpeg -v error -y -i "$RV/$cut-16x9.mp4" "${x264[@]}" -crf 26 "$REEL/$cut.mp4"
+  fi
+  if stale "$RV/$cut-16x9.mp4" "$REEL/$cut-sm.mp4"; then
+    ffmpeg -v error -y -i "$RV/$cut-16x9.mp4" -vf "fps=30,scale=1280:720:flags=lanczos" "${x264[@]}" -crf 29 "$REEL/$cut-sm.mp4"
+  fi
+done
+poster "$RV/reel-16x9.mp4" 1.7 "$REEL/reel.webp" 1600
+poster "$RV/saas-16x9.mp4" 2.2 "$REEL/saas.webp" 1600
+if stale "$RV/reel-16x9.mp4" "$REEL/cover.jpg"; then
+  ffmpeg -v error -y -ss 1.7 -i "$RV/reel-16x9.mp4" -frames:v 1 "$TMP/reel-cover.png"
+  sips -s format jpeg -s formatOptions 82 -Z 1200 "$TMP/reel-cover.png" --out "$REEL/cover.jpg" >/dev/null
+fi
+for f in reel.mp4 reel-sm.mp4 reel.webp saas.mp4 saas-sm.mp4 saas.webp cover.jpg; do say "$REEL/$f"; done
+
 echo "Phone versions of the full-width clips"
 for clip in gds/theme-swap gds/block-library lebi/onboarding lebi/screens lumio/intro lumio/screens \
   moveup-tools/mosaic foundry/tour foundry/mosaic casino-template-set/phones leaderboard/process \

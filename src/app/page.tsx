@@ -72,6 +72,12 @@ export default function Home() {
             >
               View work ↓
             </a>
+            <Link
+              href="/reel"
+              className="rounded-full border border-line-strong px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:border-ink"
+            >
+              Watch the reel <span className="text-muted-2">· 1 min</span>
+            </Link>
             <a
               href={`mailto:${site.email}`}
               className="rounded-full border border-line-strong px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:border-ink"
