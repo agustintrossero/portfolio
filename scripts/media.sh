@@ -372,6 +372,49 @@ if stale "$BV/bh-hero-16x9.mp4" "$BH/cover.jpg"; then
 fi
 report blue-house-grotta hero.mp4 hero.webp scene.mp4 scene.webp books.mp4 books.webp data.mp4 data.webp mobile.mp4 mobile.webp desktop.mp4 desktop.webp emails.mp4 emails.webp bot.mp4 bot.webp mosaic.mp4 mosaic.webp cover.jpg
 
+echo "n8n · Sample data you can trust"
+# Pieces rendered in ~/Desktop/idea/n8n-video for Agustín's own proposal to
+# n8n (a concept, not affiliated with n8n). "Today" is always a real capture
+# from his n8n Cloud trial on 3 Oct 2026; "Concept" is the proposal rebuilt in
+# HTML with the tokens of his Figma file. render-directions.sh and
+# render-extras.sh render the masters, screens.html the stills. The real
+# captures live in Portfolio-material/Piezas por caso/8_n8n-propuesta.
+NV="$IDEA/n8n-video/out"
+NC="$HOME/Desktop/Agus/Portfolio-material/Piezas por caso/8_n8n-propuesta/capturas"
+N8="$OUT/n8n-sample-data"
+mkdir -p "$N8"
+# The hero skips the title card, so the first frame is already the real capture.
+if stale "$NV/n8n-direction-a-16x9.mp4" "$N8/hero.mp4"; then
+  ffmpeg -v error -y -ss 2.9 -i "$NV/n8n-direction-a-16x9.mp4" -vf "fps=30,scale=1920:1080:flags=lanczos" "${x264[@]}" -crf 28 "$N8/hero.mp4"
+fi
+poster "$NV/n8n-direction-a-16x9.mp4" 17 "$N8/hero.webp" 1600
+chapter "$NV/n8n-three-directions-16x9.mp4" 2.4 12.7 "$N8/scene.mp4"
+poster "$N8/scene.mp4" 7.2 "$N8/scene.webp" 1280
+teaser "$NV/n8n-direction-a-16x9.mp4" 11.0 17.0 "$N8/teaser.mp4"
+poster "$N8/teaser.mp4" 2.5 "$N8/teaser.webp" 960
+chapter "$NV/n8n-direction-a-16x9.mp4" 2.8 9.9 "$N8/problem.mp4"
+poster "$N8/problem.mp4" 4.6 "$N8/problem.webp" 1280
+chapter "$NV/n8n-direction-a-16x9.mp4" 9.6 20.0 "$N8/dry-run.mp4"
+poster "$N8/dry-run.mp4" 7.4 "$N8/dry-run.webp" 1280
+chapter "$NV/n8n-direction-b-16x9.mp4" 9.6 20.0 "$N8/sample.mp4"
+poster "$N8/sample.mp4" 7.4 "$N8/sample.webp" 1280
+chapter "$NV/n8n-direction-c-16x9.mp4" 9.6 21.0 "$N8/receipt.mp4"
+poster "$N8/receipt.mp4" 8.6 "$N8/receipt.webp" 1280
+chapter "$NV/n8n-shared-fixes-16x9.mp4" 2.6 10.3 "$N8/plan.mp4"
+poster "$N8/plan.mp4" 6.8 "$N8/plan.webp" 1280
+chapter "$NV/n8n-shared-fixes-16x9.mp4" 10.3 17.1 "$N8/examples.mp4"
+poster "$N8/examples.mp4" 5.0 "$N8/examples.webp" 1280
+chapter "$NV/n8n-handoff-16x9.mp4" 2.8 24.8 "$N8/handoff.mp4"
+poster "$N8/handoff.mp4" 9.6 "$N8/handoff.webp" 1280
+hero "$NV/n8n-screens-16x9.mp4" "$N8/screens.mp4" 28
+poster "$N8/screens.mp4" 4.6 "$N8/screens.webp" 1600
+still "$NC/18_CLAVE_ejecucion_prueba_14-24_succeeded_con_travelperk_inventado.jpg" "$N8/today-history.webp" 1568
+for d in A B C; do
+  still "$NV/screens-2x/n8n-$d-1-editor@2x.png" "$N8/screen-$(echo "$d" | tr A-Z a-z)-editor.webp" 1920
+done
+share "$NV/case-study/posters/n8n-three-directions-16x9.png" "$N8/cover.jpg"
+report n8n-sample-data hero.mp4 hero.webp scene.mp4 scene.webp teaser.mp4 teaser.webp problem.mp4 problem.webp dry-run.mp4 dry-run.webp sample.mp4 sample.webp receipt.mp4 receipt.webp plan.mp4 plan.webp examples.mp4 examples.webp handoff.mp4 handoff.webp screens.mp4 screens.webp today-history.webp screen-a-editor.webp screen-b-editor.webp screen-c-editor.webp cover.jpg
+
 echo "Reel"
 # Two 60 second cuts composed in ~/Desktop/idea/reel-video from the masters
 # above, using only footage the case studies already publish (cuts.js checks
@@ -400,7 +443,8 @@ for f in reel.mp4 reel-sm.mp4 reel.webp saas.mp4 saas-sm.mp4 saas.webp cover.jpg
 echo "Phone versions of the full-width clips"
 for clip in gds/theme-swap gds/block-library lebi/onboarding lebi/screens lumio/intro lumio/screens \
   moveup-tools/mosaic foundry/tour foundry/mosaic casino-template-set/phones leaderboard/process \
-  karma/vote karma/dashboard blue-house-grotta/hero blue-house-grotta/mosaic; do
+  karma/vote karma/dashboard blue-house-grotta/hero blue-house-grotta/mosaic \
+  n8n-sample-data/hero n8n-sample-data/screens; do
   # The Leaderboard tour is dense with small text: a higher CRF keeps it light.
   small "$OUT/$clip.mp4" "$OUT/$clip-sm.mp4" "$([ "$clip" = leaderboard/process ] && echo 34 || echo 30)"
   say "$OUT/$clip-sm.mp4"

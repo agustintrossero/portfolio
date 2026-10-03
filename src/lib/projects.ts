@@ -1642,6 +1642,217 @@ export const projects: Project[] = [
     ],
   },
 
+  /* ═══════════════════════ 8 · SAMPLE DATA YOU CAN TRUST ════════════════════ */
+  // A self-initiated proposal for n8n, born from a real test in Agustín's own
+  // n8n Cloud trial on 3 Oct 2026. "Today" clips and images are real, unedited
+  // captures; "Concept" is the proposal. Not affiliated with n8n.
+  {
+    slug: "n8n-sample-data",
+    company: "Sample data you can trust",
+    role: "Self-initiated proposal for n8n",
+    period: "2026",
+    headline: "The test said Succeeded. The job it showed did not exist.",
+    scene: {
+      eyebrow: "Concept for n8n",
+      headline: "Test runs that | never make things up.",
+      line: "A self-initiated proposal: when n8n's AI Assistant tests a workflow, it should show what would really happen, not a result it invented.",
+      chips: ["Concept", "AI UX", "Design systems"],
+      teaser: {
+        src: "/work/n8n-sample-data/teaser.mp4",
+        poster: "/work/n8n-sample-data/teaser.webp",
+        alt: "The save step turns into a Dry run, a tooltip explains that nothing was written, and the output shows the row it would write from the real OLX job",
+      },
+      tint: "31, 111, 235",
+      surface: {
+        bg: "#E6E6E9",
+        ink: "#18181B",
+        muted: "#5F5F68",
+        accent: "#1F6FEB",
+        accentGradient: "linear-gradient(90deg, #1F6FEB, #7F22FE 52%, #A15C00)",
+        line: "rgba(24, 24, 27, 0.14)",
+        glow: "radial-gradient(60% 70% at 50% 38%, #F7F7F8, transparent 78%)",
+      },
+      media: {
+        kind: "clip",
+        video: "/work/n8n-sample-data/scene.mp4",
+        poster: "/work/n8n-sample-data/scene.webp",
+        alt: "The three directions side by side at the same moment: first the save step on the canvas, then its output",
+      },
+    },
+    summary:
+      "A self-initiated proposal for n8n's AI Assistant: when it tests a workflow without saving anything, show what would really happen, not a result it made up that looks exactly like a real one.",
+    tags: ["PRODUCT DESIGN", "AI UX", "INTERACTION DESIGN", "DESIGN SYSTEMS", "UX WRITING", "MOTION"],
+    published: true,
+    cover: {
+      src: "/work/n8n-sample-data/cover.jpg",
+      alt: "The three directions side by side, Dry run preview, Sample state and Test run receipt, each showing the save step after a test run",
+      width: 1200,
+      height: 675,
+    },
+    heroVideo: {
+      src: "/work/n8n-sample-data/hero.mp4",
+      small: "/work/n8n-sample-data/hero-sm.mp4",
+      poster: "/work/n8n-sample-data/hero.webp",
+      alt: "First the real capture: the save step with only a purple pin, and an invented Travelperk job under Success. Then the proposal: the step shows the row it would write from the real OLX job, says nothing was written, and offers one button to run it for real",
+      caption: "Today is a real, unedited capture from my n8n Cloud trial. Concept is my proposal, rebuilt in n8n's visual language. Not affiliated with n8n.",
+    },
+    stats: [
+      { value: "19", label: "real jobs the test run read" },
+      { value: "1", label: "real job it kept, at OLX" },
+      { value: "1", label: "invented job shown as Succeeded" },
+      { value: "3", label: "separate approvals for one request" },
+    ],
+    overview:
+      "n8n lets people automate work by connecting steps on a canvas, and its new AI Assistant builds those steps from a plain request. I tried it on a real task of mine: every weekday, find remote Product Designer jobs that hire from Spain and save them to a table. Before switching it on, the Assistant ran a test. So that the test would not save anything, it simulated the last step, and to do that it made up a result: a job at Travelperk, with a salary and a believable link. The run history said Succeeded, every step had a green check, and the real job the workflow had found, at OLX, sat one step earlier. Sample data you can trust is a feature I designed on my own and propose to n8n, so that a test run shows what would really happen instead of results that look real and are not. I took it from that real test to three directions, the screens for each and a component set ready to hand off. It is a concept, not affiliated with n8n.",
+    opportunities: [
+      {
+        title: "Sample looks like sample",
+        hmw: "How might we make simulated output impossible to mistake for real output, wherever it shows up: canvas, output, history and chat?",
+      },
+      {
+        title: "Real data first",
+        hmw: "How might we show what a step would do with the real item, instead of inventing one?",
+      },
+      {
+        title: "Say what will happen",
+        hmw: "How might we tell people in plain words what changes when they run a step for real?",
+      },
+      {
+        title: "Ask once, keep the risky steps",
+        hmw: "How might we ask for permission once, without hiding the steps that write, delete or cost money?",
+      },
+    ],
+    approach: [
+      {
+        title: "What happened, in plain words",
+        body: "A test run is a rehearsal: the workflow runs, but steps that change things, like saving a row or sending an email, should not. n8n already lets developers pin data on a step so it returns the same result every time they test. The Assistant used that pin to fake the save step, and nothing on screen said so: only a purple border and a small pin icon, with no tooltip.",
+        media: {
+          src: "/work/n8n-sample-data/problem.mp4",
+          poster: "/work/n8n-sample-data/problem.webp",
+          alt: "The real capture: the save step with a purple border and a pin, then its output, a Travelperk job with a salary and a link, under Success in 0s",
+          caption: "Real capture from my n8n Cloud trial, 3 Oct 2026.",
+        },
+      },
+      {
+        title: "Why it matters",
+        body: "When invented data looks like real data, trust breaks both ways: people act on a job, a customer or an invoice that does not exist, or they find out once and stop trusting every green check. Here the chat said the save step was simulated while the panel next to it showed Travelperk, and the Assistant only called the row made up when I asked.",
+        image: {
+          src: "/work/n8n-sample-data/today-history.webp",
+          alt: "The n8n execution history: the test run at 14:24 says Succeeded in 380ms, every step has a green check, and the save step shows the invented Travelperk row",
+          width: 1568,
+          height: 713,
+          caption: "The test run in the execution history: Succeeded, with the invented row. Real capture.",
+        },
+      },
+      {
+        title: "Five rules before drawing",
+        body: "Sample data looks like sample data everywhere. Show what would happen with the real data instead of inventing it. Say the effect in plain words. Give one clear way to make it real, with the consequence before the click. And fit n8n: extend what it already has, like the pin, the Kept and Discarded tabs on filters and the logs, instead of replacing it.",
+      },
+      {
+        title: "Direction A · Dry run preview",
+        body: "Nothing is invented. The save step runs dry and shows the row it would write, built from the real OLX job. Fields that only exist once a row is saved, like the id, say assigned on write. One button, Run this step for real, says what it will do before you click: write 1 row.",
+        media: {
+          src: "/work/n8n-sample-data/dry-run.mp4",
+          poster: "/work/n8n-sample-data/dry-run.webp",
+          alt: "Concept A: the save step turns blue and dashed with a Dry run chip, a tooltip says nothing was written, and the output shows the OLX row with id and dates marked assigned on write",
+        },
+      },
+      {
+        title: "Direction B · Sample state",
+        body: "The smallest change. The simulation stays, but sample data looks like sample everywhere: the node is tinted with a Sample chip, the row is tagged, a banner names the real item from the step before, and the history says 1 step simulated. It grows out of the purple pin n8n already uses.",
+        media: {
+          src: "/work/n8n-sample-data/sample.mp4",
+          poster: "/work/n8n-sample-data/sample.webp",
+          alt: "Concept B: the save step is tinted purple with a Sample chip, and the Travelperk row is tinted and tagged, under a banner that says it was made up and that the real item is OLX",
+        },
+      },
+      {
+        title: "Direction C · Test run receipt",
+        body: "The biggest bet. A test becomes its own kind of run, with side effects off. A step that would write is Skipped, not Succeeded, and the run leaves a receipt of what ran and what was skipped. The canvas, the logs, the history and the chat all read from that one receipt, so they can never disagree.",
+        media: {
+          src: "/work/n8n-sample-data/receipt.mp4",
+          poster: "/work/n8n-sample-data/receipt.webp",
+          alt: "Concept C: a test run bar says side effects are off, the save step is Skipped, and a receipt lists what ran, what was skipped and the row it would have written",
+        },
+      },
+      {
+        title: "Which one I would build first",
+        body: "Direction A. It is the only one that never shows invented data, and it reuses what n8n already has: the real item from the step before. B could ship sooner as a first fix. C is where I would take it next, once a single test can touch many tools at once.",
+        media: {
+          src: "/work/n8n-sample-data/scene.mp4",
+          poster: "/work/n8n-sample-data/scene.webp",
+          alt: "The three directions side by side at the same moment: the save step on the canvas, then its output",
+        },
+      },
+      {
+        title: "One plan, approved once",
+        body: "For one request the Assistant asked three separate times: to read a URL, to create a table and to run the workflow. In the concept it shows its plan first and you approve it once. Anything that writes for real, deletes data or costs money still asks, one by one.",
+        media: {
+          src: "/work/n8n-sample-data/plan.mp4",
+          poster: "/work/n8n-sample-data/plan.webp",
+          alt: "Today, three approval cards one after the other. Concept, one plan card listing read, create a table, build a draft and test it once, with Approve plan",
+        },
+      },
+      {
+        title: "Examples that follow the request",
+        body: "Before I had asked for anything, the Assistant suggested security automations, like 1Password exports and Entra ID alerts. In the concept the examples follow what you are typing, so a job search brings job search examples.",
+        media: {
+          src: "/work/n8n-sample-data/examples.mp4",
+          poster: "/work/n8n-sample-data/examples.webp",
+          alt: "Today, security examples on the Assistant home. Concept, a typed request about remote design jobs and four examples about job posts",
+        },
+      },
+      {
+        title: "Built to hand off",
+        body: "One node with six named states: three that exist today and one new state per direction. Every color is a variable, and the banner all three share is annotated with spacing and type, in a file organized one page per direction: 12 components, 44 color variables and 18 text styles.",
+        media: {
+          src: "/work/n8n-sample-data/handoff.mp4",
+          poster: "/work/n8n-sample-data/handoff.webp",
+          alt: "The color variables of each direction, the node in its six states, the banner annotated for developers and the pages of the file",
+        },
+      },
+    ],
+    impact: [
+      "Three directions, each shown in the same three moments: the editor after a test run, the Assistant chat and the execution history.",
+      "A component set ready to hand off: one node with six named states, color variables and annotated specs.",
+      "What I would test next: whether people can tell a test from a real run without reading, how often they run a step for real after a preview, and whether the receipt in C is worth its extra weight.",
+    ],
+    mosaic: {
+      src: "/work/n8n-sample-data/screens.mp4",
+      small: "/work/n8n-sample-data/screens-sm.mp4",
+      poster: "/work/n8n-sample-data/screens.webp",
+      alt: "The nine screens: three directions across the same three moments, the editor after the test run, the Assistant chat and the execution history",
+      caption: "Three directions, the same three moments: nine screens, one story.",
+    },
+    mosaicLabel: "Screens",
+    images: [
+      {
+        src: "/work/n8n-sample-data/screen-a-editor.webp",
+        alt: "Concept A, the editor after a test run: the save step in Dry run, its tooltip, and the output with the OLX row it would write and the Run this step for real button",
+        width: 1920,
+        height: 1200,
+        caption: "Concept A · Dry run preview, the direction I would build first.",
+        span: "wide",
+      },
+      {
+        src: "/work/n8n-sample-data/screen-b-editor.webp",
+        alt: "Concept B, the editor after a test run: the save step tinted with a Sample chip and the tagged Travelperk row",
+        width: 1920,
+        height: 1200,
+        caption: "Concept B · Sample state.",
+        span: "half",
+      },
+      {
+        src: "/work/n8n-sample-data/screen-c-editor.webp",
+        alt: "Concept C, the editor after a test run: the test run bar, the save step Skipped and the receipt of what ran",
+        width: 1920,
+        height: 1200,
+        caption: "Concept C · Test run receipt.",
+        span: "half",
+      },
+    ],
+  },
+
   /* ════════════════════════════ GALLERY (quick) ══════════════════════════ */
   {
     slug: "dima-world-cup",
