@@ -114,7 +114,7 @@ report() {
   for f in "$@"; do say "$OUT/$dir/$f"; done
 }
 
-mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools" "$OUT/foundry" "$OUT/casino-template-set" "$OUT/leaderboard" "$OUT/karma"
+mkdir -p "$OUT/gds" "$OUT/lumio" "$OUT/lebi" "$OUT/moveup-tools" "$OUT/foundry" "$OUT/casino-template-set" "$OUT/leaderboard" "$OUT/karma" "$OUT/blue-house-grotta"
 
 echo "Home: phone clips"
 phone "$IDEA/lumio-video/out/case-study/02-tour-screen-only.mp4" "$OUT/lumio/tour-phone.mp4"
@@ -164,6 +164,10 @@ report leaderboard teaser.mp4 teaser.webp
 teaser "$IDEA/karma-video/out/karma-vote-clean-16x9.mp4" 3.0 9.2 "$OUT/karma/teaser.mp4"
 poster "$OUT/karma/teaser.mp4" 3.3 "$OUT/karma/teaser.webp" 960
 report karma teaser.mp4 teaser.webp
+# Blue House to Grótta: the wipe between the two brands, poster mid-wipe.
+teaser "$IDEA/bluehouse-video/out/bh-hero-16x9.mp4" 4.2 10.4 "$OUT/blue-house-grotta/teaser.mp4"
+poster "$OUT/blue-house-grotta/teaser.mp4" 1.4 "$OUT/blue-house-grotta/teaser.webp" 960
+report blue-house-grotta teaser.mp4 teaser.webp
 report casino-template-set teaser.mp4 teaser.webp
 
 echo "Home: scene layers"
@@ -340,6 +344,34 @@ poster "$OUT/karma/dashboard.mp4" 5 "$OUT/karma/dashboard.webp" 1600
 share "$KV/out/karma-cover.png" "$OUT/karma/cover.jpg"
 report karma vote.mp4 vote.webp scene.mp4 scene.webp system.mp4 system.webp badges.mp4 badges.webp process.mp4 process.webp dashboard.mp4 dashboard.webp cover.jpg
 
+echo "Blue House & Grótta"
+# Pieces rendered in ~/Desktop/idea/bluehouse-video: screens captured from the
+# public prototype of Agustín's Figma file, his two brand books from his
+# Behance, and Puffinbot rebuilt from the chat mockup in the file.
+# render.mjs --piece=<name> renders each master into out/.
+BV="$IDEA/bluehouse-video/out"
+BH="$OUT/blue-house-grotta"
+hero "$BV/bh-hero-16x9.mp4" "$BH/hero.mp4" 28
+poster "$BV/bh-hero-16x9.mp4" 12.6 "$BH/hero.webp" 1600
+chapter "$BV/bh-hero-16x9.mp4" 4.2 13.8 "$BH/scene.mp4"
+poster "$BH/scene.mp4" 1.5 "$BH/scene.webp" 1280
+for piece in books data mobile desktop emails bot; do
+  loop "$BV/bh-$piece-16x9.mp4" "$BH/$piece.mp4"
+done
+poster "$BH/books.mp4" 6 "$BH/books.webp" 1280
+poster "$BH/data.mp4" 9.5 "$BH/data.webp" 1280
+poster "$BH/mobile.mp4" 7.8 "$BH/mobile.webp" 1280
+poster "$BH/desktop.mp4" 4.4 "$BH/desktop.webp" 1280
+poster "$BH/emails.mp4" 4 "$BH/emails.webp" 1280
+poster "$BH/bot.mp4" 8.6 "$BH/bot.webp" 1280
+hero "$BV/bh-mosaic-16x9.mp4" "$BH/mosaic.mp4" 28
+poster "$BH/mosaic.mp4" 10 "$BH/mosaic.webp" 1600
+if stale "$BV/bh-hero-16x9.mp4" "$BH/cover.jpg"; then
+  ffmpeg -v error -y -ss 12.6 -i "$BV/bh-hero-16x9.mp4" -frames:v 1 "$TMP/bh-cover.png"
+  sips -s format jpeg -s formatOptions 82 -Z 1200 "$TMP/bh-cover.png" --out "$BH/cover.jpg" >/dev/null
+fi
+report blue-house-grotta hero.mp4 hero.webp scene.mp4 scene.webp books.mp4 books.webp data.mp4 data.webp mobile.mp4 mobile.webp desktop.mp4 desktop.webp emails.mp4 emails.webp bot.mp4 bot.webp mosaic.mp4 mosaic.webp cover.jpg
+
 echo "Reel"
 # Two 60 second cuts composed in ~/Desktop/idea/reel-video from the masters
 # above, using only footage the case studies already publish (cuts.js checks
@@ -368,7 +400,7 @@ for f in reel.mp4 reel-sm.mp4 reel.webp saas.mp4 saas-sm.mp4 saas.webp cover.jpg
 echo "Phone versions of the full-width clips"
 for clip in gds/theme-swap gds/block-library lebi/onboarding lebi/screens lumio/intro lumio/screens \
   moveup-tools/mosaic foundry/tour foundry/mosaic casino-template-set/phones leaderboard/process \
-  karma/vote karma/dashboard; do
+  karma/vote karma/dashboard blue-house-grotta/hero blue-house-grotta/mosaic; do
   # The Leaderboard tour is dense with small text: a higher CRF keeps it light.
   small "$OUT/$clip.mp4" "$OUT/$clip-sm.mp4" "$([ "$clip" = leaderboard/process ] && echo 34 || echo 30)"
   say "$OUT/$clip-sm.mp4"

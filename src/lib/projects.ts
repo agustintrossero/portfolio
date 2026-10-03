@@ -1321,6 +1321,170 @@ export const projects: Project[] = [
     ],
   },
 
+  /* ══════════════════════ 6b · BLUE HOUSE & GRÓTTA ══════════════════════ */
+  {
+    slug: "blue-house-grotta",
+    company: "Blue House & Grótta",
+    role: "Team lead, UX/UI and branding",
+    period: "2024",
+    headline: "Two guesthouses in Iceland. Two brands, one way to book.",
+    scene: {
+      eyebrow: "Hospitality · Branding",
+      headline: "Two brands, | one booking flow.",
+      line: "Two guesthouses on the same Icelandic peninsula, one shared interface: I created both brands and led the team that redesigned their sites, booking and guest communication.",
+      chips: ["Branding", "Booking UX", "Research"],
+      teaser: {
+        src: "/work/blue-house-grotta/teaser.mp4",
+        poster: "/work/blue-house-grotta/teaser.webp",
+        alt: "The Blue House home page and phone booking screen wipe into the same pages in the Grótta Northern Lights brand",
+      },
+      tint: "29, 57, 103",
+      surface: {
+        bg: "#F2F5F8",
+        ink: "#16213A",
+        muted: "#5C6678",
+        accent: "#1D3967",
+        accentGradient: "linear-gradient(90deg, #1D3967, #1B686E)",
+        line: "rgba(22, 33, 58, 0.14)",
+        glow: "radial-gradient(44% 54% at 66% 46%, rgba(27, 104, 110, 0.12), transparent 70%), radial-gradient(34% 40% at 82% 80%, rgba(29, 57, 103, 0.10), transparent 70%)",
+      },
+      media: {
+        kind: "clip",
+        video: "/work/blue-house-grotta/scene.mp4",
+        poster: "/work/blue-house-grotta/scene.webp",
+        alt: "A browser and a phone show the Blue House pages, a line wipes them into Grótta Northern Lights, and both end split in half",
+      },
+    },
+    summary:
+      "Two Icelandic guesthouses on one interface: both brand identities, the websites, the booking flow, the guest emails, a help center and a chatbot, designed with the team I led at Siciliamia.",
+    tags: ["BRANDING", "UX/UI", "E-COMMERCE", "UX RESEARCH", "DESIGN SYSTEMS", "LEADERSHIP"],
+    published: true,
+    cover: {
+      src: "/work/blue-house-grotta/cover.jpg",
+      alt: "The Blue House and Grótta Northern Lights home pages, split in half on a browser and a phone",
+      width: 1200,
+      height: 675,
+    },
+    heroVideo: {
+      src: "/work/blue-house-grotta/hero.mp4",
+      small: "/work/blue-house-grotta/hero-sm.mp4",
+      poster: "/work/blue-house-grotta/hero.webp",
+      alt: "The Blue House home page scrolls on a browser and a phone, a line wipes both into Grótta Northern Lights, and the two brands end side by side",
+      caption: "Rebuilt from the Figma file and the two brand books for this case study.",
+    },
+    stats: [
+      { value: "2", label: "brand identities I created" },
+      { value: "38", label: "pages across the two brand books" },
+      { value: "18", label: "help articles for guests" },
+      { value: "5,667", label: "visits in the heatmap analysis" },
+    ],
+    overview:
+      "Blue House B&B and Grótta Northern Lights are two guesthouses run by the same owner on the Seltjarnarnes peninsula, five minutes from Reykjavík and next to one of the city's best spots for the northern lights. They share three houses, a self-service breakfast and one booking engine, and sell their rooms on the big booking portals as well as on their own websites. At Siciliamia I led the design team that worked for them. I created both brand identities and their brand books, and with the team we redesigned the two websites on one shared interface, the booking flow, the emails guests receive, a help center and a chatbot, starting from what the site's analytics showed.",
+    opportunities: [
+      {
+        title: "Book direct",
+        hmw: "How might we make booking on the guesthouses' own websites clearer than on the big portals?",
+      },
+      {
+        title: "Two brands, one team",
+        hmw: "How might we give each guesthouse its own identity while one small team keeps a single interface?",
+      },
+      {
+        title: "Fewer, better emails",
+        hmw: "How might we tell guests everything they need after booking with fewer emails and less text?",
+      },
+      {
+        title: "Answers before questions",
+        hmw: "How might we answer what guests ask most before they have to write to the team?",
+      },
+    ],
+    approach: [
+      {
+        title: "Two identities, one peninsula",
+        body: "Blue House is a house inside a circle, in deep navy with greys and a soft sand. Grótta is the lighthouse at the tip of the peninsula, in deep and northern greens with a touch of aurora pink. I built both brand books on the same structure, from logo, symbol and type to colour, photography, stationery and tone of voice.",
+        media: {
+          src: "/work/blue-house-grotta/books.mp4",
+          poster: "/work/blue-house-grotta/books.webp",
+          alt: "The two brand books side by side turn the same sections together: logo, symbol, backgrounds, typography, colour, photography, print, invoices and tone of voice",
+          caption: "Pages from my two brand books.",
+        },
+      },
+      {
+        title: "One interface, two coats",
+        body: "Both websites run on the same layouts and components. Logo, colour and photography change; the structure stays, so the team designs each page once and dresses it in both brands, across four breakpoints from desktop to phone.",
+      },
+      {
+        title: "Read the data first",
+        body: "In February 2024 we went through the site's heatmaps and visits: 3,552 on desktop with 80% engaged, 2,074 on mobile with 73.86% engaged, and only 41 on tablet. Half of the visitors never scrolled past the hero and about 17% reached the end of the home page. Day Tours was among the least clicked buttons, nobody opened Support, Forum or Feedback on mobile, so those links went and the map and FAQ moved into general information, and with the cookie banner guests met two pop-ups on arrival.",
+        media: {
+          src: "/work/blue-house-grotta/data.mp4",
+          poster: "/work/blue-house-grotta/data.webp",
+          alt: "Visits by device draw in as bars, a marker walks down the home page from 100% to 50% to 17%, and three findings appear",
+        },
+      },
+      {
+        title: "Dates, guests, room, done",
+        body: "On the phone the booking starts on the home page: dates, guests and one search button. Dates open as a full calendar, guests as three steppers, the results only list what is free on those dates, and each room shows the price for the whole stay once the dates are in.",
+        media: {
+          src: "/work/blue-house-grotta/mobile.mp4",
+          poster: "/work/blue-house-grotta/mobile.webp",
+          alt: "On a phone: tap check-in, pick the 3rd and the 6th of January, set two adults, search, open the economy double room, book it and reach the booking details with a voucher field",
+        },
+      },
+      {
+        title: "The same steps on a desktop",
+        body: "On desktop the fields sit in one bar over the photo of the house, the rooms list below with refundable and non-refundable prices, and the room page keeps the stay at hand in a side panel, with states for rooms that are taken, partly free or need an enquiry.",
+        media: {
+          src: "/work/blue-house-grotta/desktop.mp4",
+          poster: "/work/blue-house-grotta/desktop.webp",
+          alt: "In a browser: open the calendar, pick the dates, set the guests, search, book a room from the list and check the dates on the room page",
+        },
+      },
+      {
+        title: "Fewer, better emails",
+        body: "Guests received a long chain of automatic emails full of text, and most of them scrolled straight through. The brief was to send fewer and still say everything, so the templates were redesigned around icons, short blocks and links to the site: confirmation, breakfast, payment, house rules, northern lights tips and the review after the stay.",
+        media: {
+          src: "/work/blue-house-grotta/emails.mp4",
+          poster: "/work/blue-house-grotta/emails.webp",
+          alt: "A wall of the redesigned email templates drifts past while a phone scrolls the booking confirmation",
+        },
+      },
+      {
+        title: "Answers before questions",
+        body: "A help center in Zoho Desk gathers 18 articles, 11 about the houses and 7 about Iceland. Puffinbot, a chatbot we designed for both houses, greets guests, offers 13 topics and answers with links to those articles, then asks how it went.",
+        media: {
+          src: "/work/blue-house-grotta/bot.mp4",
+          poster: "/work/blue-house-grotta/bot.webp",
+          alt: "Puffinbot opens on the Blue House site, greets the guest, offers topics, answers about the northern lights with a photo, asks for a rating and says goodbye",
+          caption: "Puffinbot rebuilt from the chat mockup and the script in the file.",
+        },
+      },
+      {
+        title: "Built to hand off",
+        body: "As team lead I set how files reached the engineers: a checklist before every handoff (delete what is unused, name layers in one convention, give every component its states), a component library with guidelines for developers, and the brief to connect the booking page to Beds24, the guesthouses' booking engine.",
+      },
+    ],
+    impact: [
+      "Both websites are live at bluehouse.is and grottanorthernlights.com, one interface in two brands, and their booking pages carry each brand's colours, icons and price promise.",
+      "Two complete brand books, from logo and colour to stationery, email signatures and tone of voice.",
+      "Led the design team from analytics and research to handoff, with one checklist and one component library for both brands.",
+    ],
+    mosaic: {
+      src: "/work/blue-house-grotta/mosaic.mp4",
+      small: "/work/blue-house-grotta/mosaic-sm.mp4",
+      poster: "/work/blue-house-grotta/mosaic.webp",
+      alt: "A tilted wall of screens from both brands drifts past: home pages, booking states, room pages, emails, pop-ups, the help center and the 404",
+      caption: "Screens from the Figma file.",
+    },
+    mosaicLabel: "Screens",
+    links: [
+      { label: "Visit Blue House", href: "https://bluehouse.is" },
+      { label: "Visit Grótta Northern Lights", href: "https://grottanorthernlights.com" },
+      { label: "Blue House brand book", href: "https://www.behance.net/gallery/209828671/Blue-House-B-B" },
+      { label: "Grótta brand book", href: "https://www.behance.net/gallery/209834605/Grotta-Northern-Lights-Branding" },
+    ],
+  },
+
   /* ═══════════════════════════════ 7 · KARMA ═════════════════════════════ */
   {
     slug: "karma",
