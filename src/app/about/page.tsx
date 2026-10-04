@@ -24,7 +24,7 @@ const capabilities = [
   },
   {
     group: "AI",
-    items: "AI coding agents (Claude Code), AI prototyping, APIs from Anthropic, Gemini, ElevenLabs and Seedance",
+    items: "AI coding agents (Claude Code), AI prototyping (Lovable), APIs from Anthropic, Gemini, ElevenLabs and Seedance",
   },
   { group: "Tools", items: "Figma, Framer, Jira, Adobe Creative Cloud" },
   { group: "Languages", items: "Spanish (native), English (C2, near-native)" },
