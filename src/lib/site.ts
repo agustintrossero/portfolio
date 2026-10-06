@@ -4,7 +4,7 @@
  */
 export const site = {
   name: "Agustín Trossero",
-  role: "Senior Product UX/UI Designer",
+  role: "Lead Product Designer, AI",
   // One-line positioning statement shown in the top bar / about.
   tagline: "Turning product vision into measurable outcomes.",
   email: "agustintrossero@gmail.com",
