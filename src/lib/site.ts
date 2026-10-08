@@ -10,7 +10,7 @@ export const site = {
   email: "agustintrossero@gmail.com",
   // The CV inside /public, copied from Desktop/Agus/CV by scripts/media.sh.
   resume: "/Agustin_Trossero_CV.pdf",
-  location: "Madrid, Spain",
+  location: "Valencia, Spain",
   baseUrl: "https://agustin-trossero-portfolio.netlify.app",
 
   // The same profiles as the previous portfolio (checked 2026-09-30).
