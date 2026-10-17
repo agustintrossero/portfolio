@@ -830,7 +830,7 @@ export const projects: Project[] = [
       },
     ],
     impact: [
-      "Live in Brazil: designed end to end, from the brand identity to 95 screens and states, and built in house by the engineering team.",
+      "Launching in Brazil: designed end to end, from the brand identity to 95 screens and states, and built in house by the engineering team. The final build is waiting for App Store approval.",
       "Every pick leads with one confidence score, color coded by risk and explained in plain language.",
       "A complete path from free to Pro, with a trial, rewards, referrals and a payment flow designed for every outcome, unhappy paths included.",
     ],
